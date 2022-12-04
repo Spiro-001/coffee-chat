@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { configureStore } from './store/index';
-import { csrfFetch, restoreCSRF } from './store/csrf';
+import { csrfFetch } from './store/csrf';
 import * as sessionActions from "./store/session"
 
 const store = configureStore();
@@ -37,8 +37,8 @@ const renderApplication = () => {
   );
 }
 
-if (sessionStorage.getItem('X-CSRF-Token') === null) {
-  restoreCSRF().then(renderApplication);
+if (sessionStorage.getItem('X-CSRF-Token') === null || sessionStorage.getItem('currentUser')) {
+  store.dispatch(sessionActions.restoreSession()).then(renderApplication);
 } else {
   renderApplication();
 }
