@@ -20,9 +20,9 @@ class User < ApplicationRecord
     validates :session_token, presence: true, uniqueness: true
 
     def self.find_by_credentials(credential, password)
-        username_or_email = credential.match?(URI::MailTo::EMAIL_REGEXP) ? User.find_by(email: credential) : User.find_by(username: credential)
-        return nil if username_or_email.nil?
-        username_or_email.authenticate(password) ? username_or_email : nil
+        email_or_phonenumber = credential.match?(URI::MailTo::EMAIL_REGEXP) ? User.find_by(email: credential) : User.find_by(phone_number: credential)
+        return nil if email_or_phonenumber.nil?
+        email_or_phonenumber.authenticate(password) ? email_or_phonenumber : nil
     end
 
     def reset_session_token!
