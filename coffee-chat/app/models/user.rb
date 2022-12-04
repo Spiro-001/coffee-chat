@@ -14,9 +14,9 @@ class User < ApplicationRecord
     has_secure_password
     before_validation :ensure_session_token
 
-    validates :email, presence: true, uniqueness: { message: "Someone’s already using that email." }, format: { with: URI::MailTo::EMAIL_REGEXP } # bottom right motto pop-up.
+    validates :email, presence: true, uniqueness: { message: "Someone's already using that email." }, format: { with: URI::MailTo::EMAIL_REGEXP } # bottom right motto pop-up.
     validates :phone_number, phone: true, uniqueness: { message: "Someone's already using that phone-number" }
-    validates :password, allow_nil: true, length : { minimum: 6, maximum: 16 }
+    validates :password, allow_nil: true, length: { minimum: 6, maximum: 16 }
     validates :session_token, presence: true, uniqueness: true
 
     def self.find_by_credentials(credential, password)

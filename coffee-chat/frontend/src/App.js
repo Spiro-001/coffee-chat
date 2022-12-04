@@ -1,10 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-function App() {
+export const App = () => {
   return (
-    <h1>HELLO</h1>
+    <BrowserRouter>
+    <Switch>
+      <Route path="/login">
+        
+      </Route>
+      <Route exact path="/">
+        <h1>Hello</h1>
+      </Route>
+    </Switch>
+  </BrowserRouter>
   );
 }
-
-export default App;
