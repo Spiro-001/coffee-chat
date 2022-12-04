@@ -31,16 +31,16 @@ class ApplicationController < ActionController::API
         params.deep_transform_keys!(&:underscore)
     end
 
-    def attatch_authenticity_token
+    def attach_authenticity_token
         headers['X-CSRF-Token'] = masked_authenticity_token(session)
     end
 
     def invalid_authenticity_token
-        render json: { message: 'invalid authenticity token' }, status: :422
+        render json: { message: 'invalid authenticity token' }, status: 422
     end
 
     def unhandled_error(error)
-        if request.accepts.firsst.html?
+        if request.accepts.first.html?
             raise error
         else
             @error_message = "{error.class} : {error.message}"
