@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "engine": {
-    "node": "16.x"
+    "node": "18.x"
   }
 }
