@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: coffee_chat_production
-  username: coffee_chat
-  password: <%= ENV["COFFEE_CHAT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

@@ -5,7 +5,6 @@ import { LoginForm } from "./LoginForm"
 export const Feed = () => {
 
     const currentUser = useSelector(state => state.session.user)
-    console.log(currentUser)
     if (!currentUser) return <Redirect to="/"/>
     return (
         <div>
