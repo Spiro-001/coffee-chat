@@ -37,7 +37,9 @@ export const LoginForm = () => {
 
     return (
         <form onSubmit={handleOnSubmit}>
-            <input placeholder="Email or phone number" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
+            <div className="email">
+                <input placeholder="Email or phone number" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
+            </div>
             <div className="passsword">
                 <input placeholder="Password" type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
                 <button onClick={hidePassword}>Show</button>
