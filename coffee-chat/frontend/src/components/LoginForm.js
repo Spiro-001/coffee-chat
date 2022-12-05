@@ -37,10 +37,10 @@ export const LoginForm = () => {
 
     return (
         <form onSubmit={handleOnSubmit}>
-            <div className="email">
+            <div className="email-login-user-form">
                 <input placeholder="Email or phone number" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
             </div>
-            <div className="passsword">
+            <div className="passsword-login-user-form">
                 <input placeholder="Password" type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
                 <button onClick={hidePassword}>Show</button>
             </div>

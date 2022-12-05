@@ -68,14 +68,17 @@ export const CreateUserForm = () => {
     const firstPart = () => {
         return (
             <>
-                <div className="email">
+                <div className="email-create-user-form">
                     <label>Email</label>
                     <input type="text" onChange={e => setEmail(e.target.value)} value={email}/>
                 </div>
-                <div className="password">
+                <div className="password-create-user-form">
                     <label>Password (6 or more characters)</label>
                     <input type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
                     <button onClick={hidePassword}>Show</button>
+                </div>
+                <div className="agreement-create-user-form">
+                    <p>By clicking Agree & Join, you agree to the LinkedIn <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p>
                 </div>
                 <button onClick={checkNextStep}>Agree & Join</button>
             </>
@@ -85,8 +88,14 @@ export const CreateUserForm = () => {
     const secondPart = () => {
         return (
             <>
-                <input type="text" onChange={e => setFirstName(e.target.value)} value={firstName}/>
-                <input type="text" onChange={e => setLastName(e.target.value)} value={lastName}/>
+                <div className="fname-create-user-form">
+                    <label>First name</label>
+                    <input type="text" onChange={e => setFirstName(e.target.value)} value={firstName}/>
+                </div>
+                <div className="lname-create-user-form">
+                    <label>Last name</label>
+                    <input type="text" onChange={e => setLastName(e.target.value)} value={lastName}/>
+                </div>
                 <button onClick={popUp}>Continue</button>
             </>
         )
@@ -113,11 +122,14 @@ export const CreateUserForm = () => {
     console.log(popUpOn)
 
     return (
-        <form onSubmit={handleOnSubmit}>
-            { verify === 0 && firstPart() }
-            { verify === 1 && secondPart() }
-            { popUpOn && thirdPart() }
-            <h1>{email} {password} {firstName} {lastName} {country} {phoneNumber}</h1>
-        </form>
+        <>
+            <h1>Make the most of your professional life</h1>
+            <form onSubmit={handleOnSubmit}>
+                { verify === 0 && firstPart() }
+                { verify === 1 && secondPart() }
+                { popUpOn && thirdPart() }
+                <h1>{email} {password} {firstName} {lastName} {country} {phoneNumber}</h1>
+            </form>
+        </>
     );
 }
