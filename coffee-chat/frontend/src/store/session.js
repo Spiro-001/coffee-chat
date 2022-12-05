@@ -29,20 +29,28 @@ export const restoreSession = () => async dispatch => {
 };
 
 export const loginUser = (user) => async (dispatch) => {
-  const { email, password, phoneNumber } = user;
+  const { emailOrPhoneNumber, password } = user;
+  debugger
   let res = await csrfFetch("/api/session", {
     method: "POST",
     body: JSON.stringify({
-      email,
-      password,
-      phoneNumber
+      emailOrPhoneNumber,
+      password
     }),
   });
   let data = await res.json();
-  sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-
+  storeCurrentUser(data.user);
   dispatch(receiveUser(data.user));
   return res;
+};
+
+export const logoutUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session", {
+    method: "DELETE",
+  });
+
+  dispatch(removeUser());
+  return response;
 };
 
 export const signupUser = (user) => async (dispatch) => {
@@ -61,15 +69,6 @@ export const signupUser = (user) => async (dispatch) => {
   return response;
 }
 
-export const logoutUser = () => async (dispatch) => {
-  const response = await csrfFetch("/api/session", {
-    method: "DELETE",
-  });
-
-  dispatch(removeUser());
-  return response;
-  
-};
 
 const initState = { user: null };
 

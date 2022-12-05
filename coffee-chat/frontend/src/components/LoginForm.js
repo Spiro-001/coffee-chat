@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../store/session";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
 export const LoginForm = () => {
+    console.log(useParams())
+    useEffect(() => {
+        document.title = "Coffee Chat Login, Sign in | Coffee Chat"
+    })
     const dispatch = useDispatch();
 
     const [emailOrPhoneNumber, setEmailOrPhoneNumber] = useState("");
@@ -16,7 +20,7 @@ export const LoginForm = () => {
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        const userInfo = {setEmailOrPhoneNumber, password}
+        const userInfo = {emailOrPhoneNumber, password}
         dispatch(loginUser(userInfo));
     }
 

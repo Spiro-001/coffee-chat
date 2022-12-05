@@ -29,12 +29,13 @@ export const CreateUserForm = () => {
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        const userInfo = {email, password, phoneNumber}
+        const userInfo = {email, password, phoneNumber};
+        userInfo.phoneNumber = "1" + userInfo.phoneNumbe
         dispatch(signupUser(userInfo));
     }
 
     const regExEmail = (email) => {
-        return String(email).toLowerCase().match(regEx)
+        return String(email).toLowerCase().match(regEx);
     }
 
     const checkNextStep = (e) => {
@@ -48,12 +49,13 @@ export const CreateUserForm = () => {
 
     const popUp = (e) => {
         e.preventDefault();
+        setCountry("US");
         setPopUpOn(true);
     }
 
     const hidePassword = (e) => {
         e.preventDefault();
-        switchHideOrShow(e)
+        switchHideOrShow(e);
     }
 
     const switchHideOrShow = (e) => {
@@ -69,39 +71,117 @@ export const CreateUserForm = () => {
     const checkEmail = (e) => {
         const emailElement = document.getElementsByClassName('email-create-user-form')[0];
         const errorElement = document.createElement('p');
-        errorElement.className = "error-email-create-user-form"
+        errorElement.className = "error-email-create-user-form";
         errorElement.appendChild(document.createTextNode("Please enter your email address."));
 
         if (!regExEmail(e.target.value)) {
             emailElement.childNodes[1].style.border = "2px solid red";
-            if (emailElement.lastChild.className !== errorElement.className) emailElement.append(errorElement)
+            if (emailElement.lastChild.className !== errorElement.className) emailElement.append(errorElement);
         } else {
             emailElement.childNodes[1].style.border = "";
-            if (emailElement.lastChild.className === errorElement.className) emailElement.removeChild(emailElement.lastChild)
+            if (emailElement.lastChild.className === errorElement.className) emailElement.removeChild(emailElement.lastChild);
         }
     }
 
     const checkPassword = (e) => {
         const passwordElement = document.getElementsByClassName('password-create-user-form')[0];
         const errorElement = document.createElement('p');
-        errorElement.className = "error-password-create-user-form"
-        errorElement.appendChild(document.createTextNode("Please enter your password."));
+        errorElement.className = "error-password-create-user-form";
 
-        if (e.target.value.length < 6) {
+
+        if (e.target.value.length === 0) {
             passwordElement.childNodes[1].style.border = "2px solid red";
-            if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement)
+            errorElement.appendChild(document.createTextNode("Please enter your password."));
+            if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement);
+        } else if (e.target.value.length < 6) {
+            passwordElement.childNodes[1].style.border = "2px solid red";
+            errorElement.appendChild(document.createTextNode("Password must be 6 characters or more."));
+            if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement);
         } else {
             passwordElement.childNodes[1].style.border = "";
-            if (passwordElement.lastChild.className === errorElement.className) passwordElement.removeChild(passwordElement.lastChild)
+            if (passwordElement.lastChild.className === errorElement.className) passwordElement.removeChild(passwordElement.lastChild);
         }
+    }
+
+    const checkFirstName = (e) => {
+        const fnameElement = document.getElementsByClassName('fname-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-fname-create-user-form";
+        errorElement.appendChild(document.createTextNode("Please enter you first name."));
+
+        if (e.target.value.length === 0) {
+            fnameElement.childNodes[1].style.border = "2px solid red";
+            if (fnameElement.lastChild.className !== errorElement.className) fnameElement.append(errorElement);
+        } else {
+            fnameElement.childNodes[1].style.border = "";
+            if (fnameElement.lastChild.className === errorElement.className) fnameElement.removeChild(fnameElement.lastChild);
+        }
+    }
+
+    const checkLastName = (e) => {
+        const lnameElement = document.getElementsByClassName('lname-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-lname-create-user-form";
+        errorElement.appendChild(document.createTextNode("Please enter you last name."));
+
+        if (e.target.value.length === 0) {
+            lnameElement.childNodes[1].style.border = "2px solid red";
+            if (lnameElement.lastChild.className !== errorElement.className) lnameElement.append(errorElement);
+        } else {
+            lnameElement.childNodes[1].style.border = "";
+            if (lnameElement.lastChild.className === errorElement.className) lnameElement.removeChild(lnameElement.lastChild);
+        }
+    }
+
+    const checkPhoneNumber = (e) => {
+        e.preventDefault();
+        setPhoneNumber(phoneNumber.replace(/[^0-9]+/g, ''))
+        const phoneNumberElement = document.getElementsByClassName('phone-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-phone-create-user-form";
+        errorElement.appendChild(document.createTextNode("Oops, this isn't a valid phone number. Try entering it again."));
+
+        if (phoneNumberElement.lastChild.className !== errorElement.className) phoneNumberElement.append(errorElement);
     }
 
     const onFocusEmail = (e) => {
         const emailElement = document.getElementsByClassName('email-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-email-create-user-form";
+        errorElement.appendChild(document.createTextNode("Please enter your email address."));
+
+        emailElement.childNodes[1].style.border = "";
+        if (emailElement.lastChild.className === errorElement.className) emailElement.removeChild(emailElement.lastChild);
     }
 
     const onFocusPassword = (e) => {
         const passwordElement = document.getElementsByClassName('password-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-password-create-user-form";
+        errorElement.appendChild(document.createTextNode("Please enter your password."));
+
+        passwordElement.childNodes[1].style.border = "";
+        if (passwordElement.lastChild.className === errorElement.className) passwordElement.removeChild(passwordElement.lastChild);
+    }
+
+    const onFocusFirstName = (e) => {
+        const fnameElement = document.getElementsByClassName('fname-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "fname-create-user-form";
+        errorElement.appendChild(document.createTextNode("Please enter you first name."));
+
+        fnameElement.childNodes[1].style.border = "";
+        if (fnameElement.lastChild.className === errorElement.className) fnameElement.removeChild(fnameElement.lastChild);
+    }
+
+    const onFocusLastName = (e) => {
+        const lnameElement = document.getElementsByClassName('lname-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "lname-create-user-form";
+        errorElement.appendChild(document.createTextNode("Please enter you last name."));
+
+        lnameElement.childNodes[1].style.border = "";
+        if (lnameElement.lastChild.className === errorElement.className) lnameElement.removeChild(lnameElement.lastChild);
     }
 
     const firstPart = () => {
@@ -109,16 +189,31 @@ export const CreateUserForm = () => {
             <>
                 <div className="email-create-user-form">
                     <label>Email</label>
-                    <input type="text" onBlur={checkEmail} onChange={e => setEmail(e.target.value)} value={email}/>
+                    <input type="text" 
+                        onBlur={checkEmail} 
+                        onChange={e => {
+                            onFocusEmail(e);
+                            setEmail(e.target.value);
+                            }
+                        } 
+                        value={email}/>
                 </div>
                 <div className="password-create-user-form">
                     <label>Password (6 or more characters)</label>
-                    <input type={hide} onBlur={checkPassword} onChange={e => setPassword(e.target.value)} value={password}/>
+                    <input type={hide} 
+                        onBlur={checkPassword} 
+                        onChange={e => {
+                            onFocusPassword(e);
+                            setPassword(e.target.value);
+                            }
+                        }
+                        value={password}/>
                     <button onClick={hidePassword}>Show</button>
                 </div>
                 <div className="agreement-create-user-form">
                     <p>By clicking Agree & Join, you agree to the LinkedIn <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p>
                 </div>
+                <button onClick={checkNextStep}>Agree & Join</button>
                 <div className="bottom-menu-create-user-form">
                     <hr className="horizontal-line"/>
                     <p>or</p>
@@ -126,7 +221,6 @@ export const CreateUserForm = () => {
                     <button className="contine-to-github-button">Continue to Github</button>
                     <p>Already on Coffe Chat? <a href="/login">Sign in</a></p>
                 </div>
-                <button onClick={checkNextStep}>Agree & Join</button>
             </>
         );
     }
@@ -136,11 +230,25 @@ export const CreateUserForm = () => {
             <>
                 <div className="fname-create-user-form">
                     <label>First name</label>
-                    <input type="text" onChange={e => setFirstName(e.target.value)} value={firstName}/>
+                    <input type="text" 
+                        onBlur={checkFirstName}
+                        onChange={e => {
+                            onFocusFirstName(e);
+                            setFirstName(e.target.value);
+                            }
+                        } 
+                        value={firstName}/>
                 </div>
                 <div className="lname-create-user-form">
                     <label>Last name</label>
-                    <input type="text" onChange={e => setLastName(e.target.value)} value={lastName}/>
+                    <input type="text"
+                        onBlur={checkLastName}
+                        onChange={e => {
+                            onFocusLastName(e);
+                            setLastName(e.target.value);
+                            }
+                        } 
+                        value={lastName}/>
                 </div>
                 <button onClick={popUp}>Continue</button>
             </>
@@ -153,13 +261,25 @@ export const CreateUserForm = () => {
                 <div className="popup-create-user-form">
                     <span onClick={e => {
                         document.getElementsByClassName('popup-create-user-form')[0].style.display = "none"
+                        setPhoneNumber('');
+                        setCountry('')
                         setPopUpOn(false);
                         } 
                     }
                     className="close-popup-create-user-form">&times;</span>
-                    <CountryDropDown country={country} setCountry={setCountry}/>
-                    <input type="text" onChange={e => setPhoneNumber(e.target.value)} value={phoneNumber}/>
-                    <button type="submit">Submit</button>
+                    <CountryDropDown 
+                        country={country} 
+                        setCountry={setCountry}/>
+                    <div className="phone-create-user-form">
+                        <label>+1</label>
+                        <input type="text" 
+                            onChange={e => setPhoneNumber(e.target.value)} 
+                            value={phoneNumber}/>
+                        <div>
+                            {phoneNumber.length < 5 && <button onClick={checkPhoneNumber}>Submit</button>}
+                            {phoneNumber.length >= 5 && <button type="submit">Submit</button>}
+                        </div>
+                    </div>
                 </div>
             </>
         );

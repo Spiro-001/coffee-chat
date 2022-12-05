@@ -1,7 +1,7 @@
 export const CountryDropDown = ({country, setCountry}) => {
     return (
         <select id="country" name="country" value={country} onChange={e => setCountry(e.target.value)}>
-            <option>select country</option>
+            <option value="US" >United States</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Aland Islands</option>
             <option value="AL">Albania</option>
@@ -240,7 +240,6 @@ export const CountryDropDown = ({country, setCountry}) => {
             <option value="UA">Ukraine</option>
             <option value="AE">United Arab Emirates</option>
             <option value="GB">United Kingdom</option>
-            <option value="US">United States</option>
             <option value="UM">United States Minor Outlying Islands</option>
             <option value="UY">Uruguay</option>
             <option value="UZ">Uzbekistan</option>
