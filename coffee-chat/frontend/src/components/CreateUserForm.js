@@ -20,9 +20,10 @@ export const CreateUserForm = () => {
     const currentUser = useSelector((state) => state.session.user);
     const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    // useEffect(() => {
-    //     checkNextStep();
-    // },[email, password])
+    useEffect(() => {
+        // console.log(document.getElementsByClassName('password-create-user-form')[0].childNodes[1].value)
+        // console.log(document.getElementsByClassName('email-create-user-form')[0].lastElementChild)
+    },[])
 
     if (currentUser) return <Redirect to="/feed/" />
     
@@ -65,24 +66,69 @@ export const CreateUserForm = () => {
         }
     }
 
+    const checkEmail = (e) => {
+        const emailElement = document.getElementsByClassName('email-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-email-create-user-form"
+        errorElement.appendChild(document.createTextNode("Please enter your email address."));
+
+        if (!regExEmail(e.target.value)) {
+            emailElement.childNodes[1].style.border = "2px solid red";
+            if (emailElement.lastChild.className !== errorElement.className) emailElement.append(errorElement)
+        } else {
+            emailElement.childNodes[1].style.border = "";
+            if (emailElement.lastChild.className === errorElement.className) emailElement.removeChild(emailElement.lastChild)
+        }
+    }
+
+    const checkPassword = (e) => {
+        const passwordElement = document.getElementsByClassName('password-create-user-form')[0];
+        const errorElement = document.createElement('p');
+        errorElement.className = "error-password-create-user-form"
+        errorElement.appendChild(document.createTextNode("Please enter your password."));
+
+        if (e.target.value.length < 6) {
+            passwordElement.childNodes[1].style.border = "2px solid red";
+            if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement)
+        } else {
+            passwordElement.childNodes[1].style.border = "";
+            if (passwordElement.lastChild.className === errorElement.className) passwordElement.removeChild(passwordElement.lastChild)
+        }
+    }
+
+    const onFocusEmail = (e) => {
+        const emailElement = document.getElementsByClassName('email-create-user-form')[0];
+    }
+
+    const onFocusPassword = (e) => {
+        const passwordElement = document.getElementsByClassName('password-create-user-form')[0];
+    }
+
     const firstPart = () => {
         return (
             <>
                 <div className="email-create-user-form">
                     <label>Email</label>
-                    <input type="text" onChange={e => setEmail(e.target.value)} value={email}/>
+                    <input type="text" onBlur={checkEmail} onChange={e => setEmail(e.target.value)} value={email}/>
                 </div>
                 <div className="password-create-user-form">
                     <label>Password (6 or more characters)</label>
-                    <input type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
+                    <input type={hide} onBlur={checkPassword} onChange={e => setPassword(e.target.value)} value={password}/>
                     <button onClick={hidePassword}>Show</button>
                 </div>
                 <div className="agreement-create-user-form">
                     <p>By clicking Agree & Join, you agree to the LinkedIn <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p>
                 </div>
+                <div className="bottom-menu-create-user-form">
+                    <hr className="horizontal-line"/>
+                    <p>or</p>
+                    <hr className="horizontal-line"/>
+                    <button className="contine-to-github-button">Continue to Github</button>
+                    <p>Already on Coffe Chat? <a href="/login">Sign in</a></p>
+                </div>
                 <button onClick={checkNextStep}>Agree & Join</button>
             </>
-        )
+        );
     }
 
     const secondPart = () => {
@@ -98,7 +144,7 @@ export const CreateUserForm = () => {
                 </div>
                 <button onClick={popUp}>Continue</button>
             </>
-        )
+        );
     }
 
     const thirdPart = () => { // POPUP MODAL
@@ -116,10 +162,8 @@ export const CreateUserForm = () => {
                     <button type="submit">Submit</button>
                 </div>
             </>
-        )
+        );
     }
-
-    console.log(popUpOn)
 
     return (
         <>
