@@ -66,7 +66,7 @@ export const HomeLoggedOut = () => {
             <div className="main-bottom-nav-login-button">
                 <div className="first-half-bottom">
                     <h1 className="welcome-message">Welcome to your professional community</h1>
-                    <LoginForm />
+                    <LoginForm className="login-form" />
                     <a href="#">Forgot password?</a>
                     <button onClick={e => history.push('/github')}>Link to my Github</button>
                     <button onClick={e => history.push('/login')}>New to LinkedIn? Join now</button>

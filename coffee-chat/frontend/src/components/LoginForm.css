@@ -1,0 +1,19 @@
+.login-form-main {
+    padding-top: 40px;
+}
+
+.email-login-user-form {
+    height: 48px;
+    box-sizing: border-box;
+}
+
+.email-login-user-form-input {
+    position: absolute;
+    padding: 20px 12px 4px;
+    width: 35%;
+    box-sizing: border-box;
+}
+
+.placeholder-email {
+    position: absolute;
+}

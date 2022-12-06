@@ -121,7 +121,7 @@ label:hover {
     position: relative;
     right: 8px;
     font-weight: 500;
-    color: rgb(88, 88, 88);
+    color: #000000BF;
     padding: 14px 24px 14px 24px ;
 }
 
@@ -135,7 +135,7 @@ label:hover {
     align-content: center;
     max-width: 1128px;
     margin: auto;
-    padding-top: 50px;
+    padding-top: 40px;
 }
 
 .img-backsplash-man-div {
@@ -150,6 +150,7 @@ label:hover {
 }
 
 .welcome-message {
+    line-height: 64px;
     margin: 0px;
     font-weight: 300;
     font-size: 56px;

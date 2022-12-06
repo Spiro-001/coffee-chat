@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../store/session";
 import { Redirect, useParams } from "react-router-dom";
+import "./LoginForm.css"
 
 export const LoginForm = () => {
     useEffect(() => {
@@ -39,12 +40,13 @@ export const LoginForm = () => {
     }
 
     return (
-        <form onSubmit={handleOnSubmit}>
+        <form className="login-form-main" onSubmit={handleOnSubmit}>
             <div className="email-login-user-form">
-                <input placeholder="Email or phone number" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
+                <input className="email-login-user-form-input" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
+                <label className="placeholder-email">Email or phone number</label>
             </div>
             <div className="passsword-login-user-form">
-                <input placeholder="Password" type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
+                <input className="password-login-user-form-input" placeholder="Password" type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
                 <button onClick={hidePassword}>Show</button>
             </div>
             <button type="submit">Sign In</button>
