@@ -81,4 +81,5 @@ test:
 #
 production:
   <<: *default
-  url: postgres://coffee_chat_user:ZTrnOMvxh0AXpmDdxpFwro7C5eaxOugr@dpg-ce76fc6n6mpl2tju0br0-a:5432/coffee_chat
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
