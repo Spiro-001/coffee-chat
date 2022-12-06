@@ -21,6 +21,7 @@ export const CreateUserForm = () => {
     const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     useEffect(() => {
+        document.title = "Sign Up | Coffee Chat"
         // console.log(document.getElementsByClassName('password-create-user-form')[0].childNodes[1].value)
         // console.log(document.getElementsByClassName('email-create-user-form')[0].lastElementChild)
     },[])
@@ -30,7 +31,7 @@ export const CreateUserForm = () => {
     const handleOnSubmit = (e) => {
         e.preventDefault();
         const userInfo = {email, password, phoneNumber};
-        userInfo.phoneNumber = "1" + userInfo.phoneNumbe
+        userInfo.phoneNumber = "1" + userInfo.phoneNumber
         dispatch(signupUser(userInfo));
     }
 

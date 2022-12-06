@@ -4,10 +4,9 @@ import { loginUser } from "../store/session";
 import { Redirect, useParams } from "react-router-dom";
 
 export const LoginForm = () => {
-    console.log(useParams())
     useEffect(() => {
         document.title = "Coffee Chat Login, Sign in | Coffee Chat"
-    })
+    },[])
     const dispatch = useDispatch();
 
     const [emailOrPhoneNumber, setEmailOrPhoneNumber] = useState("");
