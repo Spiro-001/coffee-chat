@@ -1,19 +1,111 @@
 .login-form-main {
     padding-top: 40px;
+    height: 200px;
 }
 
 .email-login-user-form {
     height: 48px;
-    box-sizing: border-box;
+    padding-bottom: 12px;
+}
+
+.password-login-user-form {
+    height: 48px;
 }
 
 .email-login-user-form-input {
     position: absolute;
     padding: 20px 12px 4px;
+    font-size: 14px;
     width: 35%;
+    height: 48px;
     box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid #00000099;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+}
+
+.password-login-user-form-input {
+    position: absolute;
+    padding: 20px 12px 4px;
+    font-size: 14px;
+    width: 35%;
+    height: 48px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid #00000099;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
 }
 
 .placeholder-email {
-    position: absolute;
+    display: block;
+    position: relative;
+    font-size: 16px;
+    top: 25%;
+    left: 12px;
+    color: #00000075;
+    z-index: -10;
+    transition-duration: 0.25s ;
+    transition-property: top, font-size;
+}
+
+.placeholder-password {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    top: 25%;
+    left: 12px;
+    color: #00000075;
+    z-index: -10;
+    transition-duration: 0.25s ;
+    transition-property: top, font-size;
+}
+
+.email-login-user-form-input:focus {
+    outline: none;
+    border: 2px solid #0073b1;
+}
+
+.email-login-user-form-input:focus + .placeholder-email{
+    top: 8px;
+    font-size: 12px;
+}
+
+.password-login-user-form-input:focus {
+    outline: none;
+    border: 2px solid #0073b1;
+}
+
+.password-login-user-form-input:focus + .placeholder-password{
+    top: 8px;
+    font-size: 12px;
+}
+
+.hide-button {
+    background-color: transparent;
+    border: 0px;
+    font-size: 16px;
+    color: #00000099;
+    font-weight: 550;
+    border-radius: 3px;
+    position: relative;
+    left: 334px;
+    top: 8px;
+    width: 55px;
+    height: 32px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.1s;
+    transition-property: color, background-color;
+}
+
+.hide-button:hover {
+    color:#000000d0;
+    background-color: rgba(207,207,207,0.25);
 }
