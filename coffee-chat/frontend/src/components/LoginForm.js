@@ -39,14 +39,44 @@ export const LoginForm = () => {
         }
     }
 
+    const checkEmail = (e) => {
+        if (e.target.value.length > 0) {
+            document.getElementsByClassName('placeholder-email')[0].style.top = "8px";
+            document.getElementsByClassName('placeholder-email')[0].style.fontSize = "12px";
+        } else {
+            document.getElementsByClassName('placeholder-email')[0].style.top = "25%";
+            document.getElementsByClassName('placeholder-email')[0].style.fontSize = "16px";
+        }
+    }
+
+    const focusEmailValue = (e) => {
+        document.getElementsByClassName('placeholder-email')[0].style.top = "8px";
+        document.getElementsByClassName('placeholder-email')[0].style.fontSize = "12px";
+    }
+
+    const checkPassword = (e) => {
+        if (e.target.value.length > 0) {
+            document.getElementsByClassName('placeholder-password')[0].style.top = "8px";
+            document.getElementsByClassName('placeholder-password')[0].style.fontSize = "12px";
+        } else {
+            document.getElementsByClassName('placeholder-password')[0].style.top = "25%";
+            document.getElementsByClassName('placeholder-password')[0].style.fontSize = "16px";
+        }
+    }
+
+    const focusPasswordValue = (e) => {
+        document.getElementsByClassName('placeholder-password')[0].style.top = "8px";
+        document.getElementsByClassName('placeholder-password')[0].style.fontSize = "12px";
+    }
+
     return (
         <form className="login-form-main" onSubmit={handleOnSubmit}>
             <div className="email-login-user-form">
-                <input className="email-login-user-form-input" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
+                <input onBlur={checkEmail} onFocus={focusEmailValue} className="email-login-user-form-input" type="text" onChange={e => setEmailOrPhoneNumber(e.target.value)} value={emailOrPhoneNumber}/>
                 <label className="placeholder-email">Email or phone number</label>
             </div>
             <div className="password-login-user-form">
-                <input className="password-login-user-form-input" type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
+                <input onBlur={checkPassword} onFocus={focusPasswordValue} className="password-login-user-form-input" type={hide} onChange={e => setPassword(e.target.value)} value={password}/>
                 <label className="placeholder-password">Password</label>
                 <button className="hide-button" onClick={hidePassword}>Show</button>
             </div>
