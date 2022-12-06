@@ -1,6 +1,6 @@
 .login-form-main {
     padding-top: 40px;
-    height: 200px;
+    height: 100%;
 }
 
 .email-login-user-form {
@@ -10,6 +10,7 @@
 
 .password-login-user-form {
     height: 48px;
+    padding-bottom: 14px;
 }
 
 .email-login-user-form-input {
@@ -108,4 +109,90 @@
 .hide-button:hover {
     color:#000000d0;
     background-color: rgba(207,207,207,0.25);
+}
+
+.forgot-password-element {
+    display: block;
+    width:fit-content;
+    text-decoration: none;
+    color: black;
+    padding-bottom: 24px;
+}
+
+.forgot-password-element:hover {
+    text-decoration: underline;
+    color: #0073b1;
+}
+
+.sign-in-button-main {
+    display: block;
+    background-color: #2977c9;
+    border: 0px;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 0 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    height: 56px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 480;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.25s;
+    transition-property: background-color;
+    
+}
+
+.sign-in-button-main:hover {
+    background-color: #004182cc;
+}
+
+.signin-forgot-div {
+    width: 395px;
+    padding-bottom: 20px;
+}
+
+.extra-buttons-main {
+    display: flex;
+    width: 395px;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
+    color: rgba(0,0,0,0.6);
+    font-size: 14px;
+}
+
+.extra-buttons-main::before {
+    content: '';
+    border-bottom: 1px solid rgba(0,0,0,0.4);;
+    width: 40%;
+}
+
+.extra-buttons-main::after {
+    content: '';
+    border-bottom: 1px solid rgba(0,0,0,0.4);;
+    width: 40%;
+}
+
+.sign-in-divider {
+    width: 15%;
+    float: right;
+    text-align: center;
+}
+
+.button-align-bottom-half {
+    display: flex;
+    width: 395px;
+    flex-direction: column;
+}
+
+
+.link-to-my-github {
+    position: relative;
 }

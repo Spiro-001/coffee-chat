@@ -142,6 +142,8 @@ label:hover {
     height: 700px;
     width: 560px;
     position: relative;
+    left: 45px;
+    top: 25px;
 }
 
 .img-backsplash-man {
@@ -158,5 +160,9 @@ label:hover {
 }
 
 .first-half-bottom {
-    width: 50%;
+    height: 100%;
+}
+
+.main-bottom-nav-login-button {
+    height: 625px;
 }

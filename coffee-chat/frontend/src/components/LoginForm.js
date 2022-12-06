@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../store/session";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import "./LoginForm.css"
 
 export const LoginForm = () => {
+    const history = useHistory();
+    
     useEffect(() => {
         document.title = "Coffee Chat Login, Sign in | Coffee Chat"
     },[])
@@ -80,8 +82,17 @@ export const LoginForm = () => {
                 <label className="placeholder-password">Password</label>
                 <button className="hide-button" onClick={hidePassword}>Show</button>
             </div>
-
-            <button type="submit">Sign In</button>
+            <div className="signin-forgot-div">
+                <a className="forgot-password-element" href="#">Forgot password?</a>
+                <button className="sign-in-button-main" type="submit">Sign In</button>
+            </div>
+            <div className="extra-buttons-main">
+                <span className="sign-in-divider">or</span>
+            </div>
+            <div className="button-align-bottom-half">
+                <button className="link-to-my-github" onClick={e => history.push('/github')}>Link to my Github</button>
+                <button className="link-to-sign-up-page" onClick={e => history.push('/login')}>New to LinkedIn? Join now</button>
+            </div>
         </form>
     );
 }

@@ -1,7 +1,6 @@
 import { LoginForm } from "./LoginForm"
-import { Route, NavLink, Link } from "react-router-dom"
-import { useHistory } from "react-router-dom"
-import { useEffect } from "react";
+import { useHistory, Route, NavLink, Link } from "react-router-dom"
+import { useEffect } from "react"
 import "./HomeLoggedOut.css"
 
 export const HomeLoggedOut = () => {
@@ -67,9 +66,6 @@ export const HomeLoggedOut = () => {
                 <div className="first-half-bottom">
                     <h1 className="welcome-message">Welcome to your professional community</h1>
                     <LoginForm className="login-form" />
-                    <a href="#">Forgot password?</a>
-                    <button onClick={e => history.push('/github')}>Link to my Github</button>
-                    <button onClick={e => history.push('/login')}>New to LinkedIn? Join now</button>
                 </div>
                 <div className="img-backsplash-man-div">
                     <img className="img-backsplash-man" src="https://static-exp1.licdn.com/aero-v1/sc/h/dxf91zhqd2z6b0bwg85ktm5s4" alt="img-backsplash-man"/>
