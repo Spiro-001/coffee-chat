@@ -1,3 +1,8 @@
+.home-main-page {
+    display: flex;
+    flex-direction: column;
+}
+
 .body {
     font-family: 'Times New Roman', Times, serif;
 }
@@ -80,8 +85,8 @@ label {
     bottom: 26px;
     height: 0px;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-                    'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 
-                    'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+        'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 
+        'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: 100px;
 }
@@ -107,7 +112,7 @@ label:hover {
     font-weight: 500;
     height: min-content;
     border-radius: 24px;
-    padding: 13px 24px 14px 24px ;
+    padding: 13px 24px 14px 24px;
     text-align: center;
 }
 
@@ -164,5 +169,96 @@ label:hover {
 }
 
 .main-bottom-nav-login-button {
-    height: 625px;
+    height: 600px;
+}
+
+.two-home-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    position: relative;
+    height: 5vh;
+    padding: 72px 0px 16px;
+    margin: auto;
+    max-width: 1128px;
+    box-sizing: border-box;
+    height: 364px;
+}
+
+.heading-one {
+    margin-right: 72px;
+    width: 75%;
+}
+
+.heading-one h1 {
+    font-weight: 300;
+    font-size: 48px;
+    width: 100%;
+    margin: 0px;
+}
+
+.many-button-div {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 30px;
+}
+
+.button-binding-ul {
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 40px 5px;
+}
+
+.button-a-href-many-button-first {
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+    font-weight: 600;
+    height: min-content;
+    border-radius: 28px;
+    min-height: 56px;
+    font-size: 20px;
+    padding: 13px 24px 14px 24px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-a-href-many-button-first:hover {
+    background-color: #0a66c21a;
+    color: #003263cc;
+}
+
+.button-a-href-many-button {
+    border: 1px solid #000000BF;
+    color: #000000BF;
+    font-weight: 600;
+    height: min-content;
+    border-radius: 28px;
+    min-height: 56px;
+    font-size: 20px;
+    padding: 13px 24px 14px 24px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-a-href-many-button:hover{
+    border: 1px solid #000000BF;
+    background-color: rgba(207,207,207,0.25);
+}
+
+.title-in-div {
+    display: block;
+    font-size: 16px;
+    color: rgb(100, 100, 100);
+    font-weight: 600;
+    padding-bottom: 14px;
+}
+
+.background-many-button-div {
+    background-color: rgb(240, 240, 240);
+    height: 364px;
 }

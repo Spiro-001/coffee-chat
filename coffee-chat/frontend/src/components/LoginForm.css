@@ -215,9 +215,53 @@
         sans-serif;
     transition-duration: 0.25s;
     transition-property: background-color;
+    margin-bottom: 16px;
 }
 
 .link-to-my-github:hover {
     background-color: #eee;
     border: 2px solid black;
+    color: rgba(0,0,0,0.8);
+}
+
+.link-to-sign-up-page {
+    display: block;
+    background-color: #ffffff;
+    border: 0px;
+    border: 1px solid rgba(0,0,0,0.6);
+    color: rgba(0,0,0,0.8);
+    border-radius: 30px;
+    padding: 0 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    height: 56px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.25s;
+    transition-property: background-color;
+    margin-bottom: 20px;
+}
+
+.link-to-sign-up-page:hover {
+    background-color: #eee;
+    border: 2px solid black;
+}
+
+.github-icon-button {
+    position: relative;
+    top: 2px;
+    padding-right: 20px;
+}
+
+.error-render {
+    position: relative;
+    top: 30px;
+    font-weight: 600;
+    color: rgb(214, 1, 1);
 }
