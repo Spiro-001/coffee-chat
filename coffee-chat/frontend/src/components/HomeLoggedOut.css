@@ -16,7 +16,7 @@
 
 .coffee-logo-div {
     width: 20%;
-    flex-grow: 5;
+    flex-grow: 9;
 }
 
 .coffee-chat-logo {
@@ -29,7 +29,7 @@
     position: relative;
     align-items: flex-start;
     top: 3px;
-    left: 14px;
+    left: 0px;
     justify-content: center;
     list-style: none;
     padding: 0px;
@@ -92,8 +92,8 @@ label:hover {
 
 .join-now-sign-in-home-logged-out {
     display: flex;
-    position: static;
-    right: 0px;
+    position: relative;
+    left: 3px;
     justify-content: center;
     align-items: center;
     list-style: none;
@@ -107,7 +107,7 @@ label:hover {
     font-weight: 500;
     height: min-content;
     border-radius: 24px;
-    padding: 14px 24px 14px 24px ;
+    padding: 13px 24px 14px 24px ;
     text-align: center;
 }
 
@@ -123,4 +123,39 @@ label:hover {
     font-weight: 500;
     color: rgb(88, 88, 88);
     padding: 14px 24px 14px 24px ;
+}
+
+.main-bottom-nav-login-button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    position: relative;
+    flex-direction: row;
+    align-content: center;
+    max-width: 1128px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.img-backsplash-man-div {
+    height: 700px;
+    width: 560px;
+    position: relative;
+}
+
+.img-backsplash-man {
+    height: 560px;
+    width: 700px;
+}
+
+.welcome-message {
+    margin: 0px;
+    font-weight: 300;
+    font-size: 56px;
+    color: #8f5849;
+}
+
+.first-half-bottom {
+    width: 50%;
 }
