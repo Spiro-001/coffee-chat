@@ -22,8 +22,6 @@ export const CreateUserForm = () => {
 
     useEffect(() => {
         document.title = "Sign Up | Coffee Chat"
-        // console.log(document.getElementsByClassName('password-create-user-form')[0].childNodes[1].value)
-        // console.log(document.getElementsByClassName('email-create-user-form')[0].lastElementChild)
     },[])
 
     if (currentUser) return <Redirect to="/feed/" />

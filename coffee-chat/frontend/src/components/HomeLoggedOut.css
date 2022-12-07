@@ -1,10 +1,11 @@
 .home-main-page {
     display: flex;
     flex-direction: column;
+    flex-basis:content;
 }
 
-.body {
-    font-family: 'Times New Roman', Times, serif;
+.home-loggedout-div {
+    height: fit-content;
 }
 
 .top-nav-home-logged-out {
@@ -117,19 +118,24 @@ label:hover {
 }
 
 .sign-in:hover {
-    color: #0a66c2;
+    cursor: pointer;
+    background-color: #0a66c213;
 }
 
 .join-now {
     border: 0px;
-    border-radius: 15px;
+    border-radius: 24px;
     position: relative;
     right: 8px;
     font-weight: 500;
     color: #000000BF;
-    padding: 14px 24px 14px 24px ;
+    padding: 13px 24px 14px 24px ;
 }
 
+.join-now:hover {
+    cursor: pointer;
+    background-color: rgba(207,207,207,0.25);
+}
 .main-bottom-nav-login-button {
     display: flex;
     justify-content: center;
@@ -144,11 +150,9 @@ label:hover {
 }
 
 .img-backsplash-man-div {
-    height: 700px;
-    width: 560px;
+    height: fit-content;
     position: relative;
-    left: 45px;
-    top: 25px;
+    right: 0px;
 }
 
 .img-backsplash-man {
@@ -166,10 +170,14 @@ label:hover {
 
 .first-half-bottom {
     height: 100%;
+    width: 600px;
 }
 
 .main-bottom-nav-login-button {
-    height: 600px;
+    display: flex;
+    height: fit-content;
+    justify-content: flex-start;
+
 }
 
 .two-home-page {

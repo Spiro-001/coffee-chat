@@ -1,0 +1,191 @@
+.main-center-uas-login-uas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-popup-uas {
+    width: 350px;
+    border: 1px solid black;
+    height: 490px;
+}
+
+.first-half-bottom-uas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-main-uas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 450px;
+}
+
+.email-login-user-form-uas {
+    width: 300px;
+}
+
+.password-login-user-form-uas {
+    width: 300px;
+}
+
+.email-login-user-form-input-uas {
+    width: inherit;
+}
+
+.password-login-user-form-input-uas {
+    width: inherit;
+}
+
+.hide-button-uas {
+    position: relative;
+    left: 240px;
+    font-size: 13px;
+    color: blue;
+}
+
+.signin-forgot-div-uas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.error-render-uas {
+    display: block;
+    position: relative;
+    font-weight: 500;
+    width: 300px;
+    top: -10px;
+}
+
+.a-tag-forgot-password-uas {
+    font-weight: 700;
+}
+
+.forgot-password-element-uas {
+    display: block;
+    position: relative;
+    right: 85px;
+    color: #0a66c2;
+    font-weight: 600;
+    font-size: 16px;
+    height: 2px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    width: 150px;
+    text-align: center;
+    padding: 6px 0px 24px 0px;
+    transition-duration: 0.2s;
+    transition-property: background-color;
+}
+
+.forgot-password-element-uas:hover {
+    border: 1px solid transparent;
+    background-color: #2976c931;
+}
+
+.extra-buttons-main-uas {
+    justify-content: center;
+    width: 300px;
+}
+
+.sign-in-button-main-uas {
+    display: block;
+    background-color: #2977c9;
+    border: 0px;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 0 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    height: 56px;
+    width: 300px;
+    font-size: 20px;
+    font-weight: 480;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.25s;
+    transition-property: background-color;
+}
+
+.button-align-bottom-half-uas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-to-my-github-uas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 0px;
+    border: 1px solid rgba(0,0,0,0.6);
+    color: rgba(0,0,0,0.6);
+    border-radius: 30px;
+    padding: 0 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    height: 42px;
+    width: 300px;
+    font-size: 20px;
+    font-weight: 480;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.25s;
+    transition-property: background-color;
+    margin-bottom: 16px;
+}
+
+.link-to-my-github-uas:hover {
+    
+}
+
+.link-to-sign-up-page-uas {
+    position: relative;
+    top: 100px;
+    border-radius: 0px;
+    border: 0px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.link-to-sign-up-page-uas:hover {
+    position: relative;
+    top: 100px;
+    border-radius: 0px;
+    border: 0px;
+}
+
+.heading-top-modal-popup-uas {
+    padding-left: 25px;
+    height: 45px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+        'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 
+        'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+.sign-in-modal-popup-uas {
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+
+.description-popup {
+    
+}

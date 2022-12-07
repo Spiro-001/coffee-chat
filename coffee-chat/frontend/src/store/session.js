@@ -13,7 +13,6 @@ export const receiveUser = (user) => ({
 export const removeUser = () => ({
   type: REMOVE_USER,
 });
-
 const storeCurrentUser = user => {
   if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
   else sessionStorage.removeItem("currentUser");

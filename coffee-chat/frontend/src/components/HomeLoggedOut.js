@@ -1,5 +1,5 @@
 import { LoginForm } from "./LoginForm"
-import { useHistory, Route, NavLink, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useEffect } from "react"
 import "./HomeLoggedOut.css"
 
@@ -12,7 +12,7 @@ export const HomeLoggedOut = () => {
     
     return (
         <main className="home-main-page">
-            <div className="homeloggedout-div">
+            <div className="home-loggedout-div">
                 <nav className="top-nav-home-logged-out">
                     <div className="coffee-logo-div">
                         <img className="coffee-chat-logo" alt="Coffee-Chat" src={require("../assets/Coffee-Chat.png")} />

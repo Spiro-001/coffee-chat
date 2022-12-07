@@ -1,19 +1,19 @@
-.login-form-main {
+.login-form-main-uas {
     padding-top: 40px;
     height: 100%;
 }
 
-.email-login-user-form {
+.email-login-user-form-uas {
     height: 48px;
     padding-bottom: 12px;
 }
 
-.password-login-user-form {
+.password-login-user-form-uas {
     height: 48px;
     padding-bottom: 14px;
 }
 
-.email-login-user-form-input {
+.email-login-user-form-input-uas {
     position: absolute;
     padding: 20px 12px 4px;
     font-size: 14px;
@@ -28,7 +28,7 @@
         sans-serif;
 }
 
-.password-login-user-form-input {
+.password-login-user-form-input-uas {
     position: absolute;
     padding: 20px 12px 4px;
     font-size: 14px;
@@ -43,11 +43,11 @@
         sans-serif;
 }
 
-.placeholder-email {
+.placeholder-email-uas {
     display: block;
     position: relative;
-    font-size: 16px;
-    top: 25%;
+    font-size: 18px;
+    top: 12px;
     left: 12px;
     color: #00000075;
     z-index: -10;
@@ -55,11 +55,11 @@
     transition-property: top, font-size;
 }
 
-.placeholder-password {
+.placeholder-password-uas {
     display: block;
     position: relative;
-    font-size: 16px;
-    top: 25%;
+    font-size: 18px;
+    top: 12px;
     left: 12px;
     color: #00000075;
     z-index: -10;
@@ -67,27 +67,27 @@
     transition-property: top, font-size;
 }
 
-.email-login-user-form-input:focus {
+.email-login-user-form-input-uas:focus {
     outline: none;
     border: 2px solid #0073b1;
 }
 
-.email-login-user-form-input:focus + .placeholder-email{
+.email-login-user-form-input-uas:focus + .placeholder-email-uas{
     top: 8px;
     font-size: 12px;
 }
 
-.password-login-user-form-input:focus {
+.password-login-user-form-input-uas:focus {
     outline: none;
     border: 2px solid #0073b1;
 }
 
-.password-login-user-form-input:focus + .placeholder-password{
+.password-login-user-form-input-uas:focus + .placeholder-password-uas{
     top: 8px;
     font-size: 12px;
 }
 
-.hide-button {
+.hide-button-uas {
     background-color: transparent;
     border: 0px;
     font-size: 16px;
@@ -106,13 +106,13 @@
     transition-property: color, background-color;
 }
 
-.hide-button:hover {
+.hide-button-uas:hover {
     cursor: pointer;
     color:#000000d0;
     background-color: rgba(207,207,207,0.25);
 }
 
-.forgot-password-element {
+.forgot-password-element-uas {
     display: block;
     width:fit-content;
     text-decoration: none;
@@ -120,12 +120,12 @@
     padding-bottom: 24px;
 }
 
-.forgot-password-element:hover {
+.forgot-password-element:hover-uas {
     text-decoration: underline;
     color: #0073b1;
 }
 
-.sign-in-button-main {
+.sign-in-button-main-uas {
     display: block;
     background-color: #2977c9;
     border: 0px;
@@ -148,17 +148,17 @@
     
 }
 
-.sign-in-button-main:hover {
+.sign-in-button-main-uas:hover {
     cursor: pointer;
     background-color: #004182cc;
 }
 
-.signin-forgot-div {
+.signin-forgot-div-uas {
     width: 395px;
     padding-bottom: 20px;
 }
 
-.extra-buttons-main {
+.extra-buttons-main-uas {
     display: flex;
     width: 395px;
     flex-direction: row;
@@ -171,32 +171,32 @@
     padding-bottom: 20px;
 }
 
-.extra-buttons-main::before {
+.extra-buttons-main-uas::before {
     content: '';
     border-bottom: 1px solid rgba(0,0,0,0.4);
     width: 40%;
 }
 
-.extra-buttons-main::after {
+.extra-buttons-main-uas::after {
     content: '';
     border-bottom: 1px solid rgba(0,0,0,0.4);
     width: 40%;
 }
 
-.sign-in-divider {
+.sign-in-divider-uas {
     width: 15%;
     float: right;
     text-align: center;
 }
 
-.button-align-bottom-half {
+.button-align-bottom-half-uas {
     display: flex;
     width: 395px;
     flex-direction: column;
 }
 
 
-.link-to-my-github {
+.link-to-my-github-uas {
     display: block;
     background-color: #ffffff;
     border: 0px;
@@ -220,14 +220,14 @@
     margin-bottom: 16px;
 }
 
-.link-to-my-github:hover {
+.link-to-my-github-uas:hover {
     background-color: #eee;
     border: 2px solid black;
     color: rgba(0,0,0,0.8);
     cursor: pointer;
 }
 
-.link-to-sign-up-page {
+.link-to-sign-up-page-uas {
     display: block;
     background-color: #ffffff;
     border: 0px;
@@ -251,34 +251,30 @@
     margin-bottom: 20px;
 }
 
-.link-to-sign-up-page:hover {
+.link-to-sign-up-page-uas:hover {
     background-color: #eee;
     cursor: pointer;
     border: 2px solid black;
 }
 
-.github-icon-button {
+.github-icon-button-uas {
     position: relative;
     top: 2px;
     padding-right: 20px;
 }
 
-.error-render {
+.error-render-uas {
     position: relative;
     top: 30px;
     font-weight: 600;
     color: rgb(214, 1, 1);
 }
 
-.a-tag-forgot-password {
+.a-tag-forgot-password-uas {
     color: rgb(214, 1, 1);
     text-decoration: underline;
 }
 
-.a-tag-forgot-password:hover {
+.a-tag-forgot-password-uas:hover {
     cursor: pointer;
-}
-
-.first-half-bottom {
-    height: 500px;
 }

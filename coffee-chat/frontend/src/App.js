@@ -3,11 +3,17 @@ import { CreateUserForm } from "./components/CreateUserForm";
 import { LoginForm } from "./components/LoginForm";
 import { Feed } from "./components/Feed";
 import { HomeLoggedOut } from "./components/HomeLoggedOut";
+import { UASLoginForm } from "./components/UASLoginForm";
 
 export const App = () => {
+  let firstSession = false;
+
   return (
     <BrowserRouter>
     <Switch>
+    <Route exact path="/uas/login">
+        <UASLoginForm />
+      </Route>
       <Route exact path="/feed">
         <Feed />
       </Route>
