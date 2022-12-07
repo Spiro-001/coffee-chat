@@ -10,8 +10,10 @@
 
 .modal-popup-uas {
     width: 350px;
-    border: 1px solid black;
-    height: 490px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    height: 500px;
+    box-shadow: 0px 5px 10px 1px #8888885b;
 }
 
 .first-half-bottom-uas {
@@ -38,10 +40,12 @@
 
 .email-login-user-form-input-uas {
     width: inherit;
+    height: 50px;
 }
 
 .password-login-user-form-input-uas {
     width: inherit;
+    height: 50px;
 }
 
 .hide-button-uas {
@@ -64,7 +68,7 @@
     position: relative;
     font-weight: 500;
     width: 300px;
-    top: -10px;
+    top: 30px;
 }
 
 .a-tag-forgot-password-uas {
@@ -92,6 +96,7 @@
 .forgot-password-element-uas:hover {
     border: 1px solid transparent;
     background-color: #2976c931;
+    text-decoration: underline;
 }
 
 .extra-buttons-main-uas {
@@ -157,18 +162,17 @@
     
 }
 
-.link-to-sign-up-page-uas {
+.a-link-to-sign-up-page-uas {
     position: relative;
-    top: 100px;
+    top: 40px;
     border-radius: 0px;
     border: 0px;
     font-size: 16px;
     font-weight: 400;
 }
 
-.link-to-sign-up-page-uas:hover {
+.a-link-to-sign-up-page-uas:hover {
     position: relative;
-    top: 100px;
     border-radius: 0px;
     border: 0px;
 }
@@ -184,8 +188,30 @@
 .sign-in-modal-popup-uas {
     font-weight: 500;
     padding-bottom: 5px;
+    margin-top: 20px;
 }
 
-.description-popup {
-    
+.main-center-sign-in-uas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav-bar-main-sign-in {
+    height: 225px;
+}
+
+.a-tag-uas-join-now {
+    position: relative;
+    text-decoration: none;
+    color: #0a66c2;
+    font-weight: 500;
+    border-radius: 30px;
+    padding: 6px 10px 6px;
+
+}
+
+.a-tag-uas-join-now:hover {
+    text-decoration: underline;
+    background-color: #2976c931;
 }

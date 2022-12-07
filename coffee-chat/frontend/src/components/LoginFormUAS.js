@@ -122,7 +122,7 @@ export const LoginFormUAS = () => {
     const checkInputValue = (e) => {
         e.preventDefault();
         const inputErrorField = document.getElementsByClassName('first-half-bottom-uas')[0].children;
-        
+        console.log(inputErrorField)
         let emailError = true;
         let passswordError = true;
         let value_toggle = 1
@@ -194,10 +194,11 @@ export const LoginFormUAS = () => {
                         </svg>
                         Link to my Github
                     </button>
-                    <button className="link-to-sign-up-page-uas" onClick={e => history.push('/login')}>
-                        New to Coffee Chat? Join now
-                    </button>
                 </div>
+                <span className="a-link-to-sign-up-page-uas" onClick={e => history.push('/login')}>
+                    {"New to Coffee Chat?"}
+                    <a className="a-tag-uas-join-now" href="#">{"Join now"}</a>
+                </span>
             </form>
         </div>
     );

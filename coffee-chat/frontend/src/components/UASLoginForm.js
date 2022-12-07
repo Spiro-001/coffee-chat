@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
 import { LoginFormUAS } from "./LoginFormUAS";
-import "./LoginFormUAS.css"
 import "./UASLoginForm.css"
+import "./LoginFormUAS.css"
 
 export const UASLoginForm = () => {
     
@@ -14,7 +14,7 @@ export const UASLoginForm = () => {
             // import('./LoginFormUAS.css')
             // import('./UASLoginForm.css')
             setIsLoading(false);
-        },10)
+        },1000)
     }
 
     setTimeout(() => {
@@ -25,13 +25,22 @@ export const UASLoginForm = () => {
         <>
             {isLoading && <h1>LOADING</h1>}
             {!isLoading &&
-            <div className="main-center-uas-login-uas">
-                <div className="modal-popup-uas">
-                    <div className="heading-top-modal-popup-uas">
-                        <h1 className="sign-in-modal-popup-uas">Sign in</h1>
-                        <label className="description-popup-uas">Stay updated on your professional world</label>
+            <div className="main-center-sign-in-uas">
+                <nav className="nav-bar-main-sign-in">
+                    <ul>
+                        <li>
+
+                        </li>
+                    </ul>
+                </nav>
+                <div className="main-center-uas-login-uas">
+                    <div className="modal-popup-uas">
+                        <div className="heading-top-modal-popup-uas">
+                            <h1 className="sign-in-modal-popup-uas">Sign in</h1>
+                            <label className="description-popup-uas">Stay updated on your professional world</label>
+                        </div>
+                        <LoginFormUAS />
                     </div>
-                    <LoginFormUAS />
                 </div>
             </div>
             }
