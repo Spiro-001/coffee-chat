@@ -1,5 +1,5 @@
 import { LoginForm } from "./LoginForm"
-import { useHistory, Route, NavLink, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useEffect } from "react"
 import "./HomeLoggedOut.css"
 

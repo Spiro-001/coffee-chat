@@ -107,6 +107,7 @@
 }
 
 .hide-button:hover {
+    cursor: pointer;
     color:#000000d0;
     background-color: rgba(207,207,207,0.25);
 }
@@ -148,6 +149,7 @@
 }
 
 .sign-in-button-main:hover {
+    cursor: pointer;
     background-color: #004182cc;
 }
 
@@ -222,6 +224,7 @@
     background-color: #eee;
     border: 2px solid black;
     color: rgba(0,0,0,0.8);
+    cursor: pointer;
 }
 
 .link-to-sign-up-page {
@@ -250,6 +253,7 @@
 
 .link-to-sign-up-page:hover {
     background-color: #eee;
+    cursor: pointer;
     border: 2px solid black;
 }
 
@@ -264,4 +268,13 @@
     top: 30px;
     font-weight: 600;
     color: rgb(214, 1, 1);
+}
+
+.a-tag-forgot-password {
+    color: rgb(214, 1, 1);
+    text-decoration: underline;
+}
+
+.a-tag-forgot-password:hover {
+    cursor: pointer;
 }

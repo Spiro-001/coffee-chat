@@ -4,7 +4,6 @@
 }
 
 .body {
-    font-family: 'Times New Roman', Times, serif;
 }
 
 .top-nav-home-logged-out {
@@ -117,19 +116,24 @@ label:hover {
 }
 
 .sign-in:hover {
-    color: #0a66c2;
+    cursor: pointer;
+    background-color: #0a66c213;
 }
 
 .join-now {
     border: 0px;
-    border-radius: 15px;
+    border-radius: 24px;
     position: relative;
     right: 8px;
     font-weight: 500;
     color: #000000BF;
-    padding: 14px 24px 14px 24px ;
+    padding: 13px 24px 14px 24px ;
 }
 
+.join-now:hover {
+    cursor: pointer;
+    background-color: rgba(207,207,207,0.25);
+}
 .main-bottom-nav-login-button {
     display: flex;
     justify-content: center;
