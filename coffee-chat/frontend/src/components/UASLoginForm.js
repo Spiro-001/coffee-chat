@@ -1,13 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import { LoginFormUAS } from "./LoginFormUAS";
 import "./UASLoginForm.css"
 import "./LoginFormUAS.css"
+import { csrfFetch } from "../store/csrf";
+import { useDispatch } from "react-redux";
 
 export const UASLoginForm = () => {
     
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(true);
+    // const response = csrfFetch(`/api/user/${history.location.state.emailOrPhoneNumber}`, {
+    //     method: 'GET'
+    // })
+    // .then(res => (res.json())
+    // .then(res => {
+    //     let user = res
+        
+    // }))
+    if (history.location.state) {
+    }
+    useEffect(() => {
+        // const user = csrfFetch(`/api/user/${history.location.state.emailOrPhoneNumber}`, {
+        //     method: 'GET'
+        // })
+        // .then(res => (res.json())
+        // .then(res => console.log(res)))
+    },[])
+
+    // const userExist = async () => {
+    //     let res = await csrfFetch(`/api/user/${history.location.state.emailOrPhoneNumber}`, {
+    //         method: 'GET'
+    //     })
+
+    //     let user = await res.json();
+    //     return user;
+    // }
     
     if (history.location.pathname === '/uas/login' && isLoading) { // CONDITIONAL CSS :O <---
         setTimeout(() => {
@@ -16,6 +44,7 @@ export const UASLoginForm = () => {
             setIsLoading(false);
         },1000)
     }
+
 
     setTimeout(() => {
 

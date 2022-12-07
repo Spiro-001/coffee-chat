@@ -128,38 +128,34 @@ export const LoginForm = () => {
 
         if (history.location.pathname === '/uas/login') value_toggle = 0
 
-        if (value_toggle === 0) {
+        if (inputErrorField.item(value_toggle).className === "error-render") inputErrorField.item(value_toggle).remove()
+        document.getElementsByClassName('email-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
 
+        if (emailOrPhoneNumber.length === 0) {
+            errorElementEmail.append(errorElementEmailNoContent)
+            document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
+        } else if (!regExEmail(emailOrPhoneNumber)) {
+            errorElementEmail.append(errorElementEmailWrongContent)
+            document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
         } else {
-            if (inputErrorField.item(value_toggle).className === "error-render") inputErrorField.item(value_toggle).remove()
-            document.getElementsByClassName('email-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
-    
-            if (emailOrPhoneNumber.length === 0) {
-                errorElementEmail.append(errorElementEmailNoContent)
-                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
-            } else if (!regExEmail(emailOrPhoneNumber)) {
-                errorElementEmail.append(errorElementEmailWrongContent)
-                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
+            document.getElementsByClassName('email-login-user-form-input')[0].style.border = "1px solid #00000099";
+            emailError = false;
+        }
+
+        if (inputErrorField.item(value_toggle).className !== "error-render") {
+            document.getElementsByClassName('password-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
+            if (password.length === 0) {
+                errorElementPassword.append(errorElementPasswordNoContent)
+                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
+            } else if (password.length !== 0 && password.length < 6) {
+                errorElementPassword.append(errorElementPasswordWrongContent)
+                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
             } else {
-                document.getElementsByClassName('email-login-user-form-input')[0].style.border = "1px solid #00000099";
-                emailError = false;
-            }
-    
-            if (inputErrorField.item(value_toggle).className !== "error-render") {
-                document.getElementsByClassName('password-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
-                if (password.length === 0) {
-                    errorElementPassword.append(errorElementPasswordNoContent)
-                    document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
-                } else if (password.length !== 0 && password.length < 6) {
-                    errorElementPassword.append(errorElementPasswordWrongContent)
-                    document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
-                } else {
-                    document.getElementsByClassName('password-login-user-form-input')[0].style.border = "1px solid #00000099";
-                    passswordError = false;
-                }
-            } else {
+                document.getElementsByClassName('password-login-user-form-input')[0].style.border = "1px solid #00000099";
                 passswordError = false;
             }
+        } else {
+            passswordError = false;
         }
 
         if (!emailError && !passswordError) sendSubmission = true;

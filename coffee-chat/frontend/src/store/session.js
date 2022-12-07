@@ -4,6 +4,7 @@ import { storeCSRFToken } from "./csrf";
 const RECEIVE_USER = "session/RECEIVE_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const CREATE_USER = "session/CREATE_USER";
+// const FIND_USER = "session/FIND_USER";
 
 export const receiveUser = (user) => ({
   type: RECEIVE_USER,
@@ -13,6 +14,12 @@ export const receiveUser = (user) => ({
 export const removeUser = () => ({
   type: REMOVE_USER,
 });
+
+// export const findUser = (emailOrPhoneNumber) => ({
+//   type: FIND_USER,
+//   payload: emailOrPhoneNumber
+// });
+
 const storeCurrentUser = user => {
   if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
   else sessionStorage.removeItem("currentUser");
@@ -26,6 +33,17 @@ export const restoreSession = () => async dispatch => {
   dispatch(receiveUser(data.user));
   return response;
 };
+
+// export const userExist = (emailOrPhoneNumber) => async dispatch => {
+//   const response = await csrfFetch( `/api/users/${emailOrPhoneNumber}`, {
+//     method: 'GET', 
+//     body: JSON.stringify(emailOrPhoneNumber),
+//   });
+
+//   const user = await response.json(); 
+//   dispatch(findUser(user.email));
+//   return user;
+// }
 
 export const loginUser = (user) => async (dispatch) => {
   const { emailOrPhoneNumber, password } = user;
@@ -67,7 +85,6 @@ export const signupUser = (user) => async (dispatch) => {
   return response;
 }
 
-
 const initState = { user: null };
 
 export const sessionReducer = (state = initState, action) => {
@@ -82,6 +99,9 @@ export const sessionReducer = (state = initState, action) => {
     case CREATE_USER:
       newState["user"] = action.payload;
       return newState;
+    // case FIND_USER:
+    //   newState["user_exist"] = action.payload;
+    //   return newState;
     default:
       return state;
   }
