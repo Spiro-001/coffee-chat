@@ -6,6 +6,7 @@ import { HomeLoggedOut } from "./components/HomeLoggedOut";
 import { UASLoginForm } from "./components/UASLoginForm";
 
 export const App = () => {
+  let firstSession = false;
 
   return (
     <BrowserRouter>

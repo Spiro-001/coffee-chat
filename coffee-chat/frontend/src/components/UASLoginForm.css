@@ -1,4 +1,4 @@
-.main-center-uas-login {
+.main-center-uas-login-uas {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,50 +8,50 @@
     height: 100%;
 }
 
-.modal-popup {
+.modal-popup-uas {
     width: 350px;
     border: 1px solid black;
     height: 490px;
 }
 
-.first-half-bottom {
+.first-half-bottom-uas {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.login-form-main {
+.login-form-main-uas {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 550px;
+    height: 450px;
 }
 
-.email-login-user-form {
+.email-login-user-form-uas {
     width: 300px;
 }
 
-.password-login-user-form {
+.password-login-user-form-uas {
     width: 300px;
 }
 
-.email-login-user-form-input {
+.email-login-user-form-input-uas {
     width: inherit;
 }
 
-.password-login-user-form-input {
+.password-login-user-form-input-uas {
     width: inherit;
 }
 
-.hide-button {
+.hide-button-uas {
     position: relative;
     left: 240px;
     font-size: 13px;
     color: blue;
 }
 
-.signin-forgot-div {
+.signin-forgot-div-uas {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,7 +59,7 @@
     font-size: 14px;
 }
 
-.error-render {
+.error-render-uas {
     display: block;
     position: relative;
     font-weight: 500;
@@ -67,11 +67,11 @@
     top: -10px;
 }
 
-.a-tag-forgot-password {
+.a-tag-forgot-password-uas {
     font-weight: 700;
 }
 
-.forgot-password-element {
+.forgot-password-element-uas {
     display: block;
     position: relative;
     right: 85px;
@@ -89,17 +89,17 @@
     transition-property: background-color;
 }
 
-.forgot-password-element:hover {
+.forgot-password-element-uas:hover {
     border: 1px solid transparent;
     background-color: #2976c931;
 }
 
-.extra-buttons-main {
+.extra-buttons-main-uas {
     justify-content: center;
     width: 300px;
 }
 
-.sign-in-button-main {
+.sign-in-button-main-uas {
     display: block;
     background-color: #2977c9;
     border: 0px;
@@ -121,13 +121,13 @@
     transition-property: background-color;
 }
 
-.button-align-bottom-half {
+.button-align-bottom-half-uas {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.link-to-my-github {
+.link-to-my-github-uas {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,11 +153,11 @@
     margin-bottom: 16px;
 }
 
-.link-to-my-github:hover {
+.link-to-my-github-uas:hover {
     
 }
 
-.link-to-sign-up-page {
+.link-to-sign-up-page-uas {
     position: relative;
     top: 100px;
     border-radius: 0px;
@@ -166,14 +166,14 @@
     font-weight: 400;
 }
 
-.link-to-sign-up-page:hover {
+.link-to-sign-up-page-uas:hover {
     position: relative;
     top: 100px;
     border-radius: 0px;
     border: 0px;
 }
 
-.heading-top-modal-popup {
+.heading-top-modal-popup-uas {
     padding-left: 25px;
     height: 45px;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
@@ -181,7 +181,7 @@
         'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
-.sign-in-modal-popup {
+.sign-in-modal-popup-uas {
     font-weight: 500;
     padding-bottom: 5px;
 }

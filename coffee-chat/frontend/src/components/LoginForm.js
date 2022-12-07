@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../store/session";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import componentDidMount from 'react'
+import { Redirect, useHistory } from "react-router-dom";
 import "./LoginForm.css"
 
 export const LoginForm = () => {
     const history = useHistory();
+    
+    if (history.location.pathname === '/login' || history.location.pathname === '/') {
+        // import("./LoginForm.css")
+    }
     
     useEffect(() => {
         document.title = "Coffee Chat Login, Sign in | Coffee Chat";
@@ -19,7 +22,7 @@ export const LoginForm = () => {
             errorElementEmail.appendChild(aTagFogotPassword);
             document.getElementsByClassName('signin-forgot-div')[0].insertBefore(errorElementEmail, document.getElementsByClassName('forgot-password-element')[0]);
             document.getElementsByClassName('email-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
-            
+
             document.getElementsByClassName('email-login-user-form-input')[0].focus()
             document.getElementsByClassName('password-login-user-form-input')[0].focus()
         }
@@ -118,38 +121,45 @@ export const LoginForm = () => {
     const checkInputValue = (e) => {
         e.preventDefault();
         const inputErrorField = document.getElementsByClassName('first-half-bottom')[0].children;
-        console.log(inputErrorField)
+        
         let emailError = true;
         let passswordError = true;
+        let value_toggle = 1
 
-        if (inputErrorField.item(1).className === "error-render") inputErrorField.item(1).remove()
-        document.getElementsByClassName('email-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
+        if (history.location.pathname === '/uas/login') value_toggle = 0
 
-        if (emailOrPhoneNumber.length === 0) {
-            errorElementEmail.append(errorElementEmailNoContent)
-            document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(1))
-        } else if (!regExEmail(emailOrPhoneNumber)) {
-            errorElementEmail.append(errorElementEmailWrongContent)
-            document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(1))
+        if (value_toggle === 0) {
+
         } else {
-            document.getElementsByClassName('email-login-user-form-input')[0].style.border = "1px solid #00000099";
-            emailError = false;
-        }
-
-        if (inputErrorField.item(1).className !== "error-render") {
-            document.getElementsByClassName('password-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
-            if (password.length === 0) {
-                errorElementPassword.append(errorElementPasswordNoContent)
-                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(1))
-            } else if (password.length !== 0 && password.length < 6) {
-                errorElementPassword.append(errorElementPasswordWrongContent)
-                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(1))
+            if (inputErrorField.item(value_toggle).className === "error-render") inputErrorField.item(value_toggle).remove()
+            document.getElementsByClassName('email-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
+    
+            if (emailOrPhoneNumber.length === 0) {
+                errorElementEmail.append(errorElementEmailNoContent)
+                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
+            } else if (!regExEmail(emailOrPhoneNumber)) {
+                errorElementEmail.append(errorElementEmailWrongContent)
+                document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
             } else {
-                document.getElementsByClassName('password-login-user-form-input')[0].style.border = "1px solid #00000099";
+                document.getElementsByClassName('email-login-user-form-input')[0].style.border = "1px solid #00000099";
+                emailError = false;
+            }
+    
+            if (inputErrorField.item(value_toggle).className !== "error-render") {
+                document.getElementsByClassName('password-login-user-form-input')[0].style.border = "2px solid rgb(214, 1, 1)"
+                if (password.length === 0) {
+                    errorElementPassword.append(errorElementPasswordNoContent)
+                    document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
+                } else if (password.length !== 0 && password.length < 6) {
+                    errorElementPassword.append(errorElementPasswordWrongContent)
+                    document.getElementsByClassName('first-half-bottom')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
+                } else {
+                    document.getElementsByClassName('password-login-user-form-input')[0].style.border = "1px solid #00000099";
+                    passswordError = false;
+                }
+            } else {
                 passswordError = false;
             }
-        } else {
-            passswordError = false;
         }
 
         if (!emailError && !passswordError) sendSubmission = true;
