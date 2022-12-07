@@ -1,11 +1,13 @@
 .main-center-uas-login-uas {
     display: flex;
+    position: relative;
+    bottom: 50px;
     justify-content: center;
     align-items: center;
     align-content: center;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 600px;
 }
 
 .modal-popup-uas {
@@ -221,4 +223,44 @@
 .a-tag-uas-join-now:hover {
     text-decoration: underline;
     background-color: #2976c931;
+}
+
+.logo-uas-main-link {
+    width: 156px;
+    position: relative;
+    left: 50px;
+    top: 30px;
+}
+
+.list-extra-link {
+    display: flex;
+    justify-content: center;
+}
+
+.list-extra-link-ul {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 20px;
+    list-style: none;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.list-extra-link-ul li a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.6);
+}
+
+.list-extra-link-ul li a:hover {
+    text-decoration: underline;
+}
+
+.first-li-extra-link {
+    font-weight: 400;
+}
+
+.logo-uas-main-link-bottom-nav {
+    width: 80px;
 }
