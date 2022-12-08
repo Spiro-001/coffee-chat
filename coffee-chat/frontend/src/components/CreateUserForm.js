@@ -4,6 +4,8 @@ import { signupUser } from "../store/session";
 import { Redirect } from "react-router-dom";
 import { CountryDropDown } from "./CountryDropDown";
 import "./CreateUserForm.css"
+import { IsLoadingForm } from "../loadinghtml/IsLoadingForm";
+import { render } from "react-dom";
 
 export const CreateUserForm = () => {
     const dispatch = useDispatch();
@@ -19,6 +21,7 @@ export const CreateUserForm = () => {
     const [hide, setHide] = useState("password");
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const currentUser = useSelector((state) => state.session.user);
     const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -33,7 +36,37 @@ export const CreateUserForm = () => {
         e.preventDefault();
         const userInfo = {email, password, phoneNumber};
         userInfo.phoneNumber = "1" + userInfo.phoneNumber
-        dispatch(signupUser(userInfo));
+        dispatch(signupUser(userInfo))
+            .then(res => res)
+            .catch(res => {
+                if (res.status === 422) {
+                    setTimeout(() => {
+                        setIsLoading(false)
+                        setPopUpOn(true)
+                        const phoneNumberElement = document.getElementsByClassName('phone-create-user-form')[0];
+                        const errorElement = document.createElement('p');
+                        errorElement.className = "error-phone-create-user-form";
+                        errorElement.appendChild(document.createTextNode("Oops, this isn't a valid phone number. Try entering it again."));
+                        if (phoneNumberElement.lastChild.className !== errorElement.className) phoneNumberElement.append(errorElement);
+                        console.log("2")
+                    },2000)
+                    setPopUpOn(false)
+                    setIsLoading(true)
+                    console.log("1")
+                } else if (res.status === 403) {
+                    setVerify(0);
+                    setFirstName("")
+                    setLastName("")
+                    setPopUpOn(false)
+                    const emailElement = document.getElementsByClassName('email-create-user-form')[0];
+                    const errorElement = document.createElement('p');
+                    errorElement.className = "error-email-create-user-form";
+                    errorElement.appendChild(document.createTextNode("Email or phone number is already in use."));
+                    emailElement.childNodes[1].style.border = "1px solid red";
+                    errorElement.style.right = "50px";
+                    if (emailElement.lastChild.className !== errorElement.className) emailElement.append(errorElement);
+                }
+            });
     }
 
     const regExEmail = (email) => {
@@ -200,7 +233,6 @@ export const CreateUserForm = () => {
                         onChange={e => {
                             onFocusEmail(e);
                             setEmail(e.target.value);
-                            console.log("hi")
                             }
                         }
                         onFocus={e => {
@@ -341,53 +373,58 @@ export const CreateUserForm = () => {
     }
 
     return (
-        <div className="body-create-form">
-            <div className="logo-uas-main-link-create-form">
-                <a href="/"><img className="logo-img-uas-main-link-create-form" src={require("../assets/Coffee-Chat.png")} /></a>
-            </div>
-            <div className="main-user-create-form-div-start">
-                <h1 className="h1-create-user-form">Make the most of your professional life</h1>
-                <form className="main-form-submit-create-user" onSubmit={handleOnSubmit}>
-                    { verify === 0 && firstPart() }
-                    { verify === 1 && secondPart() }
-                    { popUpOn && thirdPart() }
-                </form>
-                <div className="looking-for-bussiness-a-tag">
-                    <span className="text-span-bussiness">{"Looking to create a page for a business? "}</span>
-                    <a className="looking-for-a-tag" href="#">{"Get help"}</a>
+        <>
+            {isLoading && <IsLoadingForm />}
+            {!isLoading && 
+                <div className="body-create-form">
+                    <div className="logo-uas-main-link-create-form">
+                        <a href="/"><img className="logo-img-uas-main-link-create-form" src={require("../assets/Coffee-Chat.png")} /></a>
+                    </div>
+                    <div className="main-user-create-form-div-start">
+                        <h1 className="h1-create-user-form">Make the most of your professional life</h1>
+                        <form className="main-form-submit-create-user" onSubmit={handleOnSubmit}>
+                            { verify === 0 && firstPart() }
+                            { verify === 1 && secondPart() }
+                            { popUpOn && thirdPart() }
+                        </form>
+                        <div className="looking-for-bussiness-a-tag">
+                            <span className="text-span-bussiness">{"Looking to create a page for a business? "}</span>
+                            <a className="looking-for-a-tag" href="#">{"Get help"}</a>
+                        </div>
+                    </div>
+                    <div className="bottom-nav-bar-create-form">
+                        <ul className="list-extra-link-ul-create-form">
+                            <li className="first-li-extra-link-create-form">
+                                <img className="logo-uas-main-link-bottom-nav" src={require("../assets/Coffee-Chat.png")} /> © 2022
+                            </li>
+                            <li>
+                                <a href="#">User Agreement</a>
+                            </li>
+                            <li>
+                                <a href="#">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">Community Guidelines</a>
+                            </li>
+                            <li>
+                                <a href="#">Cookie Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">Copyright Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">Brand Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">Guest Controls</a>
+                            </li>
+                            <li>
+                                <a href="#">Community Guidelines</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div className="bottom-nav-bar-create-form">
-                <ul className="list-extra-link-ul-create-form">
-                    <li className="first-li-extra-link-create-form">
-                        <img className="logo-uas-main-link-bottom-nav" src={require("../assets/Coffee-Chat.png")} /> © 2022
-                    </li>
-                    <li>
-                        <a href="#">User Agreement</a>
-                    </li>
-                    <li>
-                        <a href="#">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="#">Community Guidelines</a>
-                    </li>
-                    <li>
-                        <a href="#">Cookie Policy</a>
-                    </li>
-                    <li>
-                        <a href="#">Copyright Policy</a>
-                    </li>
-                    <li>
-                        <a href="#">Brand Policy</a>
-                    </li>
-                    <li>
-                        <a href="#">Guest Controls</a>
-                    </li>
-                    <li>
-                        <a href="#">Community Guidelines</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            }
+        </>
     );
 }

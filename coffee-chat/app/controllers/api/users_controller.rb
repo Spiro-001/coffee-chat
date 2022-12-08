@@ -2,12 +2,17 @@ class Api::UsersController < ApplicationController
     wrap_parameters include: User.attribute_names + ['password']
 
     def create
+        # debugger
         @user = User.new(user_params)
         if @user.save
             login!(@user)
             render :show
         else
-            render json: { errors: @user.errors.full_messages }, status: 422
+            if @user.errors.full_messages.include?("Phone number is invalid")
+                render json: { errors: @user.errors.full_messages }, status: 422
+            elsif @user.errors.full_messages.include?("")
+                render json: { errors: @user.errors.full_messages }, status: 403
+            end
         end
     end
 

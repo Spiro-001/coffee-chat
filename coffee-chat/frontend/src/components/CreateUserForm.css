@@ -585,6 +585,9 @@
     padding-right: 6px;
     height: 32px;
     border-radius: 2px;
+    background-color: white;
+    outline: 0px;
+    border: 1px solid rgba(0,0,0,0.6);
 }
 
 .country-selector-select-form:focus{
