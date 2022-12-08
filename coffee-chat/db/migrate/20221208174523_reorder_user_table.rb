@@ -9,6 +9,7 @@ class ReorderUserTable < ActiveRecord::Migration[7.0]
       t.string "country", null: false
       t.string "password_digest", null: false
       t.string "session_token", null: false, index: true
+      t.string "ip_location"
       t.timestamps
     end
   end

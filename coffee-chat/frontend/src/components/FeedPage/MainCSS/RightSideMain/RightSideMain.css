@@ -1,0 +1,8 @@
+.right-side-main-feed {
+    display: flex;
+    flex-direction: column;
+}
+
+.coffee-chat-news-feed-main-feed {
+    border: 2px dashed seagreen;
+}

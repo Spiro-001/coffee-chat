@@ -1,0 +1,12 @@
+.middle-main-feed {
+    display: flex;
+    flex-direction: column;
+}
+
+.start-post-feed-main-mini-feed {
+    border: 2px dashed yellow;
+}
+
+.main-feed-container {
+    border: 2px dashed blue;
+}

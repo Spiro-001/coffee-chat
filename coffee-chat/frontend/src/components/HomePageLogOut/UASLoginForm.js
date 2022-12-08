@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import { LoginFormUAS } from "./LoginFormUAS";
 import "./UASLoginForm.css"
 import "./LoginFormUAS.css"
-import { IsLoadingForm } from "../loadinghtml/IsLoadingForm";
+import { IsLoadingForm } from "../../loadinghtml/IsLoadingForm";
 
 export const UASLoginForm = () => {
     
@@ -30,7 +30,7 @@ export const UASLoginForm = () => {
             {!isLoading &&
             <div className="main-center-sign-in-uas">
                 <nav className="nav-bar-main-sign-in">
-                    <a href="/"><img className="logo-uas-main-link" src={require("../assets/Coffee-Chat.png")} /></a>
+                    <a href="/"><img className="logo-uas-main-link" src={require("../../assets/Coffee-Chat.png")} /></a>
                 </nav>
                 <div className="main-center-uas-login-uas">
                     <div className="modal-popup-uas">
@@ -44,7 +44,7 @@ export const UASLoginForm = () => {
                 <div className="list-extra-link">
                     <ul className="list-extra-link-ul">
                         <li className="first-li-extra-link">
-                            <img className="logo-uas-main-link-bottom-nav" src={require("../assets/Coffee-Chat.png")} /> © 2022
+                            <img className="logo-uas-main-link-bottom-nav" src={require("../../assets/Coffee-Chat.png")} /> © 2022
                         </li>
                         <li>
                             <a href="#">User Agreement</a>

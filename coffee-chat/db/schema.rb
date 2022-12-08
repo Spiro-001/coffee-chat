@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_174523) do
     t.string "country", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
+    t.string "ip_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"

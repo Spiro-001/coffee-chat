@@ -1,0 +1,14 @@
+.left-side-main-feed {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-left-side-mini-feed {
+    border: 2px dashed brown;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-recent-left-side-mini-feed {
+    border: 2px dashed rgb(255, 0, 157);
+}

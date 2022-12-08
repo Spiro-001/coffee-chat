@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { loginUser } from "../store/session";
+import { loginUser } from "../../store/session";
 import { Redirect, useHistory } from "react-router-dom";
 import "./LoginFormUAS.css"
-import { csrfFetch } from "../store/csrf";
+import { csrfFetch } from "../../store/csrf";
 
 export const LoginFormUAS = () => {
     const history = useHistory();

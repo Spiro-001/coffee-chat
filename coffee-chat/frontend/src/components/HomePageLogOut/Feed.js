@@ -10,7 +10,7 @@ export const Feed = () => {
     if (!currentUser) return <Redirect to="/"/>
     return (
         <div>
-            <h1>FEED</h1>
+            <h1>THIS IS THE TEMPORARY FEED</h1>
         </div>
     )
 }

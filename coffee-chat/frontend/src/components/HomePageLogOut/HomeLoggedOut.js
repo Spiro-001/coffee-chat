@@ -15,7 +15,7 @@ export const HomeLoggedOut = () => {
             <div className="home-loggedout-div">
                 <nav className="top-nav-home-logged-out">
                     <div className="coffee-logo-div">
-                        <img className="coffee-chat-logo" alt="Coffee-Chat" src={require("../assets/Coffee-Chat.png")} />
+                        <img className="coffee-chat-logo" alt="Coffee-Chat" src={require("../../assets/Coffee-Chat.png")} />
                     </div>
                     <ul className="main-options-home-logged-out">
                         <li className="discover-element">

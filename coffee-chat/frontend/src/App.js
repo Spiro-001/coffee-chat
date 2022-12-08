@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
-import { CreateUserForm } from "./components/CreateUserForm";
-import { LoginForm } from "./components/LoginForm";
-import { Feed } from "./components/Feed";
-import { HomeLoggedOut } from "./components/HomeLoggedOut";
-import { UASLoginForm } from "./components/UASLoginForm";
+import { CreateUserForm } from "./components/HomePageLogOut/CreateUserForm";
+import { LoginForm } from "./components/HomePageLogOut/LoginForm";
+import { Feed } from "./components/HomePageLogOut/Feed";
+import { HomeLoggedOut } from "./components/HomePageLogOut/HomeLoggedOut";
+import { UASLoginForm } from "./components/HomePageLogOut/UASLoginForm";
 import { useEffect, useState } from "react";
 import { IsLoadingForm } from "./loadinghtml/IsLoadingForm";
+import { MainFeed } from "./components/FeedPage/MainFeed";
 
 export const App = () => {
   let firstSession = false;
@@ -33,7 +34,7 @@ export const App = () => {
           <UASLoginForm />
         </Route>
         <Route exact path="/feed">
-          <Feed />
+          <MainFeed />
         </Route>
         <Route exact path="/login">
           <UASLoginForm />

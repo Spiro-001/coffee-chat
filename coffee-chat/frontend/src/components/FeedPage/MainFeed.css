@@ -1,0 +1,192 @@
+body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+#root {
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.main-feed-page-flex-div-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: absolute;
+    top: 0px;
+    padding-top: 0px;
+    height: fit-content;
+    margin: 0px;
+    width: 100%;
+    border: 2px dotted purple;
+}
+
+.main-nav-bar-main-feed-nav {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    max-width: 1126px;
+    margin: auto;
+    border: 1px solid green;
+}
+
+.main-left-side-main-feed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border: 1px solid cyan;
+}
+
+.main-left-side-main-feed li-icon {
+    height: fit-content;
+}
+
+.main-left-side-main-feed svg {
+    color: #0a66c2;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    top: 2px;
+    padding-right: 4px;
+}
+
+.input-search-main-nav-bar-feed {
+    height: fit-content;
+    width: fit-content;
+}
+
+.input-search-main-nav-bar-feed svg {
+    color: #5f6163;
+    height: 16px;
+    width: 36px;
+    position: absolute;
+    top: 20px;
+    padding-right: 4px;
+}
+
+.input-search-bar-find-nav-bar-feed {
+    height: 34px;
+    width: 270px;
+    padding-left: 50px;
+    font-size: 16px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #eef3f8;
+    margin-right: 182px;
+    border: 0px;
+    transition-property: width, margin-right;
+    transition-duration: 0.25s;
+}
+
+.input-search-bar-find-nav-bar-feed:focus {
+    height: 34px;
+    width: 384px;
+    margin-right: 68px;
+}
+
+.main-ul-right-side-main-feed {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 0px;
+    font-size: 12px;
+    border: 1px solid blue;
+    padding: 0px;
+    margin: 0px;
+}
+
+.home-icon-list-item-main-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    width: 80px;
+    border: 1px solid red;  
+}
+
+.my-network-icon-list-item-main-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    width: 80px;
+    border: 1px solid red;  
+}
+
+.jobs-icon-list-item-main-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    width: 80px;
+    border: 1px solid red;  
+}
+
+.messaging-icon-list-item-main-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    width: 80px;
+    border: 1px solid red;  
+}
+
+.notifications-icon-list-item-main-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    width: 80px;
+    border: 1px solid red;  
+}
+
+.my-profile-icon-list-item-main-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    width: 80px;
+    border: 1px solid red;  
+}
+
+.work-option-drop-down-menu-right-side-main-feed {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 52px;
+    min-width: 70px;
+    border: 1px solid red;
+    margin-left: 40px;
+}
+
+.feed-content-main-division {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #f3f2ef;
+    height: 100%;
+    width: 100%;
+    gap: 50px;
+}

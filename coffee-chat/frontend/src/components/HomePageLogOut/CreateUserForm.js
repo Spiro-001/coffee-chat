@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { signupUser } from "../store/session";
+import { signupUser } from "../../store/session";
 import { Redirect } from "react-router-dom";
 import { CountryDropDown } from "./CountryDropDown";
 import "./CreateUserForm.css"
-import { IsLoadingForm } from "../loadinghtml/IsLoadingForm";
-import { render } from "react-dom";
+import { IsLoadingForm } from "../../loadinghtml/IsLoadingForm";
+import axios from 'axios'
 
 export const CreateUserForm = () => {
     const dispatch = useDispatch();
@@ -21,21 +21,44 @@ export const CreateUserForm = () => {
     const [hide, setHide] = useState("password");
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
+    const [isFocusedFirstName, setIsFocusedFirstName] = useState(false);
+    const [isFocusedLastName, setIsFocusedLastName] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [ipLocation, setIpLocation] = useState('');
 
     const currentUser = useSelector((state) => state.session.user);
     const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
+    const getData = async () => {
+        const res = await axios.get('https://api.iplocation.net/?ip=72.88.243.23')
+        setIpLocation(res.data.ip)
+    }
+
     useEffect(() => {
+        getData()
         document.title = "Sign Up | Coffee Chat"
     },[])
 
     if (currentUser) return <Redirect to="/feed/" />
+
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        const userInfo = {email, password, phoneNumber, firstName, lastName, country};
+        let formatFirstName = (firstName.charAt(0).toUpperCase() + firstName.slice(1))
+        let formatLastName = (lastName.charAt(0).toUpperCase() + lastName.slice(1))
+        let formatEmail = email.toLowerCase();
+        console.log(formatEmail)
+        const userInfo = {
+            email: formatEmail, 
+            password, 
+            phoneNumber, 
+            firstName: formatFirstName, 
+            lastName: formatLastName, 
+            country, 
+            ipLocation
+        };
         userInfo.phoneNumber = "1" + userInfo.phoneNumber
+        console.log(userInfo)
         dispatch(signupUser(userInfo))
             .then(res => res)
             .catch(res => {
@@ -48,11 +71,9 @@ export const CreateUserForm = () => {
                         errorElement.className = "error-phone-create-user-form";
                         errorElement.appendChild(document.createTextNode("Oops, this isn't a valid phone number. Try entering it again."));
                         if (phoneNumberElement.lastChild.className !== errorElement.className) phoneNumberElement.append(errorElement);
-                        console.log("2")
                     },2000)
                     setPopUpOn(false)
                     setIsLoading(true)
-                    console.log("1")
                 } else if (res.status === 403) {
                     setVerify(0);
                     setFirstName("")
@@ -136,7 +157,7 @@ export const CreateUserForm = () => {
             errorElement.style.right = "50px";
             if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement);
         } else {
-            setIsFocusedEmail(false);
+            setIsFocusedPassword(false);
             passwordElement.childNodes[1].style.border = "";
             if (passwordElement.lastChild.className === errorElement.className) passwordElement.removeChild(passwordElement.lastChild);
         }
@@ -148,10 +169,11 @@ export const CreateUserForm = () => {
         errorElement.className = "error-fname-create-user-form";
         errorElement.appendChild(document.createTextNode("Please enter you first name."));
 
-        if (e.target.value.length === 0) {
-            fnameElement.childNodes[1].style.border = "2px solid red";
+        if (e.target.value.length < 3) {
+            fnameElement.childNodes[1].style.border = "1px solid red";
             if (fnameElement.lastChild.className !== errorElement.className) fnameElement.append(errorElement);
         } else {
+            setIsFocusedFirstName(false)
             fnameElement.childNodes[1].style.border = "";
             if (fnameElement.lastChild.className === errorElement.className) fnameElement.removeChild(fnameElement.lastChild);
         }
@@ -163,8 +185,8 @@ export const CreateUserForm = () => {
         errorElement.className = "error-lname-create-user-form";
         errorElement.appendChild(document.createTextNode("Please enter you last name."));
 
-        if (e.target.value.length === 0) {
-            lnameElement.childNodes[1].style.border = "2px solid red";
+        if (e.target.value.length < 3) {
+            lnameElement.childNodes[1].style.border = "1px solid red";
             if (lnameElement.lastChild.className !== errorElement.className) lnameElement.append(errorElement);
         } else {
             lnameElement.childNodes[1].style.border = "";
@@ -303,19 +325,29 @@ export const CreateUserForm = () => {
                             onFocusFirstName(e);
                             setFirstName(e.target.value);
                             }
+                        }
+                        onFocus={e => {
+                            if (isFocusedFirstName) document.getElementsByClassName('input-create-user-form-fname')[0].style.border = "2px solid red";
+                            setIsFocusedFirstName(true);
+                            }
                         } 
                         value={firstName}/>
                 </div>
                 <div className="lname-create-user-form">
                     <label className="label-create-user-form-last-name">Last name</label>
-                    <input className="input-create-user-form-fname" 
+                    <input className="input-create-user-form-lname" 
                         type="text"
                         onBlur={checkLastName}
                         onChange={e => {
                             onFocusLastName(e);
                             setLastName(e.target.value);
                             }
-                        } 
+                        }
+                        onFocus={e => {
+                            if (isFocusedLastName) document.getElementsByClassName('input-create-user-form-lname')[0].style.border = "2px solid red";
+                            setIsFocusedLastName(true);
+                            }
+                        }
                         value={lastName}/>
                 </div>
                 <button className="button-create-user-form"
@@ -378,7 +410,7 @@ export const CreateUserForm = () => {
             {!isLoading && 
                 <div className="body-create-form">
                     <div className="logo-uas-main-link-create-form">
-                        <a href="/"><img className="logo-img-uas-main-link-create-form" src={require("../assets/Coffee-Chat.png")} /></a>
+                        <a href="/"><img className="logo-img-uas-main-link-create-form" src={require("../../assets/Coffee-Chat.png")} /></a>
                     </div>
                     <div className="main-user-create-form-div-start">
                         <h1 className="h1-create-user-form">Make the most of your professional life</h1>
@@ -395,7 +427,7 @@ export const CreateUserForm = () => {
                     <div className="bottom-nav-bar-create-form">
                         <ul className="list-extra-link-ul-create-form">
                             <li className="first-li-extra-link-create-form">
-                                <img className="logo-uas-main-link-bottom-nav" src={require("../assets/Coffee-Chat.png")} /> © 2022
+                                <img className="logo-uas-main-link-bottom-nav" src={require("../../assets/Coffee-Chat.png")} /> © 2022
                             </li>
                             <li>
                                 <a href="#">User Agreement</a>
