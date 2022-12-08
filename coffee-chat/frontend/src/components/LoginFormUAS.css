@@ -1,6 +1,6 @@
 .login-form-main-uas {
     padding-top: 40px;
-    height: 100%;
+    width: 350px;
 }
 
 .email-login-user-form-uas {
@@ -47,7 +47,7 @@
     display: block;
     position: relative;
     font-size: 18px;
-    top: 12px;
+    top: 13px;
     left: 12px;
     color: #00000075;
     z-index: -10;
@@ -59,7 +59,7 @@
     display: block;
     position: relative;
     font-size: 18px;
-    top: 12px;
+    top: 13px;
     left: 12px;
     color: #00000075;
     z-index: -10;
@@ -265,7 +265,7 @@
 
 .error-render-uas {
     position: relative;
-    top: 30px;
+    bottom: 10px;
     font-weight: 600;
     color: rgb(214, 1, 1);
 }
@@ -277,4 +277,12 @@
 
 .a-tag-forgot-password-uas:hover {
     cursor: pointer;
+}
+
+.first-half-bottom-uas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 500px;
 }

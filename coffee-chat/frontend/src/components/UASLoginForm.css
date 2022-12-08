@@ -1,17 +1,23 @@
 .main-center-uas-login-uas {
     display: flex;
+    position: relative;
+    bottom: 50px;
     justify-content: center;
     align-items: center;
     align-content: center;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 600px;
 }
 
 .modal-popup-uas {
+    display: flex;
+    flex-direction: column;
     width: 350px;
-    border: 1px solid black;
-    height: 490px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 0px 5px 10px 1px #8888885b;
 }
 
 .first-half-bottom-uas {
@@ -22,6 +28,8 @@
 
 .login-form-main-uas {
     display: flex;
+    position: relative;
+    bottom: 30px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -29,6 +37,7 @@
 }
 
 .email-login-user-form-uas {
+    margin-top: 50px;
     width: 300px;
 }
 
@@ -38,10 +47,12 @@
 
 .email-login-user-form-input-uas {
     width: inherit;
+    height: 50px;
 }
 
 .password-login-user-form-input-uas {
     width: inherit;
+    height: 50px;
 }
 
 .hide-button-uas {
@@ -64,7 +75,9 @@
     position: relative;
     font-weight: 500;
     width: 300px;
-    top: -10px;
+    font-size: 13px;
+    padding-top: 5px;
+    padding-bottom: 15px;
 }
 
 .a-tag-forgot-password-uas {
@@ -92,6 +105,7 @@
 .forgot-password-element-uas:hover {
     border: 1px solid transparent;
     background-color: #2976c931;
+    text-decoration: underline;
 }
 
 .extra-buttons-main-uas {
@@ -157,18 +171,17 @@
     
 }
 
-.link-to-sign-up-page-uas {
+.a-link-to-sign-up-page-uas {
     position: relative;
-    top: 100px;
+    top: 50px;
     border-radius: 0px;
     border: 0px;
     font-size: 16px;
     font-weight: 400;
 }
 
-.link-to-sign-up-page-uas:hover {
+.a-link-to-sign-up-page-uas:hover {
     position: relative;
-    top: 100px;
     border-radius: 0px;
     border: 0px;
 }
@@ -184,8 +197,70 @@
 .sign-in-modal-popup-uas {
     font-weight: 500;
     padding-bottom: 5px;
+    margin-top: 20px;
 }
 
-.description-popup {
-    
+.main-center-sign-in-uas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav-bar-main-sign-in {
+    height: 225px;
+}
+
+.a-tag-uas-join-now {
+    position: relative;
+    text-decoration: none;
+    color: #0a66c2;
+    font-weight: 500;
+    border-radius: 30px;
+    padding: 6px 10px 6px;
+
+}
+
+.a-tag-uas-join-now:hover {
+    text-decoration: underline;
+    background-color: #2976c931;
+}
+
+.logo-uas-main-link {
+    width: 156px;
+    position: relative;
+    left: 50px;
+    top: 30px;
+}
+
+.list-extra-link {
+    display: flex;
+    justify-content: center;
+}
+
+.list-extra-link-ul {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 20px;
+    list-style: none;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.list-extra-link-ul li a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.6);
+}
+
+.list-extra-link-ul li a:hover {
+    text-decoration: underline;
+}
+
+.first-li-extra-link {
+    font-weight: 400;
+}
+
+.logo-uas-main-link-bottom-nav {
+    width: 80px;
 }

@@ -1,0 +1,329 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+body {
+    background-color: #f3f2ef;
+}
+
+.logo-uas-main-link-create-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 1126px;
+    margin: auto;
+    padding-top: 25px
+}
+
+.logo-img-uas-main-link-create-form {
+    max-width: 200px;
+}
+
+
+.main-user-create-form-div-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: fit-content
+}
+
+.main-form-submit-create-user {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.h1-create-user-form {
+    text-align: center;
+    font-weight: 400;
+    position: relative;
+}
+
+.first-form-step-create-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 400px;
+    height: fit-content;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.looking-for-bussiness-a-tag {
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+.looking-for-a-tag {
+    text-decoration: none;
+    color: #0a66c2;
+    font-weight: 500;
+}
+
+.bottom-nav-bar-create-form {
+    display: flex;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    height: 100px;
+}
+
+.looking-for-a-tag:hover {
+    text-decoration: underline;
+}
+
+.email-create-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.label-create-user-form-email {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    bottom: 5px;
+    right: 160px;
+    color: rgba(0,0,0,0.6);
+}
+
+.input-create-user-form-email {
+    height: 28px;
+    width: 350px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.6);
+}
+
+.password-create-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding-top: 20px;
+    width: 100%;
+}
+
+.label-create-user-form-password {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    bottom: 5px;
+    right: 80px;
+    color: rgba(0,0,0,0.6);
+}
+
+.input-create-user-form-password {
+    height: 28px;
+    width: 350px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.6);
+}
+
+.hide-button-create-form {
+    position: relative;
+    width: fit-content;
+    bottom: 25px;
+    left: 150px;
+    background-color: transparent;
+    border: 0px;
+    color: rgba(0,0,0,0.7);
+}
+
+.hide-button-create-form:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.agreement-create-user-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.p-create-user-form {
+
+}
+
+.a-create-user-form {
+    text-decoration: none;
+    color: #0a66c2;
+    font-weight: 500;
+}
+
+.a-create-user-form:hover {
+    text-decoration: underline;
+}
+
+.button-next-step-one-create-user-form {
+    display: block;
+    background-color: #2977c9;
+    border: 0px;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 0 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    height: 48px;
+    width: 350px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.25s;
+    transition-property: background-color;
+}
+
+.button-next-step-one-create-user-form:hover {
+    cursor: pointer;
+    background-color: #004182cc;
+}
+
+.bottom-menu-create-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.div-create-user-form {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: rgba(0,0,0,1);
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.div-create-user-form::before {
+    content: '';
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    width: 33%;
+}
+
+.div-create-user-form::after {
+    content: '';
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    width: 33%;
+}
+
+.or-middle-seperator {
+    text-align: center;
+    width: 50px;
+}
+
+.contine-to-github-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #ffffff;
+    border: 0px;
+    border: 1px solid rgba(0,0,0,0.2);
+    color: black;
+    border-radius: 30px;
+    padding: 0 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    height: 40px;
+    width: 320px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    transition-duration: 0.25s;
+    transition-property: background-color;
+    margin-bottom: 20px;
+}
+
+.contine-to-github-button:hover {
+    background-color: #0a66c213;
+    border: 1px solid #0a66c242;
+    color: rgba(0,0,0,0.8);
+    cursor: pointer;
+}
+
+.contine-to-github-button svg {
+    position: relative;
+    top: 0px;
+    padding-right: 10px;
+}
+
+.continue-to-git-hub-create-form {
+
+}
+
+
+.to-login-create-user-form {
+    text-decoration: none;
+    font-weight: 600;
+    color: #2977c9;
+}
+
+.to-login-create-user-form:hover {
+    text-decoration: underline;
+}
+
+.div-create-user-form-agreement {
+    color: rgba(0,0,0,0.6);
+    font-size: 12px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 15px;
+}
+
+.div-create-user-form-already-on-cc {
+    height: fit-content;
+    width: fit-content;
+    padding-bottom: 30px;
+}
+
+.error-email-create-user-form {
+
+}
+
+.error-password-create-user-form {
+
+}
+/* 
+.extra-buttons-main::before {
+    content: '';
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    width: 40%;
+}
+
+.extra-buttons-main::after {
+    content: '';
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    width: 40%;
+} */

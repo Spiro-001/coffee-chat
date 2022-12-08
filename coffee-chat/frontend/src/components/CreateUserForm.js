@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signupUser } from "../store/session";
 import { Redirect } from "react-router-dom";
 import { CountryDropDown } from "./CountryDropDown";
+import "./CreateUserForm.css"
 
 export const CreateUserForm = () => {
     const dispatch = useDispatch();
@@ -185,10 +186,10 @@ export const CreateUserForm = () => {
 
     const firstPart = () => {
         return (
-            <>
+            <div className="first-form-step-create-user">
                 <div className="email-create-user-form">
-                    <label>Email</label>
-                    <input type="text" 
+                    <label className="label-create-user-form-email">Email</label>
+                    <input className="input-create-user-form-email" type="text" 
                         onBlur={checkEmail} 
                         onChange={e => {
                             onFocusEmail(e);
@@ -198,8 +199,8 @@ export const CreateUserForm = () => {
                         value={email}/>
                 </div>
                 <div className="password-create-user-form">
-                    <label>Password (6 or more characters)</label>
-                    <input type={hide} 
+                    <label className="label-create-user-form-password">Password (6 or more characters)</label>
+                    <input className="input-create-user-form-password" type={hide} 
                         onBlur={checkPassword} 
                         onChange={e => {
                             onFocusPassword(e);
@@ -207,29 +208,48 @@ export const CreateUserForm = () => {
                             }
                         }
                         value={password}/>
-                    <button onClick={hidePassword}>Show</button>
+                    <button className="hide-button-create-form" onClick={hidePassword}>Show</button>
                 </div>
                 <div className="agreement-create-user-form">
-                    <p>By clicking Agree & Join, you agree to the LinkedIn <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a>.</p>
+                    <div className="div-create-user-form-agreement">
+                        {"By clicking Agree & Join, you agree to the Coffee Chat "}
+                        <a className="a-create-user-form" href="#">{"User Agreement, "}</a>
+                        <a className="a-create-user-form" href="#">{"Privacy Policy,"}</a>{" and "}
+                        <a className="a-create-user-form" href="#">{"Cookie Policy."}</a>
+                    </div>
                 </div>
-                <button onClick={checkNextStep}>Agree & Join</button>
+                <button className="button-next-step-one-create-user-form" onClick={checkNextStep}>Agree & Join</button>
                 <div className="bottom-menu-create-user-form">
-                    <hr className="horizontal-line"/>
-                    <p>or</p>
-                    <hr className="horizontal-line"/>
-                    <button className="contine-to-github-button">Continue to Github</button>
-                    <p>Already on Coffe Chat? <a href="/login">Sign in</a></p>
+                    <div className="div-create-user-form">
+                        <span className="or-middle-seperator">or</span>
+                    </div>
+                    <button className="contine-to-github-button">
+                        <svg className="github-icon-button" xmlns="http://www.w3.org/2000/svg" 
+                            width="24" 
+                            height="24" 
+                            viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <p className="continue-to-git-hub-create-form">Continue to Github</p>
+                    </button>
+                    <div className="div-create-user-form-already-on-cc">
+                        {"Already on Coffe Chat? "} 
+                        <a className="to-login-create-user-form" href="/login">
+                            {"Sign in"}
+                        </a>
+                    </div>
                 </div>
-            </>
+            </div>
         );
     }
 
     const secondPart = () => {
         return (
-            <>
+            <div className="first-form-step-create-user">
                 <div className="fname-create-user-form">
-                    <label>First name</label>
-                    <input type="text" 
+                    <label className="label-create-user-form">First name</label>
+                    <input className="input-create-user-form" 
+                        type="text" 
                         onBlur={checkFirstName}
                         onChange={e => {
                             onFocusFirstName(e);
@@ -239,8 +259,9 @@ export const CreateUserForm = () => {
                         value={firstName}/>
                 </div>
                 <div className="lname-create-user-form">
-                    <label>Last name</label>
-                    <input type="text"
+                    <label className="label-create-user-form">Last name</label>
+                    <input className="input-create-user-form" 
+                        type="text"
                         onBlur={checkLastName}
                         onChange={e => {
                             onFocusLastName(e);
@@ -249,14 +270,15 @@ export const CreateUserForm = () => {
                         } 
                         value={lastName}/>
                 </div>
-                <button onClick={popUp}>Continue</button>
-            </>
+                <button className="button-create-user-form"
+                    onClick={popUp}>Continue</button>
+            </div>
         );
     }
 
     const thirdPart = () => { // POPUP MODAL
         return (
-            <>
+            <div className="first-form-step-create-user">
                 <div className="popup-create-user-form">
                     <span onClick={e => {
                         document.getElementsByClassName('popup-create-user-form')[0].style.display = "none"
@@ -274,25 +296,58 @@ export const CreateUserForm = () => {
                         <input type="text" 
                             onChange={e => setPhoneNumber(e.target.value)} 
                             value={phoneNumber}/>
-                        <div>
+                        <div className="phone-create-user-form-div">
                             {phoneNumber.length < 5 && <button onClick={checkPhoneNumber}>Submit</button>}
                             {phoneNumber.length >= 5 && <button type="submit">Submit</button>}
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 
     return (
         <>
-            <h1>Make the most of your professional life</h1>
-            <form onSubmit={handleOnSubmit}>
-                { verify === 0 && firstPart() }
-                { verify === 1 && secondPart() }
-                { popUpOn && thirdPart() }
-                <h1>{email} {password} {firstName} {lastName} {country} {phoneNumber}</h1>
-            </form>
+            <div className="logo-uas-main-link-create-form">
+                <a href="/"><img className="logo-img-uas-main-link-create-form" src={require("../assets/Coffee-Chat.png")} /></a>
+            </div>
+            <div className="main-user-create-form-div-start">
+                <h1 className="h1-create-user-form">Make the most of your professional life</h1>
+                <form className="main-form-submit-create-user" onSubmit={handleOnSubmit}>
+                    { verify === 0 && firstPart() }
+                    { verify === 1 && secondPart() }
+                    { popUpOn && thirdPart() }
+                </form>
+                <div className="looking-for-bussiness-a-tag">
+                    <span className="text-span-bussiness">{"Looking to create a page for a business? "}</span>
+                    <a className="looking-for-a-tag" href="#">{"Get help"}</a>
+                </div>
+            </div>
+            <div className="bottom-nav-bar-create-form">
+                <ul className="list-extra-link-ul">
+                    <li className="first-li-extra-link">
+                        <img className="logo-uas-main-link-bottom-nav" src={require("../assets/Coffee-Chat.png")} /> © 2022
+                    </li>
+                    <li>
+                        <a href="#">User Agreement</a>
+                    </li>
+                    <li>
+                        <a href="#">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#">Community Guidelines</a>
+                    </li>
+                    <li>
+                        <a href="#">Cookie Policy</a>
+                    </li>
+                    <li>
+                        <a href="#">Copyright Policy</a>
+                    </li>
+                    <li>
+                        <a href="#">Send Feedback</a>
+                    </li>
+                </ul>
+            </div>
         </>
     );
 }

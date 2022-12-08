@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../store/session";
 import { Redirect, useHistory } from "react-router-dom";
 import "./LoginFormUAS.css"
+import { csrfFetch } from "../store/csrf";
 
 export const LoginFormUAS = () => {
     const history = useHistory();
@@ -11,20 +12,40 @@ export const LoginFormUAS = () => {
         // import("./LoginForm.css")
     }
     
+    const getUser = async () => {
+        let response = await csrfFetch(`/api/user/${history.location.state.emailOrPhoneNumber}`, {
+        method: 'GET'
+    })
+    let res = await response.json()
+    return res;
+    }
+    
     useEffect(() => {
         document.title = "Coffee Chat Login, Sign in | Coffee Chat";
+        console.log(history.location.state)
         if (history.location.state) {
-            errorElementEmail.append(document.createTextNode("That's not the right password. Try again or "));
-            let aTagFogotPassword = document.createElement('a');
-            aTagFogotPassword.append(document.createTextNode('sign in with a one-time link'));
-            aTagFogotPassword.className = "a-tag-forgot-password-uas";
-            aTagFogotPassword.setAttribute('href', '#');
-            errorElementEmail.appendChild(aTagFogotPassword);
-            document.getElementsByClassName('signin-forgot-div-uas')[0].insertBefore(errorElementEmail, document.getElementsByClassName('forgot-password-element-uas')[0]);
-            document.getElementsByClassName('email-login-user-form-input-uas')[0].style.border = "2px solid rgb(214, 1, 1)"
-
-            document.getElementsByClassName('email-login-user-form-input-uas')[0].focus()
-            document.getElementsByClassName('password-login-user-form-input-uas')[0].focus()
+            getUser().then(({user}) => {
+                console.log(user)
+                if (user.email || user.phoneNumber) {
+                    console.log('error')
+                    errorElementEmail.append(document.createTextNode("That's not the right password. Try again or "));
+                    let aTagFogotPassword = document.createElement('a');
+                    aTagFogotPassword.append(document.createTextNode('sign in with a one-time link'));
+                    aTagFogotPassword.className = "a-tag-forgot-password-uas";
+                    aTagFogotPassword.setAttribute('href', '#');
+                    errorElementEmail.appendChild(aTagFogotPassword);
+                    document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementEmail, document.getElementsByClassName('login-form-main-uas')[0].children.item(2));
+                    document.getElementsByClassName('password-login-user-form-input-uas')[0].style.border = "2px solid rgb(214, 1, 1)"
+                    document.getElementsByClassName('email-login-user-form-input-uas')[0].focus()
+                }
+            }).catch(error => {
+                console.log("hi")
+                errorElementEmail.append(document.createTextNode("Couldn’t find a LinkedIn account associated with this email. Please try again."));
+                document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementEmail, document.getElementsByClassName('login-form-main-uas')[0].children.item(2));
+                document.getElementsByClassName('email-login-user-form-input-uas')[0].style.border = "2px solid rgb(214, 1, 1)"
+                document.getElementsByClassName('email-login-user-form-input-uas')[0].focus()
+                document.getElementsByClassName('password-login-user-form-input-uas')[0].focus()
+            })
         }
     },[])
 
@@ -46,6 +67,7 @@ export const LoginFormUAS = () => {
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        console.log("hii")
         checkInputValue(e)
         if (sendSubmission) {
             const userInfo = {emailOrPhoneNumber, password}
@@ -110,9 +132,9 @@ export const LoginFormUAS = () => {
     const errorElementPassword = document.createElement('span');
     errorElementPassword.className = "error-render-uas"
     
-    const errorElementEmailWrongContent = document.createTextNode('Please enter a valid email address or mobile number.');
+    const errorElementEmailWrongContent = document.createTextNode('Please enter a valid username');
     errorElementEmailWrongContent.className = "error-element-email-wrong-content-uas";
-    const errorElementEmailNoContent = document.createTextNode('Please enter your email address or mobile number.');
+    const errorElementEmailNoContent = document.createTextNode('Please enter an email address or phone number');
     errorElementEmailNoContent.className = "error-element-email-no-content-uas";
     const errorElementPasswordWrongContent = document.createTextNode('Password must be 6 characters or more.');
     errorElementPasswordWrongContent.className = "error-element-password-wrong-content-uas";
@@ -121,24 +143,28 @@ export const LoginFormUAS = () => {
     
     const checkInputValue = (e) => {
         e.preventDefault();
-        const inputErrorField = document.getElementsByClassName('first-half-bottom-uas')[0].children;
-        
+        const inputErrorField = document.getElementsByClassName('login-form-main-uas')[0].children;
         let emailError = true;
         let passswordError = true;
         let value_toggle = 1
 
-        if (history.location.pathname === '/uas/login') value_toggle = 0
+        if (history.location.pathname === '/uas/login') value_toggle = 1
 
         if (inputErrorField.item(value_toggle).className === "error-render-uas") inputErrorField.item(value_toggle).remove()
+        if (inputErrorField.item(2).className === "error-render-uas") inputErrorField.item(2).remove()
         document.getElementsByClassName('email-login-user-form-input-uas')[0].style.border = "2px solid rgb(214, 1, 1)"
 
         if (emailOrPhoneNumber.length === 0) {
             errorElementEmail.append(errorElementEmailNoContent)
-            document.getElementsByClassName('first-half-bottom-uas')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
+            document.getElementsByClassName('placeholder-email-uas')[0].style.color = "red"
+            document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
         } else if (!regExEmail(emailOrPhoneNumber)) {
             errorElementEmail.append(errorElementEmailWrongContent)
-            document.getElementsByClassName('first-half-bottom-uas')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
+            errorElementEmail.style.fontSize = "12px"
+            document.getElementsByClassName('placeholder-email-uas')[0].style.color = "red"
+            document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementEmail, inputErrorField.item(value_toggle))
         } else {
+            document.getElementsByClassName('placeholder-email-uas')[0].style.color = "#00000075"
             document.getElementsByClassName('email-login-user-form-input-uas')[0].style.border = "1px solid #00000099";
             emailError = false;
         }
@@ -147,11 +173,14 @@ export const LoginFormUAS = () => {
             document.getElementsByClassName('password-login-user-form-input-uas')[0].style.border = "2px solid rgb(214, 1, 1)"
             if (password.length === 0) {
                 errorElementPassword.append(errorElementPasswordNoContent)
-                document.getElementsByClassName('first-half-bottom-uas')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
+                document.getElementsByClassName('placeholder-password-uas')[0].style.color = "red"
+                document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementPassword, inputErrorField.item(2))
             } else if (password.length !== 0 && password.length < 6) {
                 errorElementPassword.append(errorElementPasswordWrongContent)
-                document.getElementsByClassName('first-half-bottom-uas')[0].insertBefore(errorElementPassword, inputErrorField.item(value_toggle))
+                document.getElementsByClassName('placeholder-password-uas')[0].style.color = "red"
+                document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementPassword, inputErrorField.item(2))
             } else {
+                document.getElementsByClassName('placeholder-password-uas')[0].style.color = "#00000075"
                 document.getElementsByClassName('password-login-user-form-input-uas')[0].style.border = "1px solid #00000099";
                 passswordError = false;
             }
@@ -194,11 +223,12 @@ export const LoginFormUAS = () => {
                         </svg>
                         Link to my Github
                     </button>
-                    <button className="link-to-sign-up-page-uas" onClick={e => history.push('/login')}>
-                        New to Coffee Chat? Join now
-                    </button>
                 </div>
             </form>
+                <span className="a-link-to-sign-up-page-uas" onClick={e => history.push('/login')}>
+                    {"New to Coffee Chat?"}
+                    <a className="a-tag-uas-join-now" href="#">{"Join now"}</a>
+                </span>
         </div>
     );
 }
