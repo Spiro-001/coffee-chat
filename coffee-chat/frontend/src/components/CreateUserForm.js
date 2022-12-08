@@ -17,6 +17,8 @@ export const CreateUserForm = () => {
     const [verify, setVerify] = useState(0);
     const [popUpOn, setPopUpOn] = useState(false);
     const [hide, setHide] = useState("password");
+    const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+    const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
     const currentUser = useSelector((state) => state.session.user);
     const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -68,16 +70,18 @@ export const CreateUserForm = () => {
         }
     }
 
+    
     const checkEmail = (e) => {
         const emailElement = document.getElementsByClassName('email-create-user-form')[0];
         const errorElement = document.createElement('p');
         errorElement.className = "error-email-create-user-form";
         errorElement.appendChild(document.createTextNode("Please enter your email address."));
-
+        
         if (!regExEmail(e.target.value)) {
-            emailElement.childNodes[1].style.border = "2px solid red";
+            emailElement.childNodes[1].style.border = "1px solid red";
             if (emailElement.lastChild.className !== errorElement.className) emailElement.append(errorElement);
         } else {
+            setIsFocusedEmail(false);
             emailElement.childNodes[1].style.border = "";
             if (emailElement.lastChild.className === errorElement.className) emailElement.removeChild(emailElement.lastChild);
         }
@@ -90,14 +94,16 @@ export const CreateUserForm = () => {
 
 
         if (e.target.value.length === 0) {
-            passwordElement.childNodes[1].style.border = "2px solid red";
+            passwordElement.childNodes[1].style.border = "1px solid red";
             errorElement.appendChild(document.createTextNode("Please enter your password."));
             if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement);
         } else if (e.target.value.length < 6) {
-            passwordElement.childNodes[1].style.border = "2px solid red";
+            passwordElement.childNodes[1].style.border = "1px solid red";
             errorElement.appendChild(document.createTextNode("Password must be 6 characters or more."));
+            errorElement.style.right = "50px";
             if (passwordElement.lastChild.className !== errorElement.className) passwordElement.append(errorElement);
         } else {
+            setIsFocusedEmail(false);
             passwordElement.childNodes[1].style.border = "";
             if (passwordElement.lastChild.className === errorElement.className) passwordElement.removeChild(passwordElement.lastChild);
         }
@@ -194,8 +200,14 @@ export const CreateUserForm = () => {
                         onChange={e => {
                             onFocusEmail(e);
                             setEmail(e.target.value);
+                            console.log("hi")
                             }
-                        } 
+                        }
+                        onFocus={e => {
+                            if (isFocusedEmail) document.getElementsByClassName('input-create-user-form-email')[0].style.border = "2px solid red";
+                            setIsFocusedEmail(true);
+                            }
+                        }
                         value={email}/>
                 </div>
                 <div className="password-create-user-form">
@@ -207,6 +219,10 @@ export const CreateUserForm = () => {
                             setPassword(e.target.value);
                             }
                         }
+                        onFocus={e => {
+                            if (isFocusedPassword) document.getElementsByClassName('input-create-user-form-password')[0].style.border = "2px solid red";
+                            setIsFocusedPassword(true);
+                        }}
                         value={password}/>
                     <button className="hide-button-create-form" onClick={hidePassword}>Show</button>
                 </div>
@@ -233,7 +249,7 @@ export const CreateUserForm = () => {
                         <p className="continue-to-git-hub-create-form">Continue to Github</p>
                     </button>
                     <div className="div-create-user-form-already-on-cc">
-                        {"Already on Coffe Chat? "} 
+                        {"Already on Coffee Chat? "} 
                         <a className="to-login-create-user-form" href="/login">
                             {"Sign in"}
                         </a>
@@ -247,8 +263,8 @@ export const CreateUserForm = () => {
         return (
             <div className="first-form-step-create-user">
                 <div className="fname-create-user-form">
-                    <label className="label-create-user-form">First name</label>
-                    <input className="input-create-user-form" 
+                    <label className="label-create-user-form-first-name">First name</label>
+                    <input className="input-create-user-form-fname" 
                         type="text" 
                         onBlur={checkFirstName}
                         onChange={e => {
@@ -259,8 +275,8 @@ export const CreateUserForm = () => {
                         value={firstName}/>
                 </div>
                 <div className="lname-create-user-form">
-                    <label className="label-create-user-form">Last name</label>
-                    <input className="input-create-user-form" 
+                    <label className="label-create-user-form-last-name">Last name</label>
+                    <input className="input-create-user-form-fname" 
                         type="text"
                         onBlur={checkLastName}
                         onChange={e => {
@@ -278,36 +294,54 @@ export const CreateUserForm = () => {
 
     const thirdPart = () => { // POPUP MODAL
         return (
-            <div className="first-form-step-create-user">
+            <>
+                <div className="background-gray-popup-blur"/>
                 <div className="popup-create-user-form">
-                    <span onClick={e => {
-                        document.getElementsByClassName('popup-create-user-form')[0].style.display = "none"
-                        setPhoneNumber('');
-                        setCountry('')
-                        setPopUpOn(false);
-                        } 
-                    }
-                    className="close-popup-create-user-form">&times;</span>
-                    <CountryDropDown 
-                        country={country} 
-                        setCountry={setCountry}/>
+                    <div className="top-menu-popup-create-user-form">
+                        <span className="text-security-popup-create-form">Security verification</span>
+                        <span onClick={e => {
+                            document.getElementsByClassName('popup-create-user-form')[0].style.display = "none"
+                            setPhoneNumber('');
+                            setCountry('')
+                            setPopUpOn(false);
+                            } 
+                        }
+                            className="close-popup-create-user-form">&times;
+                        </span>
+                    </div>
+                    <div className="more-text-for-security-create-form">
+                        <span className="extra-security-two-auth-create-form">Just a quick security check</span>
+                        <span className="extra-security-two-auth-more-text-create-form">
+                            {"As an extra security step, we'll need to give you a vertification code to register. "}
+                            <a href="#" className="a-tag-for-learn-more-create-form">Learn More</a>
+                        </span>
+                    </div>
+                    <div className="select-a-name-create-form">
+                        <span className="select-a-name-text-create-form">Select country</span>
+                        <CountryDropDown 
+                            country={country} 
+                            setCountry={setCountry}/>
+                    </div>
                     <div className="phone-create-user-form">
-                        <label>+1</label>
-                        <input type="text" 
-                            onChange={e => setPhoneNumber(e.target.value)} 
-                            value={phoneNumber}/>
-                        <div className="phone-create-user-form-div">
-                            {phoneNumber.length < 5 && <button onClick={checkPhoneNumber}>Submit</button>}
-                            {phoneNumber.length >= 5 && <button type="submit">Submit</button>}
+                        <span className="phone-number-place-holder-create-form">Phone number</span>
+                        <div className="phone-number-input-area-create-form">
+                            <label className="area-code-for-country-create-form">+1</label>
+                            <input className="input-for-phone-number-create-form" type="text" 
+                                onChange={e => setPhoneNumber(e.target.value)} 
+                                value={phoneNumber}/>
                         </div>
                     </div>
+                    <div className="phone-create-user-form-div">
+                        {phoneNumber.length < 5 && <button className="button-before-validate-submit-create-form" onClick={checkPhoneNumber}>Submit</button>}
+                        {phoneNumber.length >= 5 && <button className="button-real-submit-create-form"type="submit">Submit</button>}
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     return (
-        <>
+        <div className="body-create-form">
             <div className="logo-uas-main-link-create-form">
                 <a href="/"><img className="logo-img-uas-main-link-create-form" src={require("../assets/Coffee-Chat.png")} /></a>
             </div>
@@ -324,8 +358,8 @@ export const CreateUserForm = () => {
                 </div>
             </div>
             <div className="bottom-nav-bar-create-form">
-                <ul className="list-extra-link-ul">
-                    <li className="first-li-extra-link">
+                <ul className="list-extra-link-ul-create-form">
+                    <li className="first-li-extra-link-create-form">
                         <img className="logo-uas-main-link-bottom-nav" src={require("../assets/Coffee-Chat.png")} /> © 2022
                     </li>
                     <li>
@@ -344,10 +378,16 @@ export const CreateUserForm = () => {
                         <a href="#">Copyright Policy</a>
                     </li>
                     <li>
-                        <a href="#">Send Feedback</a>
+                        <a href="#">Brand Policy</a>
+                    </li>
+                    <li>
+                        <a href="#">Guest Controls</a>
+                    </li>
+                    <li>
+                        <a href="#">Community Guidelines</a>
                     </li>
                 </ul>
             </div>
-        </>
+        </div>
     );
 }

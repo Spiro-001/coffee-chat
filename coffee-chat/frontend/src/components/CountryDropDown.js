@@ -1,6 +1,6 @@
 export const CountryDropDown = ({country, setCountry}) => {
     return (
-        <select id="country" name="country" value={country} onChange={e => setCountry(e.target.value)}>
+        <select className="country-selector-select-form" id="country" name="country" value={country} onChange={e => setCountry(e.target.value)}>
             <option value="US" >United States</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Aland Islands</option>
