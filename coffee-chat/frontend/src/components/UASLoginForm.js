@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom"
+import { useState } from "react";
+import { useHistory } from "react-router-dom"
 import { LoginFormUAS } from "./LoginFormUAS";
 import "./UASLoginForm.css"
 import "./LoginFormUAS.css"
-import { csrfFetch } from "../store/csrf";
-import { useDispatch } from "react-redux";
 import { IsLoadingForm } from "../loadinghtml/IsLoadingForm";
 
 export const UASLoginForm = () => {
@@ -25,11 +23,6 @@ export const UASLoginForm = () => {
             setIsLoading(false);
         },1000)
     }
-
-
-    setTimeout(() => {
-
-    },5000)
 
     return (
         <>
