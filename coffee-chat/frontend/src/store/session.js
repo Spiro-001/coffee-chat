@@ -53,13 +53,16 @@ export const logoutUser = () => async (dispatch) => {
 };
 
 export const signupUser = (user) => async (dispatch) => {
-  const { email, password, phoneNumber } = user;
+  const { email, password, phoneNumber, firstName, lastName, country } = user;
   const response = await csrfFetch( '/api/users', {
     method: 'POST',
     body: JSON.stringify({
       email,
       password,
-      phone_number: phoneNumber
+      phone_number: phoneNumber,
+      first_name: firstName,
+      last_name: lastName,
+      country
     }),
   });
   const data = await response.json();

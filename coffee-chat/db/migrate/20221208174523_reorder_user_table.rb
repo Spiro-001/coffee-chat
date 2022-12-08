@@ -1,11 +1,15 @@
 class ReorderUserTable < ActiveRecord::Migration[7.0]
-  def down
+  def change
     drop_table :users
-  end
-
-  def up
     create_table :users do |t|
-      t.string :test
+      t.string "email", unique: true, null: false, index: true
+      t.string "phone_number", unique: true, null: false, index: true
+      t.string "first_name", null: false, length: {minimum:3, maximum:20}
+      t.string "last_name", null: false, length: {minimum:3, maximum:20}
+      t.string "country", null: false
+      t.string "password_digest", null: false
+      t.string "session_token", null: false, index: true
+      t.timestamps
     end
   end
 end

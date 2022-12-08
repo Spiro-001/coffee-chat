@@ -34,7 +34,7 @@ export const CreateUserForm = () => {
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        const userInfo = {email, password, phoneNumber};
+        const userInfo = {email, password, phoneNumber, firstName, lastName, country};
         userInfo.phoneNumber = "1" + userInfo.phoneNumber
         dispatch(signupUser(userInfo))
             .then(res => res)
