@@ -1,14 +1,228 @@
 .left-side-main-feed {
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    width: fit-content;
 }
 
 .profile-left-side-mini-feed {
-    border: 2px dashed brown;
     display: flex;
+    height: fit-content;
     flex-direction: column;
+    box-sizing: border-box;
+    background-color: white;
+    margin-top: 20px;
+    width: fit-content;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.2);
 }
 
-.my-recent-left-side-mini-feed {
-    border: 2px dashed rgb(255, 0, 157);
+.profile-left-side-mini-feed-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: fit-content;
 }
+
+.backdrop-user-self {
+    width: 225px;
+    height: 56px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.crop {
+    width: 72px;
+    height: 72px;
+    overflow: hidden;
+    border-radius: 72px;
+    position: relative;
+    border: 2px solid white;
+}
+
+.crop .profile-picture-self {
+    position: relative;
+    width: 72px;
+    margin: -5px 0px 0px 0px;
+}
+
+.profile-picture-self {
+    box-sizing: content-box;
+}
+
+.picture-crop-photo-div {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 60px;
+    height: 0px;
+    width: 100%;
+}
+
+
+.first-last-name-div {
+    text-align: center;
+    width: 100%;
+}
+
+.first-last-name-div:hover {
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.first-last-name-a-tag {
+    color: rgba(0,0,0,0.9);
+    font-weight: 500;
+}
+
+.first-last-name-a-tag:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #0a66c2;
+    color: rgba(0,0,0,0.9);
+    font-weight: 500;
+}
+
+.job-title-user-name {
+    padding-top: 5px;
+    color: rgba(0,0,0,0.6);
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.connection-user-feed-div {
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.connection-span-text-space {
+    display: block;
+    float: left;
+}
+
+.blue-font-connection-badge {
+    color: #0b71d8;
+    float: right;
+}
+
+.grow-network-span-connection {
+    display: block;
+    text-align: start;
+    width: 100%;
+    color: black;
+}
+
+.row-row-row {
+    width: 100%;
+}
+
+.who-viewed-user-feed-div {
+
+}
+
+.link-to-a-tag-my-network {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0px 0px 0px;
+    padding: 4px 10px 6px 10px;
+    color: rgba(0,0,0,0.6);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-to-a-tag-my-network:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.link-to-a-tag-my-network-two {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 10px 0px;
+    padding: 4px 10px 6px 10px;
+    color: rgba(0,0,0,0.6);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-to-a-tag-my-network-two:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.profile-left-side-mini-feed-third {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.profile-left-side-mini-feed-third:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.goldensquare-thing {
+    width: 18px;
+    padding-right: 4px;
+}
+
+.hire-me-im-a-good-worker {
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+}
+
+.hire-me-im-a-good-worker:hover {
+    font-size: 12px;
+    text-decoration: none;
+    color: #0b71d8;
+}
+
+.profile-left-side-mini-feed-last {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    padding: 8px 8px 12px 8px;
+    color: rgba(0,0,0,0.6)
+}
+
+.my-items-profile-span {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.8);
+}
+
+.profile-left-side-mini-feed-last:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+.my-items-a-tag {
+    text-decoration: none;
+    color: rgba(0,0,0,0.8);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+my-items-a-tag:hover {
+    color: rgba(0,0,0,1);
+    text-decoration: underline;
+}
+
+.bookmark-thing {
+    width: 18px;
+    padding-right: 4px;
+}
+

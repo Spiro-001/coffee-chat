@@ -22,12 +22,9 @@ export const LoginFormUAS = () => {
     
     useEffect(() => {
         document.title = "Coffee Chat Login, Sign in | Coffee Chat";
-        console.log(history.location.state)
         if (history.location.state) {
             getUser().then(({user}) => {
-                console.log(user)
                 if (user.email || user.phoneNumber) {
-                    console.log('error')
                     errorElementEmail.append(document.createTextNode("That's not the right password. Try again or "));
                     let aTagFogotPassword = document.createElement('a');
                     aTagFogotPassword.append(document.createTextNode('sign in with a one-time link'));
@@ -39,7 +36,6 @@ export const LoginFormUAS = () => {
                     document.getElementsByClassName('email-login-user-form-input-uas')[0].focus()
                 }
             }).catch(error => {
-                console.log("hi")
                 errorElementEmail.append(document.createTextNode("Couldn’t find a LinkedIn account associated with this email. Please try again."));
                 document.getElementsByClassName('login-form-main-uas')[0].insertBefore(errorElementEmail, document.getElementsByClassName('login-form-main-uas')[0].children.item(2));
                 document.getElementsByClassName('email-login-user-form-input-uas')[0].style.border = "2px solid rgb(214, 1, 1)"
@@ -67,7 +63,6 @@ export const LoginFormUAS = () => {
     
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log("hii")
         checkInputValue(e)
         if (sendSubmission) {
             const userInfo = {emailOrPhoneNumber, password}

@@ -1,6 +1,6 @@
 body {
     position: fixed;
-    height: 100%;
+    min-height: fit-content;
     width: 100%;
 }
 
@@ -9,9 +9,11 @@ body {
     top: 0px;
     height: 100%;
     width: 100%;
+    overflow: auto;
 }
 
 .main-feed-page-flex-div-main {
+    background-color: #f3f2ef;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +34,15 @@ body {
     height: fit-content;
     max-width: 1126px;
     margin: auto;
+    background-color: white;
     border: 1px solid green;
+}
+
+.side-bar-nav-bar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: white;
 }
 
 .main-left-side-main-feed {
@@ -185,8 +195,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #f3f2ef;
     height: 100%;
-    width: 100%;
+    max-width: 1126px;
     gap: 50px;
 }

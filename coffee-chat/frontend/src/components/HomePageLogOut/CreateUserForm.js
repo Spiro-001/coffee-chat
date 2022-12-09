@@ -47,7 +47,6 @@ export const CreateUserForm = () => {
         let formatFirstName = (firstName.charAt(0).toUpperCase() + firstName.slice(1))
         let formatLastName = (lastName.charAt(0).toUpperCase() + lastName.slice(1))
         let formatEmail = email.toLowerCase();
-        console.log(formatEmail)
         const userInfo = {
             email: formatEmail, 
             password, 
@@ -58,7 +57,6 @@ export const CreateUserForm = () => {
             ipLocation
         };
         userInfo.phoneNumber = "1" + userInfo.phoneNumber
-        console.log(userInfo)
         dispatch(signupUser(userInfo))
             .then(res => res)
             .catch(res => {
