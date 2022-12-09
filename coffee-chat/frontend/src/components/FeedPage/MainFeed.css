@@ -25,17 +25,15 @@ body {
     height: fit-content;
     margin: 0px;
     width: 100%;
-    border: 2px dotted purple;
 }
 
 .main-nav-bar-main-feed-nav {
     display: flex;
     flex-direction: row;
     height: fit-content;
-    max-width: 1126px;
+    min-width: 1126px;
     margin: auto;
     background-color: white;
-    border: 1px solid green;
 }
 
 .side-bar-nav-bar {
@@ -43,6 +41,7 @@ body {
     flex-direction: row;
     width: 100%;
     background-color: white;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .main-left-side-main-feed {
@@ -50,8 +49,6 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    border: 1px solid cyan;
 }
 
 .main-left-side-main-feed li-icon {
@@ -104,12 +101,14 @@ body {
 .main-ul-right-side-main-feed {
     display: flex;
     flex-direction: row;
+    justify-content: baseline;
+    align-items: baseline;
     list-style: none;
     gap: 0px;
     font-size: 12px;
-    border: 1px solid blue;
     padding: 0px;
     margin: 0px;
+    color: rgba(0,0,0,0.6);
 }
 
 .home-icon-list-item-main-feed {
@@ -120,7 +119,13 @@ body {
     align-content: center;
     height: 52px;
     width: 80px;
-    border: 1px solid red;  
+    border-bottom: 2px solid black;
+    transition: 0.2s color;
+}
+
+.home-icon-list-item-main-feed:hover {
+    cursor: pointer;
+    color:black;
 }
 
 .my-network-icon-list-item-main-feed {
@@ -131,7 +136,13 @@ body {
     align-content: center;
     height: 52px;
     width: 80px;
-    border: 1px solid red;  
+    transition: 0.2s color;
+}
+
+
+.my-network-icon-list-item-main-feed:hover {
+    cursor: pointer;
+    color:black;
 }
 
 .jobs-icon-list-item-main-feed {
@@ -142,7 +153,12 @@ body {
     align-content: center;
     height: 52px;
     width: 80px;
-    border: 1px solid red;  
+    transition: 0.2s color;
+}
+
+.jobs-icon-list-item-main-feed:hover {
+    cursor: pointer;
+    color:black;
 }
 
 .messaging-icon-list-item-main-feed {
@@ -153,7 +169,12 @@ body {
     align-content: center;
     height: 52px;
     width: 80px;
-    border: 1px solid red;  
+    transition: 0.2s color;
+}
+
+.messaging-icon-list-item-main-feed:hover {
+    cursor: pointer;
+    color:black;
 }
 
 .notifications-icon-list-item-main-feed {
@@ -164,7 +185,12 @@ body {
     align-content: center;
     height: 52px;
     width: 80px;
-    border: 1px solid red;  
+    transition: 0.2s color;
+}
+
+.notifications-icon-list-item-main-feed:hover {
+    cursor: pointer;
+    color:black;
 }
 
 .my-profile-icon-list-item-main-feed {
@@ -175,20 +201,58 @@ body {
     align-content: center;
     height: 52px;
     width: 80px;
-    border: 1px solid red;  
+    border-right: 1px solid rgba(0,0,0,0.1);
+    height: 100%;
+    transition: 0.2s color;
+}
+
+.my-profile-icon-list-item-main-feed:hover {
+    cursor: pointer;
+    color:black;
+}
+
+.me-arrow-profile-icon-smaller {
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .work-option-drop-down-menu-right-side-main-feed {
     display: flex;
+    position: relative;
+    top: 4px;
     box-sizing: content-box;
     flex-direction: column;
-    justify-content: center;
+    justify-content: baseline;
     align-items: center;
     align-content: center;
     height: 52px;
     min-width: 70px;
-    border: 1px solid red;
-    margin-left: 40px;
+    border: 0px;
+    background-color: transparent;
+    color: rgb(0,0,0,0.6);
+    transition: 0.2s color;
+}
+
+.work-option-drop-down-menu-right-side-main-feed:hover {
+    cursor: pointer;
+    color:black;
+}
+
+.work-option-drop-down-menu-right-side-main-feed li-icon {
+    position: relative;
+    top: 2px;
+    right: 4px;
+}
+
+.work-arrow-thing {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .feed-content-main-division {
@@ -198,4 +262,33 @@ body {
     height: 100%;
     max-width: 1126px;
     gap: 50px;
+}
+
+.picture-crop-photo-div-smaller {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: fit-content;
+}
+
+.crop-smaller {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    border-radius: 24px;
+    position: relative;
+    border: 2px solid white;
+}
+
+.crop-smaller .profile-picture-self-smaller {
+    position: relative;
+    width: 24px;
+    margin: -2px 0px 0px 0px;
+}
+
+.profile-picture-self-smaller {
+    box-sizing: content-box;
 }
