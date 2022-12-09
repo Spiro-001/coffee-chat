@@ -53,10 +53,11 @@ body {
 
 .main-left-side-main-feed li-icon {
     height: fit-content;
+    color: red;
 }
 
 .main-left-side-main-feed svg {
-    color: #0a66c2;
+    fill: #0a66c2;
     height: 40px;
     width: 40px;
     position: relative;
@@ -70,7 +71,7 @@ body {
 }
 
 .input-search-main-nav-bar-feed svg {
-    color: #5f6163;
+    fill: #5f6163;
     height: 16px;
     width: 36px;
     position: absolute;
@@ -101,14 +102,14 @@ body {
 .main-ul-right-side-main-feed {
     display: flex;
     flex-direction: row;
-    justify-content: baseline;
-    align-items: baseline;
+    justify-content: center;
+    align-items: center;
     list-style: none;
     gap: 0px;
     font-size: 12px;
     padding: 0px;
     margin: 0px;
-    color: rgba(0,0,0,0.6);
+    fill: rgba(0,0,0,0.6);
 }
 
 .home-icon-list-item-main-feed {
@@ -125,7 +126,7 @@ body {
 
 .home-icon-list-item-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .my-network-icon-list-item-main-feed {
@@ -142,7 +143,7 @@ body {
 
 .my-network-icon-list-item-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .jobs-icon-list-item-main-feed {
@@ -158,7 +159,7 @@ body {
 
 .jobs-icon-list-item-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .messaging-icon-list-item-main-feed {
@@ -174,7 +175,7 @@ body {
 
 .messaging-icon-list-item-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .notifications-icon-list-item-main-feed {
@@ -190,7 +191,7 @@ body {
 
 .notifications-icon-list-item-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .my-profile-icon-list-item-main-feed {
@@ -208,15 +209,17 @@ body {
 
 .my-profile-icon-list-item-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .me-arrow-profile-icon-smaller {
     display: flex;
     flex-direction: row;
-    justify-self: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    bottom: 2px;
 }
 
 .work-option-drop-down-menu-right-side-main-feed {
@@ -232,13 +235,13 @@ body {
     min-width: 70px;
     border: 0px;
     background-color: transparent;
-    color: rgb(0,0,0,0.6);
+    fill: rgb(0,0,0,0.6);
     transition: 0.2s color;
 }
 
 .work-option-drop-down-menu-right-side-main-feed:hover {
     cursor: pointer;
-    color:black;
+    fill:black;
 }
 
 .work-option-drop-down-menu-right-side-main-feed li-icon {
@@ -253,6 +256,12 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
+    position: relative;
+    bottom: 2px;
+}
+
+.work-text-tile-drop-down {
+    font-size: 12px;
 }
 
 .feed-content-main-division {
@@ -260,8 +269,9 @@ body {
     flex-direction: row;
     justify-content: center;
     height: 100%;
-    max-width: 1126px;
-    gap: 50px;
+    min-width: 1126px;
+    margin: auto;
+    gap: 20px;
 }
 
 .picture-crop-photo-div-smaller {

@@ -125,6 +125,11 @@
     align-content: center;
     box-sizing: border-box;
     padding: 14px 20px 14px 20px;
+    transition: 0.2s background-color;
+}
+
+.discover-networks-left-side:hover {
+    background-color: rgba(0,0,0,0.1);
 }
 
 .my-network-a-tag-discover {

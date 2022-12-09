@@ -2,6 +2,7 @@ import './RecentMain.css'
 import { Link } from 'react-router-dom';
 
 export const LeftSideMain = ({user}) => {
+    
     return (
         <div className="left-side-main-feed">
             <div className="profile-left-side-mini-feed">
