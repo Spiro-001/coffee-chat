@@ -78,6 +78,7 @@
 .first-last-name-a-tag {
     color: rgba(0,0,0,0.9);
     font-weight: 500;
+    text-decoration: none;
 }
 
 .first-last-name-a-tag:hover {
