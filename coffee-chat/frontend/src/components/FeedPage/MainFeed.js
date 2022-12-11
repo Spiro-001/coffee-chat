@@ -111,8 +111,8 @@ export const MainFeed = () => {
             </div>
             <div className="feed-content-main-division">
                 <LeftSideMain user={user}/>
-                <MiddleMain />
-                <RightSideMain />
+                <MiddleMain user={user} />
+                <RightSideMain user={user}/>
             </div>
         </div>
     )

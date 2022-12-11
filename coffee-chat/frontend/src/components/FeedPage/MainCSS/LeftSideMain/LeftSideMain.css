@@ -173,7 +173,9 @@
 
 .goldensquare-thing {
     width: 18px;
-    padding-right: 4px;
+    padding-right: 2px;
+    position: relative;
+    right: 4px;
 }
 
 .hire-me-im-a-good-worker {

@@ -1,3 +1,5 @@
+import { Post } from './Post'
+
 export const MiddleMain = () => {
     return (
         <div className="middle-main-feed">
@@ -43,55 +45,20 @@ export const MiddleMain = () => {
                     </button>
                 </div>
             </div>
-            <div className="main-feed-container">
-                <h1>MAIN POST GOES HERE</h1>
-                {/* FETCH NEW DATA AND APPEND IT HERE */}
-                <div className="post-with-photo-and-caption">
-                    <div className="top-author-of-post">
-
-                    </div>
-                    <div className="caption-of-post">
-
-                    </div>
-                    <div className="picture-or-media-attatchment">
-
-                    </div>
-                    <div className="like-comment-post-association">
-
-                    </div>
-                    <div className="bottom-button-comment-and-like">
-
-                    </div>
-                </div>
-                <div className="post-with-photo-no-caption">
-                    <div className="top-author-of-post">
-
-                    </div>
-                    <div className="picture-or-media-attatchment">
-
-                    </div>
-                    <div className="like-comment-post-association">
-
-                    </div>
-                    <div className="bottom-button-comment-like-repost-send">
-
-                    </div>
-                </div>
-                <div className="post-no-photo-with-caption">
-                    <div className="top-author-of-post">
-
-                    </div>
-                    <div className="caption-of-post">
-
-                    </div>
-                    <div className="like-comment-post-association">
-
-                    </div>
-                    <div className="bottom-button-comment-like-repost-send">
-
-                    </div>
-                </div>
+            <div className="filter-line-horizontal">
+                <span className="sort-by-text-span">
+                    Sort by:
+                    <span className="top-recent-text-span">
+                        Top
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" class="mercado-match" width="16" height="16" focusable="false">
+                            <path d="M8 11L3 6h10z" fill-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                </span>
             </div>
+            {/* FETCH NEW DATA AND APPEND IT HERE */}
+            {/* fetch(/api/${user.id}/connections) -> gives all connection -> user.post.first(newest) for loop 5 post and rest useEffect based off window height and append a post*/}
+            <Post type={"pwpac"}/>
         </div>
     )
 }

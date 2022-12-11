@@ -1,0 +1,44 @@
+.post-with-photo-and-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    border-radius: 10px;
+}
+
+.top-author-of-post {
+    display: flex;
+    flex-direction: row;
+}
+
+.link-to-profile-post {
+    text-decoration: none;
+    color: rgba(0,0,0,0.6);
+    font-size: 13px;
+}
+
+.information-author-div {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: flex-start;
+    align-content: center;
+}
+
+.full-name-author-of-post {
+    
+}
+
+.full-name-link-to-profile {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.full-name-link-to-profile:hover {
+    color: #1071d3;
+    text-decoration: underline;
+    text-decoration-color: #005dbb;
+}
