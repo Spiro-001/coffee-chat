@@ -5,17 +5,20 @@
 #  id              :bigint           not null, primary key
 #  email           :string           not null
 #  phone_number    :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string           not null
 #  first_name      :string           not null
 #  last_name       :string           not null
 #  country         :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  ip_location     :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
     has_secure_password
     before_validation :ensure_session_token
+
+    has_many :posts
 
     validates :email,
         presence: true, 

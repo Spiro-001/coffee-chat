@@ -185,6 +185,7 @@
 .bottom-button-comment-and-like {
     display: flex;
     flex-direction: row;
+    position: relative;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -247,8 +248,13 @@
     padding: 10px 24px 10px 18px;
 }
 
-.like-icon-post:hover {
-
+.like-icon-post:hover::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    top: -50px;
+    height: 100px;
+    left: 0px;
 }
 
 .comment-icon-post {
@@ -264,6 +270,7 @@
 }
 
 .anchor-hover-like-hover {
+    display: none;
     position: relative;
     width: 100%;
 }
@@ -276,29 +283,30 @@
     gap: 5px;
     position: absolute;
     background-color: white;
-    left: -80px;
-    bottom: 28px;
+    left: -45px;
+    bottom: 55px;
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 10px;
-    box-shadow: 0px 3px 8px -1px rgba(0,0,0,0.4);
+    box-shadow: 0px 3px 8px -1px rgba(0,0,0,0.8);
     transform: scale(0.85);
     box-sizing: content-box;
     padding: 4px;
     height: fit-content;
     width: fit-content;
-    /* opacity: 0.5; */
+    cursor: pointer;
+
 }
 
 .hover-like-option-choose-emote img {
     padding-bottom: 3px;
     transform: scale(0.85);
-    animation: like-emote-reverse 0.2s reverse;
+    animation: like-emote-reverse 0.1s reverse;
 }
 
 .hover-like-option-choose-emote img:hover {
     cursor: pointer;
     opacity: 1;
-    animation: like-emote-forward 0.2s forwards;
+    animation: like-emote-forward 0.1s forwards;
 }
 
 @keyframes like-emote-forward {
@@ -306,15 +314,15 @@
         transform: scale(1);
     }
     100% {
-        transform: scale(1.25) translateY(-10px);
+        transform: scale(1.25) translateY(-5px)
     }
 }
 
 @keyframes like-emote-reverse {
     0% {
-        transform: scale(1);
+        transform: scale(1)
     }
     100% {
-        transform: scale(1.25) translateY(-10px);
+        transform: scale(1.25) translateY(-5px)
     }
 }

@@ -1,6 +1,33 @@
-import { Post } from './Post'
+import React, { useEffect, useState } from 'react'
+import * as ReactDOM from 'react-dom'
+import { csrfFetch } from '../../../../store/csrf';
+import { Post, PostNode } from './Post'
 
 export const MiddleMain = () => {
+
+    const [batchSize, setBatchSize] = useState(5);
+    const [start, setStart] = useState(0);
+    const [finish, setFinish] = useState(5);
+
+    useEffect(() => {
+        const response = csrfFetch('/api/posts/all',{
+            method: 'POST',
+            body: JSON.stringify({
+                batch_size: batchSize,
+                start,
+                finish
+            }),
+        }).then(res => res.json())
+        .then(data => 
+            {
+                ReactDOM.render(
+                    <Post />
+                    // document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(2,document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
+                )
+            })
+    },[])
+
+
     return (
         <div className="middle-main-feed">
             <div className="start-post-feed-main-mini-feed">
@@ -58,9 +85,9 @@ export const MiddleMain = () => {
             </div>
             {/* FETCH NEW DATA AND APPEND IT HERE */}
             {/* fetch(/api/${user.id}/connections) -> gives all connection -> user.post.first(newest) for loop 5 post and rest useEffect based off window height and append a post*/}
+            {/* <Post type={"pwpac"}/>
             <Post type={"pwpac"}/>
-            <Post type={"pwpac"}/>
-            <Post type={"pwpac"}/>
+            <Post type={"pwpac"}/> */}
         </div>
     )
 }

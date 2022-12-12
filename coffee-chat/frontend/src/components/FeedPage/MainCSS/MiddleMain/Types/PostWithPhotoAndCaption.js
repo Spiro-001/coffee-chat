@@ -1,14 +1,30 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PostWithPhotoAndCaption.css'
 
 export const PhotoWithPhotoAndCaption = ({post}) => {
 
+    const [likeHover, setLikeHover] = useState(false);
+    const [elementScope, setElementScope] = useState("");
+
+    useEffect(() => {
+        if (likeHover) elementScope.style.display = "flex"
+        if (elementScope.className === "anchor-hover-like-hover" && !likeHover) elementScope.style.display = "none"
+    },[likeHover])
+
+    let interval;
+
     const onHoverLikeButton = (e) => {
-        e.target.parentNode.nextElementSibling.style.opacity = "1"
+        if (interval) clearTimeout(interval)
+        setElementScope(e.target.parentNode.nextElementSibling)
+        setLikeHover(true)
     }
 
     const onUnHoverLikeButton = (e) => {
-        e.target.parentNode.nextElementSibling.style.opacity = "0"
+        interval = setTimeout(() => {
+            setLikeHover(false)
+        },500)
     }
 
     return (
@@ -99,7 +115,18 @@ export const PhotoWithPhotoAndCaption = ({post}) => {
                 </div>
             </div>
             <div className='anchor-hover-like-hover'>
-                <div className='hover-like-option-choose-emote'>
+                <div className='hover-like-option-choose-emote' 
+                    onMouseEnter={e => {
+                        setLikeHover(true); 
+                        clearTimeout(interval);
+                        }
+                    } 
+                    onMouseLeave={e => {
+                        interval = setTimeout(() => {
+                            setLikeHover(false)
+                        },500)
+                        }
+                    }>
                     <img className="like-emote" src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="like" />
                     <img className="celebrate-emote" src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo" alt="celebrate" />
                     <img className="support-emote" src="https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi" alt="support" />

@@ -34,6 +34,7 @@ body {
     min-width: 1126px;
     margin: auto;
     background-color: white;
+    box-sizing: content-box;
 }
 
 .side-bar-nav-bar {
@@ -45,6 +46,7 @@ body {
     background-color: white;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     z-index: 1;
+    box-sizing: border-box;
 }
 
 .main-left-side-main-feed {
@@ -70,7 +72,7 @@ body {
 
 .input-search-main-nav-bar-feed {
     height: fit-content;
-    width: fit-content;
+    width: 500px;
 }
 
 .input-search-main-nav-bar-feed svg {
@@ -97,7 +99,6 @@ body {
 }
 
 .input-search-bar-find-nav-bar-feed:focus {
-    height: 34px;
     width: 384px;
     margin-right: 68px;
 }

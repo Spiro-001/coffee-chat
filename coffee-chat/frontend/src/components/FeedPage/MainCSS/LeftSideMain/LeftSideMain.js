@@ -1,7 +1,13 @@
 import './RecentMain.css'
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const LeftSideMain = ({user}) => {
+    
+    useEffect(() => {
+
+    }, [user])
+    
     
     return (
         <div className="left-side-main-feed">
