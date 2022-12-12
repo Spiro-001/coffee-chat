@@ -147,6 +147,7 @@
     border: 1px solid rgba(0,0,0,0.2);
     height: fit-content;
     max-width: 540px;
+    margin-bottom: 6px;
 }
 
 .sort-by-text-span {

@@ -10,12 +10,101 @@
 .top-author-of-post {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 6px 12px 0px 12px;
+    width: 100%;
+}
+
+.picture-crop-photo-div-smaller-post {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: fit-content;
+    padding-right: 10px;
+}
+
+.crop-smaller-post-pfp {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 56px;
+    position: relative;
+    border: 2px solid white;
+}
+
+.crop-smaller-post-pfp .author-post-pfp-post {
+    position: relative;
+    width: 156px;
+    margin: 0px 0px 0px -60px;
+}
+
+.author-post-pfp-post {
+    box-sizing: content-box;
 }
 
 .link-to-profile-post {
     text-decoration: none;
     color: rgba(0,0,0,0.6);
+    padding-right: 35%;
     font-size: 13px;
+}
+
+.more-options-for-post {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 95%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    fill: rgba(0,0,0,0.6);
+}
+
+.more-options-for-post svg {
+    box-sizing: border-box;
+    border-radius: 38px;
+    height: 32px;
+    width: 32px;
+    padding: 4px;
+    transition: 0.2s background-color;
+}
+
+.more-options-for-post svg:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.follow-plus-button {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: #005dbb;
+    fill: #005dbb;
+    font-weight: 600;
+    padding: 4px 6px 4px 6px;
+    border-radius: 4px;
+    transition: 0.2s background-color;
+}
+
+.follow-plus-button:hover {
+    cursor: pointer;
+    background-color: #1071d331;
+}
+
+.follow-plus-button svg {
+    padding-right: 4px;
 }
 
 .information-author-div {
@@ -41,4 +130,191 @@
     color: #1071d3;
     text-decoration: underline;
     text-decoration-color: #005dbb;
+}
+
+.caption-of-post {
+    box-sizing: content-box;
+    padding: 8px 16px 8px 16px;
+}
+
+.picture-or-media-attatchment {
+    width: 100%;
+}
+
+.post-image-in-post-main {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.like-comment-post-association {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    max-width: 95.5%;
+}
+
+.like-icons-active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding-right: 4px;
+}
+
+.amount-of-likes-active {
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+    white-space: nowrap;
+}
+
+.amount-of-likes-active:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color:#1071d3;
+}
+
+.bottom-button-comment-and-like {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: rgba(0,0,0,0.6);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+    gap: 8px;
+}
+
+.body-caption-post-text {
+    font-size: 14px;
+}
+
+.amount-of-comment-repost {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-end;
+    font-size: 12px;
+    width: 100%;
+    color: rgba(0,0,0,0.6);
+}
+
+.comment-amount-active:after {
+    content: '•';
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.bottom-button-comment-and-like svg {
+    fill: rgba(0,0,0,0.6);
+    width: 36px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.bottom-button-comment-and-like div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 4px;
+    width: fit-content;
+    transition: 0.2s background-color;
+}
+
+.bottom-button-comment-and-like div:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.repost-icon-post svg {
+    width: 24px;
+}
+
+.like-icon-post {
+    padding: 10px 24px 10px 18px;
+}
+
+.like-icon-post:hover {
+
+}
+
+.comment-icon-post {
+    padding: 10px 24px 10px 18px;
+}
+
+.repost-icon-post {
+    padding: 10px 24px 10px 18px;
+}
+
+.send-icon-post {
+    padding: 10px 24px 10px 18px;
+}
+
+.anchor-hover-like-hover {
+    position: relative;
+    width: 100%;
+}
+
+.hover-like-option-choose-emote {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+    position: absolute;
+    background-color: white;
+    left: -80px;
+    bottom: 28px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px -1px rgba(0,0,0,0.4);
+    transform: scale(0.85);
+    box-sizing: content-box;
+    padding: 4px;
+    height: fit-content;
+    width: fit-content;
+    /* opacity: 0.5; */
+}
+
+.hover-like-option-choose-emote img {
+    padding-bottom: 3px;
+    transform: scale(0.85);
+    animation: like-emote-reverse 0.2s reverse;
+}
+
+.hover-like-option-choose-emote img:hover {
+    cursor: pointer;
+    opacity: 1;
+    animation: like-emote-forward 0.2s forwards;
+}
+
+@keyframes like-emote-forward {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.25) translateY(-10px);
+    }
+}
+
+@keyframes like-emote-reverse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.25) translateY(-10px);
+    }
 }
