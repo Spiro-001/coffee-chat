@@ -4,7 +4,7 @@ import { PostWithPhotoNoCaption } from './Types/PostWithPhotoNoCaption'
 
 export const Post = (type, post, id) => {
     return (
-        <div className="main-feed-container">
+        <div id={id} className="main-feed-container">
             {type === "pwpac" && <PhotoWithPhotoAndCaption id={id} post={post}/>}
             {type === "pwpnc" && <PostWithPhotoNoCaption id={id} post={post}/>}
             {type === "pwopwc" && <PostWithoutPhotoWithCaption id={id} post={post}/>}

@@ -11,14 +11,6 @@ export const PhotoWithPhotoAndCaption = ({id, post}) => {
     const [body, setBody] = useState("")
     const [timeAgo, setTimeAgo] = useState("")
 
-    // const server = require('http').createServer();
-    const io = require('socket.io')()//(server);
-    io.on('connection', client => {
-        client.on('event', data => {});
-        client.on('disconnect', () => {});
-    });
-    io.listen(5000);
-
     useEffect(() => {
         if (likeHover) elementScope.style.display = "flex"
         if (elementScope.className === "anchor-hover-like-hover" && !likeHover) elementScope.style.display = "none"

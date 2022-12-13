@@ -9,9 +9,16 @@ export const MiddleMain = () => {
     const [batchSize, setBatchSize] = useState(5);
     const [start, setStart] = useState(0);
     const [finish, setFinish] = useState(5);
+    const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
+    const [idArray, setIdArray] = useState([])
 
     useEffect(() => {
-        const response = csrfFetch('/api/posts/all',{
+        const refreshDatabase = setInterval(() => {
+            // console.log(1)
+            setRunDatabaseChanges(Date.now())
+        },10000);
+
+        csrfFetch('/api/posts/all',{
             method: 'POST',
             body: JSON.stringify({
                 batch_size: batchSize,
@@ -21,16 +28,24 @@ export const MiddleMain = () => {
         }).then(res => res.json())
         .then(data =>
             {
+                console.log(data)
                 if (data) {
-
                     for (const [id, post] of Object.entries(data.posts)) {
                         let postSpace = document.createElement('div')
-                        document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(postSpace,document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
-                        ReactDOM.render(Post("pwpac", post, id), postSpace)
+                        postSpace.id = post.id;
+                        console.log(idArray)
+                        // document.getElementsByClassName('middle-main-feed')[0].lastChild.id
+                        if (!idArray.includes(parseInt(post.id))) {
+                            console.log(3, Date.now());
+                            document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(postSpace, document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
+                            ReactDOM.render(Post("pwpac", post, post.id), postSpace)
+                        }
+                        if (!idArray.includes(post.id)) setIdArray(idArray => [...idArray, post.id])
                     }
                 }
             })
-    },[])
+        return () => clearInterval(refreshDatabase);
+    },[runDatabaseChanges])
 
     return (
         <div className="middle-main-feed">
