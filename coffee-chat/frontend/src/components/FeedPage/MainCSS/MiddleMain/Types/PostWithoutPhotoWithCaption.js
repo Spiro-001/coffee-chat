@@ -1,4 +1,4 @@
-export const PostWithoutPhotoWithCaption = ({post}) => {
+export const PostWithoutPhotoWithCaption = ({data}) => {
     return (
         <div className="post-no-photo-with-caption">
             <div className="top-author-of-post">

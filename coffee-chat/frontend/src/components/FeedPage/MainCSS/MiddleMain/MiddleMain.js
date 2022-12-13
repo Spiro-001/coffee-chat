@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as ReactDOM from 'react-dom'
 import { csrfFetch } from '../../../../store/csrf';
 import { Post, PostNode } from './Post'
+import { Link } from 'react-router-dom';
 
 export const MiddleMain = () => {
 
@@ -18,15 +19,18 @@ export const MiddleMain = () => {
                 finish
             }),
         }).then(res => res.json())
-        .then(data => 
+        .then(data =>
             {
-                ReactDOM.render(
-                    <Post />
-                    // document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(2,document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
-                )
+                if (data) {
+
+                    for (const [id, post] of Object.entries(data.posts)) {
+                        let postSpace = document.createElement('div')
+                        document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(postSpace,document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
+                        ReactDOM.render(Post("pwpac", post, id), postSpace)
+                    }
+                }
             })
     },[])
-
 
     return (
         <div className="middle-main-feed">
@@ -88,6 +92,7 @@ export const MiddleMain = () => {
             {/* <Post type={"pwpac"}/>
             <Post type={"pwpac"}/>
             <Post type={"pwpac"}/> */}
+            {/* {renderPost()} */}
         </div>
     )
 }

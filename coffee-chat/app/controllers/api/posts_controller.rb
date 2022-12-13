@@ -1,7 +1,8 @@
 class Api::PostsController < ApplicationController
     wrap_parameters include: Post.attribute_names + ['batch_size', "start", "finish"]
     def index
-        @posts = Post.find_in_batches(batch_size: post_params[:batch_size], start: post_params[:start], finish: post_params[:finish]) # MAKE SURE TO CHANGE THIS AND NOT HARDCODE STUFF
+        @posts = Post.order("created_at DESC").limit(post_params[:batch_size]).offset(post_params[:start])
+        # Post.find(:order => "created_on DESC", :limit => '#{post_params[:batch_size]}', :offset => '#{post_params[:start]}') # MAKE SURE TO CHANGE THIS AND NOT HARDCODE STUFF , finish: post_params[:finish]
         if @posts
             render :index
         else

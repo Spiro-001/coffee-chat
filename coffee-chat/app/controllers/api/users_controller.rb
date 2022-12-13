@@ -34,6 +34,15 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def show_by_id
+        @user = User.find_by(id: params[:id])
+        if @user
+            render :show
+        else
+            render json: { errors: 'user could not be found'}, status: 422
+        end
+    end
+
     private
     def user_params
         params.require(:user).permit(:email, :phone_number, :password, :first_name, :last_name, :country, :ip_location)
