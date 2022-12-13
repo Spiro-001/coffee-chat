@@ -1,14 +1,8 @@
 import './RecentMain.css'
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export const LeftSideMain = ({user}) => {
-    
-    useEffect(() => {
-
-    }, [user])
-    
-    
+export const LeftSideMain = ({user}) => {  
     return (
         <div className="left-side-main-feed">
             <div className="profile-left-side-mini-feed">

@@ -3,8 +3,9 @@ import * as ReactDOM from 'react-dom'
 import { csrfFetch } from '../../../../store/csrf';
 import { Post, PostNode } from './Post'
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-export const MiddleMain = () => {
+export const MiddleMain = ({user}) => {
 
     const [batchSize, setBatchSize] = useState(5);
     const [start, setStart] = useState(0);
@@ -12,11 +13,12 @@ export const MiddleMain = () => {
     const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
     const [idArray, setIdArray] = useState([])
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
         const refreshDatabase = setInterval(() => {
-            // console.log(1)
             setRunDatabaseChanges(Date.now())
-        },10000);
+        },100000);
 
         csrfFetch('/api/posts/all',{
             method: 'POST',
@@ -28,19 +30,20 @@ export const MiddleMain = () => {
         }).then(res => res.json())
         .then(data =>
             {
-                console.log(data)
                 if (data) {
                     for (const [id, post] of Object.entries(data.posts)) {
                         let postSpace = document.createElement('div')
-                        postSpace.id = post.id;
-                        console.log(idArray)
-                        // document.getElementsByClassName('middle-main-feed')[0].lastChild.id
+                        postSpace.id = post.createdAt;
                         if (!idArray.includes(parseInt(post.id))) {
-                            console.log(3, Date.now());
-                            document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(postSpace, document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
-                            ReactDOM.render(Post("pwpac", post, post.id), postSpace)
+                            if (Date.parse(document.getElementsByClassName('middle-main-feed')[0].lastChild.id) < Date.parse(post.createdAt)) {
+                                document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(postSpace, document.getElementsByClassName('filter-line-horizontal')[0].nextElementSibling)
+                                ReactDOM.render(Post(post.postType, post, post.id), postSpace)
+                            } else {
+                                document.getElementsByClassName('middle-main-feed')[0].insertBefore(postSpace, document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
+                                ReactDOM.render(Post(post.postType, post, post.id, user), postSpace)
+                            }
                         }
-                        if (!idArray.includes(post.id)) setIdArray(idArray => [...idArray, post.id])
+                        if (!idArray.includes(parseInt(post.id))) setIdArray(idArray => [...idArray, post.id])
                     }
                 }
             })
@@ -102,12 +105,6 @@ export const MiddleMain = () => {
                     </span>
                 </span>
             </div>
-            {/* FETCH NEW DATA AND APPEND IT HERE */}
-            {/* fetch(/api/${user.id}/connections) -> gives all connection -> user.post.first(newest) for loop 5 post and rest useEffect based off window height and append a post*/}
-            {/* <Post type={"pwpac"}/>
-            <Post type={"pwpac"}/>
-            <Post type={"pwpac"}/> */}
-            {/* {renderPost()} */}
         </div>
     )
 }

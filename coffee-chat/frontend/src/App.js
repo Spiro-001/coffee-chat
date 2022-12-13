@@ -7,11 +7,13 @@ import { UASLoginForm } from "./components/HomePageLogOut/UASLoginForm";
 import { useEffect, useState } from "react";
 import { IsLoadingForm } from "./loadinghtml/IsLoadingForm";
 import { MainFeed } from "./components/FeedPage/MainFeed";
+import { Provider, useSelector } from "react-redux";
 
 export const App = () => {
   let firstSession = false;
   const history = useHistory()
   const [isLoading, setIsLoading] = useState(true)
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     setIsLoading(true);

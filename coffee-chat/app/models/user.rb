@@ -19,6 +19,7 @@ class User < ApplicationRecord
     before_validation :ensure_session_token
 
     has_many :posts
+    has_many :likes, as: :likable
 
     validates :email,
         presence: true, 

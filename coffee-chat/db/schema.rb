@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_12_183831) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_13_165822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.string "likable_type"
+    t.bigint "likable_id"
+    t.integer "emote_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likable_type", "likable_id"], name: "index_likes_on_likable"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -20,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_183831) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "post_type", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -39,5 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_183831) do
     t.index ["session_token"], name: "index_users_on_session_token"
   end
 
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
 end
