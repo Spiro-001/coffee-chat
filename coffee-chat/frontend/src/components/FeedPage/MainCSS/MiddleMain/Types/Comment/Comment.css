@@ -1,8 +1,131 @@
-.comment-section-for-post {
+.comment-section-for-post-div {
     display: flex;
+    flex-direction: column;
     height: 0px;
     opacity: 0;
-    flex-direction: column;
     transition-property: opacity, height;
-    transition-duration: 0.5s;
+    box-sizing: content-box;
+}
+
+.comment-section-for-post {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    opacity: 1;
+    transition-property: opacity, height;
+    box-sizing: content-box;
+}
+
+
+.user-profile-picture {
+    width: fit-content;
+    height: fit-content;
+}
+
+.picture-crop-photo-div-smaller-post-c {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: fit-content;
+    padding-right: 2px;
+}
+
+.crop-smaller-post-pfp-c {
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border-radius: 42px;
+    position: relative;
+    border: 2px solid white;
+}
+
+.crop-smaller-post-pfp-c .author-post-pfp-post-c {
+    position: relative;
+    width: 156px;
+    margin: -5px 0px 0px -68px;
+}
+
+.author-post-pfp-post {
+    box-sizing: content-box;
+}
+
+.main-text-area-in-comments {
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    padding: 10px 8px 6px 12px;
+    background-color: #f3f2EF; 
+    border-radius: 0px 10px 10px 10px;
+    width: 100%;
+    height: fit-content;
+}
+
+.text-box-from-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-section-of-text-from-user {
+    display: flex;
+    flex-direction: row;
+}
+
+.author-name-title-text-area {
+    width: fit-content;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.author-name-title-text-area:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #378fe9;
+}
+
+.author-occupation {
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6)
+}
+.time-ago-from-post-comment {
+    text-align: end;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    padding-right: 4px;
+}
+
+.right-side-comment-options {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.body-area-text-area {
+    padding: 6px 0px 8px 0px;
+    font-size: 14px;
+}
+
+.triple-dot-more-settings {
+    fill: rgba(0, 0, 0, 0.6);
+}
+
+.triple-dot-more-settings:hover {
+    cursor: pointer;
+}
+
+.bottom-bar-like-reply-area {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    border: 1px solid black;
+    width: 100%;
+    height: fit-content;
 }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { csrfFetch } from '../../../../../store/csrf';
 import { createLike, destroyLike, removeLike, setStateLike } from '../../../../../store/like';
+import { Comment } from './Comment/Comment';
 import './PostWithPhotoAndCaption.css'
 import './Comment/Comment.css'
 
@@ -16,6 +17,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
     const [imageUrl, setImageUrl] = useState("");
     const [likeAmount, setLikeAmount] = useState("");
+    const [plusOne, setPlusOne] = useState(0);
     const [clickedLike, setClickedLike] = useState(false);
     const [topLikeArray, setTopLikeArray] = useState([]);
     const [comments, setComments] = useState([]);
@@ -30,18 +32,18 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      csrfFetch(`/api/user_id/${post.userId}`)
-      .then(res => res.json())
-      .then(data => {
-        setAuthor(data.user.firstName + " " + data.user.lastName)
-        setBody(post.body)
-        setTimeAgo(timeSince(new Date(post.createdAt)));
-        setImageUrl(post.imageUrl);
-        setLikeAmount(post.likes ? Object.keys(post.likes).length : 0)
+        csrfFetch(`/api/user_id/${post.userId}`)
+        .then(res => res.json())
+        .then(data => {
+            setAuthor(data.user.firstName + " " + data.user.lastName)
+            setBody(post.body)
+            setTimeAgo(timeSince(new Date(post.createdAt)));
+            setImageUrl(post.imageUrl);
+            setLikeAmount(post.likes ? Object.keys(post.likes).length + plusOne : 0);
             });
             const refreshDatabase = setInterval(() => {
-            setRunDatabaseChanges(Date.now())
-        },5000);
+                setRunDatabaseChanges(Date.now())
+            },10000);
         return () => clearInterval(refreshDatabase);
     },[runDatabaseChanges])
 
@@ -56,7 +58,11 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
               likable_id: likableId
             }),
         }).then(res => res.json()).then(data => {
-            setClickedLike(data)
+            for (const [key, value] of Object.entries(data)) {
+                if (!Array.isArray(value)) {
+                    value.userId === userId ? setClickedLike(true) : setClickedLike(false)
+                }
+            }
             setTopLikeArray(data.topEmotes)
         })
       },[runDatabaseChanges])
@@ -72,22 +78,26 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     },[topLikeArray])
 
     const handleOnClickLikeButton = (e, type) => {
-      e.preventDefault();
-      const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'}
+        e.preventDefault();
+        const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'}
+        console.log(clickedLike)
+        if (clickedLike !== true) {
+            console.log("like")
+            dispatch(createLike(ueId))
+            setClickedLike(true)
+            setPlusOne(1)
+            setLikeAmount(likeAmount)
+            setTopLikeArray(topLikeArray => [...topLikeArray, type])
+        }
+        else {
+            console.log('remove like')
+            dispatch(destroyLike(ueId))
+            setClickedLike({})
+            setPlusOne(0)
+            setLikeAmount(likeAmount)
 
-      if (JSON.stringify(clickedLike) === '{}') {
-        dispatch(createLike(ueId))
-        setClickedLike(true)
-        setLikeAmount(likeAmount + 1)
-        setTopLikeArray(topLikeArray => [...topLikeArray, type])
-      }
-      else {
-        dispatch(destroyLike(ueId))
-        setClickedLike({})
-        setLikeAmount(likeAmount - 1)
-
-        setTopLikeArray(topLikeArray => [...topLikeArray].splice(topLikeArray.indexOf(type), 1))
-      }
+            setTopLikeArray(topLikeArray => [...topLikeArray].splice(topLikeArray.indexOf(type), 1))
+        }
     }
 
     const aDay = 24*60*60*1000;
@@ -134,6 +144,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     }
 
     useEffect(() => {
+        console.log(likeAmount + plusOne)
         csrfFetch(`/api/comments/${post.id}`)
         .then(res => res.json())
         .then(data => {
@@ -148,13 +159,13 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     },[runDatabaseChanges])
 
     const handleCommentOnClick = (e) => {
-        console.log(comments)
         e.preventDefault()
+        console.log(e.target.parentNode.parentNode.nextElementSibling)
         if (!commentOpen) {
             setCommentOpen(true)
-            let minHeight = 150;
-            document.getElementsByClassName('comment-section-for-post')[0].style.height = `${minHeight}px`;
-            document.getElementsByClassName('comment-section-for-post')[0].style.opacity = "1";
+            e.target.parentNode.parentNode.nextElementSibling.style.height = `fit-content`;
+            e.target.parentNode.parentNode.nextElementSibling.style.opacity = "1";
+            e.target.parentNode.parentNode.nextElementSibling.style.padding = "16px";
             if (comments.length === 0) {
                 csrfFetch(`/api/comments/${post.id}`)
                     .then(res => res.json())
@@ -170,8 +181,17 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             } 
         } else {
             setCommentOpen(false)
-            document.getElementsByClassName('comment-section-for-post')[0].style.height = "0px";
-            document.getElementsByClassName('comment-section-for-post')[0].style.opacity = "0";
+            e.target.parentNode.parentNode.nextElementSibling.style.height = "0px";
+            e.target.parentNode.parentNode.nextElementSibling.style.opacity = "0";
+            e.target.parentNode.parentNode.nextElementSibling.style.padding = "0px";
+        }
+    }
+
+    const checkCommentsArray = () => {
+        if (comments.length === 0) {
+            return true
+        } else {
+            return false
         }
     }
 
@@ -230,7 +250,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                     </div>
                     <div className="amount-of-likes-active">
                         {/* get like amount */}
-                        {likeAmount}
+                        {likeAmount + plusOne}
                     </div>
                     <div className='amount-of-comment-repost'>
                         <div className="comment-amount-active">
@@ -292,35 +312,12 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                     </div>
                 </div>
             </div>
-
-            <div className='comment-section-for-post'>
-                <div className='user-profile-picture'>
-                    insert picture
-                </div>
-                <div className='main-text-area-in-comments'>
-                    <div className='text-box-from-user'>
-                        <div className='top-section-of-text-from-user'>
-                            <div className='author-name-title-text-area'>
-                                {comments.length !== 0 ? comments[0].author.first_name + " " + comments[0].author.last_name : ""}
-                            </div>
-                            <div className='time-ago-from-post-comment'>
-                                {comments.length !== 0 ? timeSince(new Date(comments[0].createdAt)) : ""}
-                            </div>
-                            <div className='triple-dot-more-settings'>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" width="16" height="16" focusable="false">
-                                    <path d="M3 9.5A1.5 1.5 0 114.5 8 1.5 1.5 0 013 9.5zM11.5 8A1.5 1.5 0 1013 6.5 1.5 1.5 0 0011.5 8zm-5 0A1.5 1.5 0 108 6.5 1.5 1.5 0 006.5 8z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div className='body-area-text-area'>
-                            {comments.length !== 0 ? comments[0].body : ""}
-                        </div>
-                    </div>
-                    <div className='bottom-bar-like-reply-area'>
-
-                    </div>
-                </div>
+            <div className='comment-section-for-post-div'>
+                {!checkCommentsArray() && comments.map(comment => {
+                    return <Comment comment={comment} />
+                })}
             </div>
+            
         </BrowserRouter>
     );
 }

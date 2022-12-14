@@ -18,7 +18,7 @@ export const MiddleMain = ({user}) => {
     useEffect(() => {
         const refreshDatabase = setInterval(() => {
             setRunDatabaseChanges(Date.now())
-        },100000);
+        },10000);
 
         csrfFetch('/api/posts/all',{
             method: 'POST',

@@ -22,9 +22,10 @@ body {
     position: absolute;
     top: 0px;
     padding-top: 0px;
-    height: fit-content;
+    height: inherit;
     margin: 0px;
     width: 100%;
+    overflow: auto;
 }
 
 .main-nav-bar-main-feed-nav {

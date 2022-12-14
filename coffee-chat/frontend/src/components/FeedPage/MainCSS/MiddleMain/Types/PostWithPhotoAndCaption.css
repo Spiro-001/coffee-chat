@@ -267,10 +267,11 @@
 .like-icon-post:hover::after {
     content: '';
     position: absolute;
-    width: 250px;
+    width: 120px;
     top: -50px;
     height: 100px;
     left: 0px;
+    border: 1px solid black
 }
 
 .comment-icon-post {
