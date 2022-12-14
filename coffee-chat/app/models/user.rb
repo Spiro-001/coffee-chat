@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
     has_many :posts
     has_many :likes, as: :likable
+    has_many :comments
 
     validates :email,
         presence: true, 

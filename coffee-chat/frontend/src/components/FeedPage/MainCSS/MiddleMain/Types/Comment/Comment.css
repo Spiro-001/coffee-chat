@@ -1,0 +1,8 @@
+.comment-section-for-post {
+    display: flex;
+    height: 0px;
+    opacity: 0;
+    flex-direction: column;
+    transition-property: opacity, height;
+    transition-duration: 0.5s;
+}

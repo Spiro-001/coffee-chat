@@ -163,12 +163,27 @@
 
 .like-icons-active {
     display: flex;
-    flex-direction: column;
+    position: relative;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
-    padding-right: 4px;
+    padding-right: 0px;
+    width: 20px
 }
+.emote-mini:nth-child(1) {
+
+}
+
+.emote-mini:nth-child(2) {
+    position: absolute;
+    left: 10px;
+}
+.emote-mini:nth-child(3){
+    position: absolute;
+    left: 20px;
+}
+
 
 .amount-of-likes-active {
     font-size: 12px;
@@ -180,6 +195,7 @@
     cursor: pointer;
     text-decoration: underline;
     color:#1071d3;
+    font-weight: 500;
 }
 
 .bottom-button-comment-and-like {

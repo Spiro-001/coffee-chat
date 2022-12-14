@@ -3,7 +3,8 @@ import * as ReactDOM from 'react-dom'
 import { csrfFetch } from '../../../../store/csrf';
 import { Post, PostNode } from './Post'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStateLike } from '../../../../store/like';
 
 export const MiddleMain = ({user}) => {
 
@@ -12,8 +13,7 @@ export const MiddleMain = ({user}) => {
     const [finish, setFinish] = useState(5);
     const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
     const [idArray, setIdArray] = useState([])
-
-    const dispatch = useDispatch()
+    const likeStateSelector = useSelector(state => state)
 
     useEffect(() => {
         const refreshDatabase = setInterval(() => {
@@ -35,9 +35,10 @@ export const MiddleMain = ({user}) => {
                         let postSpace = document.createElement('div')
                         postSpace.id = post.createdAt;
                         if (!idArray.includes(parseInt(post.id))) {
+                            const ueId = {userId: user.id, emoteId: 1, likableId: post.id , likableType: 'Post'} // MAKE SURE TO CHECK FOR POST THAT DONT HAVE LIKES
                             if (Date.parse(document.getElementsByClassName('middle-main-feed')[0].lastChild.id) < Date.parse(post.createdAt)) {
                                 document.getElementsByClassName('middle-main-feed')[0].lastChild.parentNode.insertBefore(postSpace, document.getElementsByClassName('filter-line-horizontal')[0].nextElementSibling)
-                                ReactDOM.render(Post(post.postType, post, post.id), postSpace)
+                                ReactDOM.render(Post(post.postType, post, post.id, likeStateSelector), postSpace)
                             } else {
                                 document.getElementsByClassName('middle-main-feed')[0].insertBefore(postSpace, document.getElementsByClassName('middle-main-feed')[0].lastChild.nextSibling)
                                 ReactDOM.render(Post(post.postType, post, post.id, user), postSpace)
@@ -49,7 +50,6 @@ export const MiddleMain = ({user}) => {
             })
         return () => clearInterval(refreshDatabase);
     },[runDatabaseChanges])
-
     return (
         <div className="middle-main-feed">
             <div className="start-post-feed-main-mini-feed">

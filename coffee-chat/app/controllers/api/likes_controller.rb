@@ -2,7 +2,13 @@ class Api::LikesController < ApplicationController
     wrap_parameters include: Like.attribute_names + ["user_id", "emote_id", "likable_id", "likable_type"]
 
     def index
-        @likes = Like.where(likable_id: like_params[:likable_id], likable_type: like_params[likable_type])
+        ordered_top_likes = Hash.new(0)
+        @likes = Like.where(likable_id: like_params[:likable_id], likable_type: like_params[:likable_type])
+        @likes.each do |like|
+            ordered_top_likes[like.emote_id] += 1
+        end
+        @top_three = (ordered_top_likes.sort_by { |emote_id, count| -count }.to_h).keys[0..2]
+
         if @likes
             render :index
         else

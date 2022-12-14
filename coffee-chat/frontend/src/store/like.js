@@ -72,11 +72,15 @@ const initState = { like: null };
 export const likeReducer = (state = initState, action) => {
   let newState = { ...state };
   switch (action.type) {
+    case SET_LIKE:
+      newState["like"] = action.payload
+      return newState;
     case REMOVE_LIKE:
       newState["like"] = null;
       return newState;
     case RECEIVE_LIKE:
-      return action.payload;
+      newState["like"] = action.payload;
+      return newState;
     default:
       return state;
   }
