@@ -43,9 +43,9 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             setImageUrl(post.imageUrl);
             setLikeAmount(post.likes ? Object.keys(post.likes).length : 0);
             });
-            const refreshDatabase = setInterval(() => {
-                setRunDatabaseChanges(Date.now())
-            },100000);
+        const refreshDatabase = setInterval(() => {
+            setRunDatabaseChanges(Date.now())
+        },100000);
         return () => clearInterval(refreshDatabase);
     },[runDatabaseChanges])
 
@@ -164,30 +164,47 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
 
     const handleCommentOnClick = (e) => {
         e.preventDefault()
+        const commentsInPost = e.target.parentNode.parentNode.nextElementSibling.children
+        // e.target.parentNode.parentNode.nextElementSibling.style.transitionProperty = "opacity, height";
+        // e.target.parentNode.parentNode.nextElementSibling.style.transitionDelay = "1s";
+        // e.target.parentNode.parentNode.nextElementSibling.style.transitionDuration = "1s";
         if (!commentOpen) {
             setCommentOpen(true)
             e.target.parentNode.parentNode.nextElementSibling.style.height = `fit-content`;
             e.target.parentNode.parentNode.nextElementSibling.style.opacity = "1";
             e.target.parentNode.parentNode.nextElementSibling.style.padding = "6px 16px 16px 16px";
+            commentsInPost[0].style.height = 'fit-content'
+            commentsInPost[0].style.opacity = '1'
+            for (const [key, value] of Object.entries(commentsInPost)) {
+                value.style.height = "fit-content"
+                value.style.opacity = "1" 
+            }
             if (comments.length === 0) {
                 csrfFetch(`/api/comments/${post.id}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        for (const [key, value] of Object.entries(data)) {
-                            if (comments.length !== 0) {
+                .then(res => res.json())
+                .then(data => {
+                    for (const [key, value] of Object.entries(data)) {
+                        if (comments.length !== 0) {
                                 if (!comments[parseInt(key)].id === value.id) setComments(comments => [...comments, value])
                             } else {
                                 setComments(comments => [...comments, value])
                             }
                         }
                     });
-            } 
+                } 
         } else {
             setCommentOpen(false)
+            commentsInPost[0].style.height = '0px'
+            commentsInPost[0].style.opacity = '0'
             e.target.parentNode.parentNode.nextElementSibling.style.height = "0px";
             e.target.parentNode.parentNode.nextElementSibling.style.opacity = "0";
             e.target.parentNode.parentNode.nextElementSibling.style.padding = "0px";
+            for (const [key, value] of Object.entries(commentsInPost)) {
+                value.style.height = "0px" 
+                value.style.opacity = "0" 
+            }
         }
+
     }
 
     const checkCommentsArray = () => {

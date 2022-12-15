@@ -3,19 +3,20 @@
     flex-direction: column;
     height: 0px;
     opacity: 0;
-    transition-property: opacity, height;
     box-sizing: content-box;
+    transition-property: height, opacity;
+    transition-delay: 0.3s;
+    transition-duration: 0.2s;
 }
 
 .comment-section-for-post {
     display: flex;
     flex-direction: row;
-    height: fit-content;
+    height: 0px;
     opacity: 1;
     transition-property: opacity, height;
     box-sizing: content-box;
 }
-
 
 .user-profile-picture {
     width: fit-content;
@@ -126,7 +127,7 @@
     position: relative;
     flex-direction: row;
     width: 100%;
-    height: fit-content;
+    height: 0px;
     box-sizing: border-box;
     padding-left: 62px;
     font-size: 11px;
