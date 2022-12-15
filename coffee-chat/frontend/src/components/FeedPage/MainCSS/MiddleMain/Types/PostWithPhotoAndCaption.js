@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { csrfFetch } from '../../../../../store/csrf';
-import { createLike, destroyLike, removeLike, setStateLike } from '../../../../../store/like';
+import { createLike, destroyLike, removeLike, setStateLike, updateLike } from '../../../../../store/like';
 import { Comment } from './Comment/Comment';
 import './PostWithPhotoAndCaption.css'
 import './Comment/Comment.css'
+import './EditFormPost.css'
 
 export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const [likeHover, setLikeHover] = useState(false);
@@ -24,6 +25,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const [element, setElement] = useState("");
     const [commentInput, setCommentInput] = useState("");
     const [newCommentTick, setNewCommentTick] = useState(0);
+    const [emoteId, setEmoteId] = useState(0);
     const ueId = {userId: user.id, emoteId: 1, likableId: post.id , likableType: 'Post'}
 
     useEffect(() => {
@@ -63,6 +65,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             // console.log(data)
             for (const [key, value] of Object.entries(data)) {
                 if (!Array.isArray(value)) {
+                    setEmoteId(value.emoteId) 
                     value.userId === userId ? setClickedLike(true) : setClickedLike(false);
                 }
             }
@@ -73,7 +76,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const handleOnClickLikeButton = (e, type) => {
         e.preventDefault();
         const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'};
-
+        // console.log(e.target.lastChild)
         if (clickedLike === false) {
             dispatch(createLike(ueId));
             setClickedLike(true);
@@ -85,6 +88,99 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             setClickedLike(false);
             setLikeAmount(likeAmount - 1);
             setTopLikeArray(topLikeArray.slice(0,topLikeArray.length-1));
+            e.target.style.color = "rgba(0,0,0,0.6)"
+            setEmoteId(1);
+            e.target.lastChild.innerHTML = "Like"
+        }
+    }
+
+    const handleOnClickEmoteButton = (e, type) => {
+        e.preventDefault();
+        const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'};
+        if (clickedLike === false) {
+            dispatch(createLike(ueId));
+            setClickedLike(true);
+            setLikeAmount(likeAmount + 1);
+            setTopLikeArray(topLikeArray => [...topLikeArray, type]);
+            // console.log(e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML)
+            if (type === 1) {
+                setEmoteId(1);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Like"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l"
+            }
+            if (type === 2) {
+                setEmoteId(2);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Celebrate"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo"
+            }
+            if (type === 3) {
+                setEmoteId(3);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Support"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi"
+            }
+            if (type === 4) {
+                setEmoteId(4);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Funny"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/ktcgulanbxpl0foz1uckibdl"
+            }
+            if (type === 5) {
+                setEmoteId(5);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Love"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm"
+            }
+            if (type === 6) {
+                setEmoteId(6);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Insightful"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/39axkb4qe8q95ieljrhqhkxvl"
+            }
+            if (type === 7) {
+                setEmoteId(7);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Curious"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/1z80ze8ler6arc76a8rxsgqbh"
+            }
+            
+        }
+        else {
+            dispatch(updateLike(ueId));
+            setClickedLike(true);
+            setLikeAmount(likeAmount);
+            setTopLikeArray(topLikeArray.slice(0,topLikeArray.length-1));
+            setTopLikeArray(topLikeArray => [...topLikeArray, type]);
+            if (type === 1) {
+                setEmoteId(1);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Like"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l"
+            }
+            if (type === 2) {
+                setEmoteId(2);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Celebrate"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo"
+            }
+            if (type === 3) {
+                setEmoteId(3);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Support"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi"
+            }
+            if (type === 4) {
+                setEmoteId(4);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Funny"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/ktcgulanbxpl0foz1uckibdl"
+            }
+            if (type === 5) {
+                setEmoteId(5);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Love"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm"
+            }
+            if (type === 6) {
+                setEmoteId(6);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Insightful"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/39axkb4qe8q95ieljrhqhkxvl"
+            }
+            if (type === 7) {
+                setEmoteId(7);
+                e.target.parentNode.parentNode.previousSibling.firstChild.lastChild.innerHTML = "Curious"
+                e.target.parentNode.parentNode.previousSibling.firstChild.firstChild.src = "https://static-exp1.licdn.com/sc/h/1z80ze8ler6arc76a8rxsgqbh"
+            }
         }
     }
     
@@ -173,10 +269,9 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             e.target.parentNode.parentNode.nextElementSibling.style.height = `fit-content`;
             e.target.parentNode.parentNode.nextElementSibling.style.opacity = "1";
             e.target.parentNode.parentNode.nextElementSibling.style.padding = "6px 16px 16px 16px";
-            commentsInPost[0].style.height = 'fit-content'
-            commentsInPost[0].style.opacity = '1'
             for (const [key, value] of Object.entries(commentsInPost)) {
                 value.style.height = "fit-content"
+                value.style.overflow = "visible"
                 value.style.opacity = "1" 
             }
             if (comments.length === 0) {
@@ -201,7 +296,8 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             e.target.parentNode.parentNode.nextElementSibling.style.padding = "0px";
             for (const [key, value] of Object.entries(commentsInPost)) {
                 value.style.height = "0px" 
-                value.style.opacity = "0" 
+                value.style.opacity = "0"
+                value.style.overflow = "hidden"
             }
         }
 
@@ -215,13 +311,92 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
         }
     }
 
+    const handleOnClickMoreOptionPost = (e) => {
+        if (e.target.className.baseVal = "svg0more-option-post") {
+
+        }
+        if (e.target.className.baseVal = "svg0more-option-post-d") {
+            
+        }
+    }
+
+    const handleOnClickDeletePost = (e) => {
+        e.preventDefault();
+        csrfFetch(`/api/posts/${post.id}`,{
+            method: 'DELETE',
+        })
+        if (e.target.className === "delete-comment-from-post") {
+            e.target.parentNode.parentNode.parentNode.parentNode.remove()
+        }
+        if (e.target.className === "") {
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.remove()
+        }
+    }
+
+    const handleOnClickEditPost = (e) => {
+        document.getElementsByClassName('edit-form-post-form')[0].style.display = "flex";
+    }
+
+    const handleClickSubmitEditForm = (e) => {
+        console.log(1)
+    }
+
+    const handleCloseEditForm = (e) => {
+        document.getElementsByClassName('edit-form-post-form')[0].style.display = "none";
+    }
+
     return (
         <BrowserRouter>
+            <div className='edit-form-post-form'>
+                <div className='pop-up-edit-form-for-post'>
+                    <div className='heading-top-edit-form'>
+                        Edit Post
+                        <div className='svg-width-to-right'>
+                            <svg className='close-edit-form-post' onClick={handleCloseEditForm} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" width="24" height="24" focusable="false">
+                                <path d="M13.42 12L20 18.58 18.58 20 12 13.42 5.42 20 4 18.58 10.58 12 4 5.42 5.42 4 12 10.58 18.58 4 20 5.42z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div className='main-body-element-comment'>
+                        <div className='main-edit-body-section'>
+                            <div className='profile-area-name-pfp'>
+                                <div className="picture-crop-photo-div-smaller-post">
+                                    <div className='crop-smaller-post-pfp'>
+                                        <img className="author-post-pfp-post" src={require('../../../../../assets/post/happy-businessman-isolated-handsome-man-260nw-609414131.png')} />
+                                    </div>
+                                </div>
+                                {user.firstName + " " + user.lastName}
+                            </div>
+                            <input value={post.body} className='text-area-for-edit-post' placeholder='What do you want to talk about?'/>
+                        </div>
+                    </div>
+                    <div className='bottom-nav-bar-submit-other-options'>
+                        <button onClick={handleClickSubmitEditForm} className='save-button-place-post'>Save</button>
+                    </div>
+                </div>
+            </div>
             <div className="post-with-photo-and-caption">
                 <div className='more-options-for-post'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" width="24" height="24" focusable="false">
-                        <path d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path>
+                    <svg className="svg-more-option-post" onClick={handleOnClickMoreOptionPost} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" width="24" height="24" focusable="false">
+                        <path className='svg-more-option-post-d' d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path>
                     </svg>
+                </div>
+                <div className='extra-options-extended-post'>
+                    {post.userId === user.id ?
+                        <>
+                            <button onClick={handleOnClickDeletePost} className='delete-comment-from-post'>
+                                <img alt="Trash icon" src="https://img.icons8.com/material-sharp/512/trash.png"></img>Delete Post
+                            </button>
+                            <button onClick={handleOnClickEditPost} className='delete-comment-from-post'>
+                                <img alt="Edit icon" src="https://img.icons8.com/sf-ultralight-filled/512/pencil.png"></img>Edit
+                            </button>
+                        </> :
+                        <>
+                            <button className='delete-comment-from-post'>
+                                <img alt="Edit icon" src="https://img.icons8.com/material-rounded/512/flag.png "></img>Report
+                            </button>
+                        </>
+                    }
                 </div>
                 <div className="top-author-of-post">
                     <div className="picture-crop-photo-div-smaller-post">
@@ -288,10 +463,25 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                 </div>
                 <div className="bottom-button-comment-and-like">
                     <div className="like-icon-post" onClick={e => handleOnClickLikeButton(e, 1)} onMouseEnter={onHoverLikeButton} onMouseLeave={onUnHoverLikeButton}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="mercado-match" width="24" height="24" focusable="false">
-                            <path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.85L8.89 9H4.12A2.12 2.12 0 002 11.12a2.16 2.16 0 00.92 1.76A2.11 2.11 0 002 14.62a2.14 2.14 0 001.28 2 2 2 0 00-.28 1 2.12 2.12 0 002 2.12v.14A2.12 2.12 0 007.12 22h7.49a8.08 8.08 0 003.58-.84l.31-.16H21V11zM19 19h-1l-.73.37a6.14 6.14 0 01-2.69.63H7.72a1 1 0 01-1-.72l-.25-.87-.85-.41A1 1 0 015 17l.17-1-.76-.74A1 1 0 014.27 14l.66-1.09-.73-1.1a.49.49 0 01.08-.7.48.48 0 01.34-.11h7.05l-1.31-3.92A7 7 0 0110 4.86V3.75a.77.77 0 01.75-.75.75.75 0 01.71.51L12 5a9 9 0 002.13 3.5l4.5 4.5H19z"></path>
-                        </svg>
-                        Like
+                        {!clickedLike &&
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="mercado-match" width="24" height="24" focusable="false">
+                                <path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.85L8.89 9H4.12A2.12 2.12 0 002 11.12a2.16 2.16 0 00.92 1.76A2.11 2.11 0 002 14.62a2.14 2.14 0 001.28 2 2 2 0 00-.28 1 2.12 2.12 0 002 2.12v.14A2.12 2.12 0 007.12 22h7.49a8.08 8.08 0 003.58-.84l.31-.16H21V11zM19 19h-1l-.73.37a6.14 6.14 0 01-2.69.63H7.72a1 1 0 01-1-.72l-.25-.87-.85-.41A1 1 0 015 17l.17-1-.76-.74A1 1 0 014.27 14l.66-1.09-.73-1.1a.49.49 0 01.08-.7.48.48 0 01.34-.11h7.05l-1.31-3.92A7 7 0 0110 4.86V3.75a.77.77 0 01.75-.75.75.75 0 01.71.51L12 5a9 9 0 002.13 3.5l4.5 4.5H19z"></path>
+                            </svg>
+                        }
+                        {clickedLike &&
+                        <>
+                            {emoteId === 1 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 1)} src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="like" />}
+                            {emoteId === 2 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 2)} src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo" alt="celebrate" />}
+                            {emoteId === 3 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 3)} src="https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi" alt="support" />}
+                            {emoteId === 4 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 4)} src="https://static-exp1.licdn.com/sc/h/ktcgulanbxpl0foz1uckibdl" alt="funny" />}
+                            {emoteId === 5 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 5)} src="https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm" alt="love" />}
+                            {emoteId === 6 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 6)} src="https://static-exp1.licdn.com/sc/h/39axkb4qe8q95ieljrhqhkxvl" alt="insightful" />}
+                            {emoteId === 7 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 7)} src="https://static-exp1.licdn.com/sc/h/1z80ze8ler6arc76a8rxsgqbh" alt="curious" />}
+                        </>
+                        }
+                        <span className='name-of-type-of-emote'>
+                            Like
+                        </span>
                     </div>
                     <div onClick={handleCommentOnClick} className="comment-icon-post">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="mercado-match" width="24" height="24" focusable="false">
@@ -325,13 +515,13 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                             },500)
                             }
                         }>
-                        <img onClick={e => handleOnClickLikeButton(e, 1)} className="like-emote" src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="like" />
-                        <img onClick={e => handleOnClickLikeButton(e, 2)} className="celebrate-emote" src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo" alt="celebrate" />
-                        <img onClick={e => handleOnClickLikeButton(e, 3)} className="support-emote" src="https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi" alt="support" />
-                        <img onClick={e => handleOnClickLikeButton(e, 4)} className="funny-emote" src="https://static-exp1.licdn.com/sc/h/ktcgulanbxpl0foz1uckibdl" alt="funny" />
-                        <img onClick={e => handleOnClickLikeButton(e, 5)} className="love-emote" src="https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm" alt="love" />
-                        <img onClick={e => handleOnClickLikeButton(e, 6)} className="insightful-emote" src="https://static-exp1.licdn.com/sc/h/39axkb4qe8q95ieljrhqhkxvl" alt="insightful" />
-                        <img onClick={e => handleOnClickLikeButton(e, 7)} className="curious-emote" src="https://static-exp1.licdn.com/sc/h/1z80ze8ler6arc76a8rxsgqbh" alt="curious" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 1)} className="like-emote" src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="like" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 2)} className="celebrate-emote" src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo" alt="celebrate" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 3)} className="support-emote" src="https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi" alt="support" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 4)} className="funny-emote" src="https://static-exp1.licdn.com/sc/h/ktcgulanbxpl0foz1uckibdl" alt="funny" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 5)} className="love-emote" src="https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm" alt="love" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 6)} className="insightful-emote" src="https://static-exp1.licdn.com/sc/h/39axkb4qe8q95ieljrhqhkxvl" alt="insightful" />
+                        <img onClick={e => handleOnClickEmoteButton(e, 7)} className="curious-emote" src="https://static-exp1.licdn.com/sc/h/1z80ze8ler6arc76a8rxsgqbh" alt="curious" />
                     </div>
                 </div>
             </div>
@@ -352,10 +542,9 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                     </div>
                 </div>
                 {!checkCommentsArray() && comments.map(comment => {
-                    return <Comment key={comment.id} comment={comment} />
+                    return <Comment key={comment.id} user={user} comment={comment} />
                 })}
             </div>
-            
         </BrowserRouter>
     );
 }

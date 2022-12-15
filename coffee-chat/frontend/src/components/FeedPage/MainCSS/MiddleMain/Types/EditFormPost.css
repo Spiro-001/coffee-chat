@@ -1,0 +1,117 @@
+.edit-form-post-form {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border: 1px solid red;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.pop-up-edit-form-for-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  width: 552px;
+  height: 379px;
+  border-radius: 10px;
+}
+
+.heading-top-edit-form {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 20px 24px 20px 24px;
+  font-size: 20px;
+  color: rgba(0,0,0,0.8);
+  white-space: nowrap;
+  box-sizing: border-box
+}
+
+.svg-width-to-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+  width: 100%;
+}
+
+.close-edit-form-post:hover {
+  cursor: pointer;
+}
+
+.main-body-element-comment {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 16px 16px 16px 28px;
+}
+
+.text-area-for-edit-post {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  padding: 24px 0px 24px 6px;
+  box-sizing: border-box;
+  border: 0px;
+  outline: 0px;
+  border: 1px solid black;
+  vertical-align: top;
+}
+
+.main-edit-body-section {
+  height: 100%;
+  width: 100%;
+}
+
+.profile-area-name-pfp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bottom-nav-bar-submit-other-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 10px 24px 16px 24px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.save-button-place-post {
+  border-radius: 24px;
+  padding: 6px 18px 6px 18px;
+  outline: 0px;
+  border: 0px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.4);
+}
+
+.save-button-place-post:hover {
+  background-color: #0A66C2;
+  color: white;
+  cursor: pointer;
+}

@@ -11,9 +11,9 @@
 #  updated_at :datetime         not null
 #
 class Comment < ApplicationRecord
-    has_many :likes, as: :likable
+    has_many :likes, as: :likable, dependent: :destroy
     belongs_to :user
     belongs_to :post
 
-    validates :body, length: { maximum: 3000, message: 'body exceeds over 3000 characters'}
+    validates :body, length: { maximum: 3000, message: 'body exceeds over 3000 characters', minimum: 1 }
 end

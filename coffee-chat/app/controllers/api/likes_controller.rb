@@ -48,7 +48,7 @@ class Api::LikesController < ApplicationController
     end
 
     def update
-        @like = Like.find_by(id: params[:id])
+        @like = Like.find_by(user_id: like_params[:user_id], likable_id: like_params[:likable_id], likable_type: like_params[:likable_type])
         if @like
             if @like.update!(like_params)
                 render :show

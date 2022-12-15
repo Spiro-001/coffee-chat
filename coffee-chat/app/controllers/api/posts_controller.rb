@@ -30,9 +30,9 @@ class Api::PostsController < ApplicationController
     end
 
     def destroy
-        @post.find_by(id: post_params[:id])
+        @post = Post.find_by(id: params[:id])
         if @post
-            @post.delete
+            @post.destroy
         else
             render json: { errors: ['could not find post with that id'] }, status: 404
         end

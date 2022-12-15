@@ -20,10 +20,29 @@ class Api::CommentsController < ApplicationController
     end
 
     def destroy
-
+        @comment = Comment.find_by(id: params[:id])
+        if @comment
+            if @comment.delete
+                render :show
+            else
+                render json: { errors: ['something went wrong :(']}, status: 422
+            end
+        else
+            render json: { errors: ['something went wrong :(']}, status: 422
+        end
     end
 
     def update
+        @comment = Comment.find_by(id: params[:id])
+        if @comment
+            if @comment.update!(comment_params)
+                render :show
+            else
+                render json: { errors: ['something went wrong :(']}, status: 422
+            end
+        else
+            render json: { errors: ['something went wrong :(']}, status: 422
+        end
 
     end
 

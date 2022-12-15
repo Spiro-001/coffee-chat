@@ -30,7 +30,7 @@ export const MiddleMain = ({user}) => {
         }).then(res => res.json())
         .then(data =>
             {
-                if (data) {
+                if (JSON.stringify(data) !== '{}') {
                     for (const [id, post] of Object.entries(data.posts)) {
                         let postSpace = document.createElement('div')
                         postSpace.id = post.createdAt;

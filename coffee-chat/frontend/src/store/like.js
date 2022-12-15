@@ -67,6 +67,22 @@ export const destroyLike = (ueId) => async (dispatch) => {
   return response;
 }
 
+export const updateLike = (ueId) => async (dispatch) => {
+  const { userId, emoteId, likableId, likableType } = ueId;
+  const response = await csrfFetch( `/api/likes/${likableId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      user_id: userId,
+      emote_id: emoteId,
+      likable_type: likableType,
+      likable_id: likableId
+    }),
+  });
+  const data = await response.json();
+  dispatch(receiveLike(data));
+  return response;
+}
+
 const initState = { like: null };
 
 export const likeReducer = (state = initState, action) => {
