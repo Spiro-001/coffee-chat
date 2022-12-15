@@ -25,6 +25,9 @@ export const Comment = ({comment}) => {
         if (interval > 1) {
           return Math.floor(interval) + "m";
         }
+        if (interval <= 0) {
+            return "Now";
+        }
         return Math.floor(seconds) + "s";
     }
 
@@ -68,7 +71,9 @@ export const Comment = ({comment}) => {
             </div>
             <div className='bottom-bar-like-reply-area'>
                 <div className='like-comment-button'>
-                    Like
+                    <div className='like-button-comment-like-post'>
+                        Like
+                    </div>
                 </div>
                 <div className='emotes-for-comment-likes'>
                     <div className="like-icons-active">

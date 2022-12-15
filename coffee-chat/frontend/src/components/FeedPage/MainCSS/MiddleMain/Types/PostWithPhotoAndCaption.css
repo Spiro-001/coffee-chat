@@ -169,19 +169,18 @@
     justify-content: flex-start;
     align-content: center;
     padding-right: 0px;
-    width: 20px
+    width: fit-content;
 }
+
 .emote-mini:nth-child(1) {
 
 }
 
 .emote-mini:nth-child(2) {
-    position: absolute;
-    left: 10px;
+    position: relative;
 }
 .emote-mini:nth-child(3){
-    position: absolute;
-    left: 20px;
+    position: relative;
 }
 
 
@@ -189,6 +188,7 @@
     font-size: 12px;
     color: rgba(0,0,0,0.6);
     white-space: nowrap;
+    padding-left: 6px;
 }
 
 .amount-of-likes-active:hover {
@@ -271,7 +271,6 @@
     top: -50px;
     height: 100px;
     left: 0px;
-    border: 1px solid black
 }
 
 .comment-icon-post {
@@ -311,7 +310,6 @@
     height: fit-content;
     width: fit-content;
     cursor: pointer;
-
 }
 
 .hover-like-option-choose-emote img {

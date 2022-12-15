@@ -16,6 +16,15 @@ class Api::LikesController < ApplicationController
         end
     end
 
+    def show
+        @like = Like.find_by(likable_id: like_params[:likable_id], likable_type: like_params[:likable_type], user_id: like_params[:user_id])
+        if @like
+            render :show
+        else
+            render json: { errors: ['something went wrong :(']}, status: 422
+        end
+    end
+
     def create
         @like = Like.create!(like_params)
         if @like

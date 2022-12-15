@@ -15,7 +15,7 @@ class Post < ApplicationRecord
     validates_with OnePresentValidator
 
     has_many :likes, as: :likable
-    has_many :comments
+    has_many :comments, dependent: :delete_all
     belongs_to :user
 
     validates :body, length: { maximum: 3000, message: 'body exceeds over 3000 characters'}

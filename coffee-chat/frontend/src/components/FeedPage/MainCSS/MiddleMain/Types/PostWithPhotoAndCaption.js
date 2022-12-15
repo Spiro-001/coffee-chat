@@ -17,11 +17,13 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
     const [imageUrl, setImageUrl] = useState("");
     const [likeAmount, setLikeAmount] = useState("");
-    const [plusOne, setPlusOne] = useState(0);
     const [clickedLike, setClickedLike] = useState(false);
     const [topLikeArray, setTopLikeArray] = useState([]);
     const [comments, setComments] = useState([]);
     const [commentOpen, setCommentOpen] = useState(false);
+    const [element, setElement] = useState("");
+    const [commentInput, setCommentInput] = useState("");
+    const [newCommentTick, setNewCommentTick] = useState(0);
     const ueId = {userId: user.id, emoteId: 1, likableId: post.id , likableType: 'Post'}
 
     useEffect(() => {
@@ -39,11 +41,11 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             setBody(post.body)
             setTimeAgo(timeSince(new Date(post.createdAt)));
             setImageUrl(post.imageUrl);
-            setLikeAmount(post.likes ? Object.keys(post.likes).length + plusOne : 0);
+            setLikeAmount(post.likes ? Object.keys(post.likes).length : 0);
             });
             const refreshDatabase = setInterval(() => {
                 setRunDatabaseChanges(Date.now())
-            },10000);
+            },100000);
         return () => clearInterval(refreshDatabase);
     },[runDatabaseChanges])
 
@@ -58,46 +60,49 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
               likable_id: likableId
             }),
         }).then(res => res.json()).then(data => {
+            // console.log(data)
             for (const [key, value] of Object.entries(data)) {
                 if (!Array.isArray(value)) {
-                    value.userId === userId ? setClickedLike(true) : setClickedLike(false)
+                    value.userId === userId ? setClickedLike(true) : setClickedLike(false);
                 }
             }
-            setTopLikeArray(data.topEmotes)
+            setTopLikeArray(data.topEmotes);
         })
       },[runDatabaseChanges])
 
-    useEffect(() => {
-
-    },[clickedLike])
-    
-    useEffect(() => {
-        if (topLikeArray.length === 1) document.getElementsByClassName('amount-of-likes-active')[0].style.paddingLeft = "0px";
-        if (topLikeArray.length === 2) document.getElementsByClassName('amount-of-likes-active')[0].style.paddingLeft = "10px";
-        if (topLikeArray.length === 3) document.getElementsByClassName('amount-of-likes-active')[0].style.paddingLeft = "20px";
-    },[topLikeArray])
-
     const handleOnClickLikeButton = (e, type) => {
         e.preventDefault();
-        const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'}
-        console.log(clickedLike)
-        if (clickedLike !== true) {
-            console.log("like")
-            dispatch(createLike(ueId))
-            setClickedLike(true)
-            setPlusOne(1)
-            setLikeAmount(likeAmount)
-            setTopLikeArray(topLikeArray => [...topLikeArray, type])
+        const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'};
+
+        if (clickedLike === false) {
+            dispatch(createLike(ueId));
+            setClickedLike(true);
+            setLikeAmount(likeAmount + 1);
+            setTopLikeArray(topLikeArray => [...topLikeArray, type]);
         }
         else {
-            console.log('remove like')
-            dispatch(destroyLike(ueId))
-            setClickedLike({})
-            setPlusOne(0)
-            setLikeAmount(likeAmount)
-
-            setTopLikeArray(topLikeArray => [...topLikeArray].splice(topLikeArray.indexOf(type), 1))
+            dispatch(destroyLike(ueId));
+            setClickedLike(false);
+            setLikeAmount(likeAmount - 1);
+            setTopLikeArray(topLikeArray.slice(0,topLikeArray.length-1));
         }
+    }
+    
+    const handleOnSubmitNewComment = (e) => {
+        e.preventDefault();
+        const { userId } = ueId;
+        csrfFetch(`/api/comments`,{
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: userId,
+                post_id: post.id,
+                body: commentInput
+            }),
+        }).then(res => res.json()).then(data => {
+            setComments(comments => [...comments, data]);
+            setCommentInput("");
+            setNewCommentTick(newCommentTick + 1);
+        })
     }
 
     const aDay = 24*60*60*1000;
@@ -144,7 +149,6 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     }
 
     useEffect(() => {
-        console.log(likeAmount + plusOne)
         csrfFetch(`/api/comments/${post.id}`)
         .then(res => res.json())
         .then(data => {
@@ -156,16 +160,15 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                 }
             }
         });
-    },[runDatabaseChanges])
+    },[runDatabaseChanges,newCommentTick])
 
     const handleCommentOnClick = (e) => {
         e.preventDefault()
-        console.log(e.target.parentNode.parentNode.nextElementSibling)
         if (!commentOpen) {
             setCommentOpen(true)
             e.target.parentNode.parentNode.nextElementSibling.style.height = `fit-content`;
             e.target.parentNode.parentNode.nextElementSibling.style.opacity = "1";
-            e.target.parentNode.parentNode.nextElementSibling.style.padding = "16px";
+            e.target.parentNode.parentNode.nextElementSibling.style.padding = "6px 16px 16px 16px";
             if (comments.length === 0) {
                 csrfFetch(`/api/comments/${post.id}`)
                     .then(res => res.json())
@@ -247,15 +250,18 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                         {topLikeArray.includes(5) && <img className="emote-mini" src="https://static.licdn.com/sc/h/cpho5fghnpme8epox8rdcds22" alt="like"/>}
                         {topLikeArray.includes(6) && <img className="emote-mini" src="https://static.licdn.com/sc/h/lhxmwiwoag9qepsh4nc28zus" alt="like"/>}
                         {topLikeArray.includes(7) && <img className="emote-mini" src="https://static.licdn.com/sc/h/4mv33903v0o9ikpwfuy2ftcc6" alt="like"/>}
+                        {/* {topLikeArray.map(ele => {
+                            <h1> ele </h1>
+                        })} */}
                     </div>
                     <div className="amount-of-likes-active">
                         {/* get like amount */}
-                        {likeAmount + plusOne}
+                        {likeAmount !== 0 ? likeAmount : ""}
                     </div>
                     <div className='amount-of-comment-repost'>
                         <div className="comment-amount-active">
                             {/* get repost amount */}
-                            5 comments
+                            {comments.length < 1 ? "" : comments.length === 1 ? comments.length + " comment" : comments.length + " comments"}
                         </div>
                         <div className="repost-amount-active">
                             {/* get repost amount */}
@@ -313,8 +319,23 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                 </div>
             </div>
             <div className='comment-section-for-post-div'>
+                <div className='comment-bar-section-div'>
+                    <div className='user-profile-picture'>
+                        <div className="picture-crop-photo-div-smaller-post-c">
+                            <div className='crop-smaller-post-pfp-c'>
+                                <img className="author-post-pfp-post-c" src={require('../../../../../assets/post/happy-businessman-isolated-handsome-man-260nw-609414131.png')} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='comment-input-area'>
+                        <form className='form-input-comment-send-post' onSubmit={handleOnSubmitNewComment}>
+                            <input className='input-comment-make-new-comment' onChange={e => setCommentInput(e.target.value)} value={commentInput} placeholder={"Add a comment..."} />
+                            <button className="submit-type-button-comment-form-make" type='submit'>Post</button>
+                        </form>
+                    </div>
+                </div>
                 {!checkCommentsArray() && comments.map(comment => {
-                    return <Comment comment={comment} />
+                    return <Comment key={comment.id} comment={comment} />
                 })}
             </div>
             

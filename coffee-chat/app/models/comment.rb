@@ -13,6 +13,7 @@
 class Comment < ApplicationRecord
     has_many :likes, as: :likable
     belongs_to :user
+    belongs_to :post
 
     validates :body, length: { maximum: 3000, message: 'body exceeds over 3000 characters'}
 end

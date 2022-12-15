@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get '/user/:emailOrPhoneNumber', to: 'users#show', as: 'user'
     get '/user_id/:id', to: 'users#show_by_id', as: 'user_id'
-    get '/like/:id', to: 'likes#show', as: 'like'
+    post '/like/:id', to: 'likes#show', as: 'like'
     post '/likes/:id', to: 'likes#index', as: 'likes'
     post '/posts/all', to: 'posts#index', as: 'posts'
     get '/comments/:id', to: 'comments#index', as: 'comments'
