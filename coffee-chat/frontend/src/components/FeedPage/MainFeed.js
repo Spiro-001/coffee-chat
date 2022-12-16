@@ -19,10 +19,10 @@ export const MainFeed = () => {
 
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user)
-
     useEffect(() => {
         document.getElementsByTagName('body')[0].style.backgroundColor = "#f3f2ef";
-    })
+        document.getElementsByClassName('home-icon-list-item-main-feed')[0].style.fill = "black"
+    },[])
 
     // axios('  https://newsdata.io/api/1/news?apikey=pub_143640d107eac00e44c8cf57b6a10c70a8048&country=us&language=en&category=business ').then(res => console.log(res))
     const user = useSelector((state) => {

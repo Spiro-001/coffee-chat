@@ -26,6 +26,9 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const [commentInput, setCommentInput] = useState("");
     const [newCommentTick, setNewCommentTick] = useState(0);
     const [emoteId, setEmoteId] = useState(0);
+    const [editPostValue, setEditPostValue] = useState("");
+    const [editSubmitted, setEditSubmited] = useState("");
+    const [moreOptionPost, setMoreOptionPost] = useState("");
     const ueId = {userId: user.id, emoteId: 1, likableId: post.id , likableType: 'Post'}
 
     useEffect(() => {
@@ -82,6 +85,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             setClickedLike(true);
             setLikeAmount(likeAmount + 1);
             setTopLikeArray(topLikeArray => [...topLikeArray, type]);
+            setEmoteId(1);
         }
         else {
             dispatch(destroyLike(ueId));
@@ -258,6 +262,10 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
         });
     },[runDatabaseChanges,newCommentTick])
 
+    useEffect(() => {
+        console.log(post.body)
+    }, [editSubmitted])
+
     const handleCommentOnClick = (e) => {
         e.preventDefault()
         const commentsInPost = e.target.parentNode.parentNode.nextElementSibling.children
@@ -303,6 +311,29 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
 
     }
 
+    useEffect(() => {
+        console.log(editPostValue)
+        if (editPostValue.length > 1) {
+            document.getElementsByClassName('save-button-place-post')[0].style.color = "white"
+            document.getElementsByClassName('save-button-place-post')[0].style.backgroundColor = "#0A66C2"
+            document.getElementsByClassName('placeholder-post-edit-form')[0].style.display = 'none'
+        }  
+        if (editPostValue.length === 1) {
+            document.getElementsByClassName('placeholder-post-edit-form')[0].style.display = 'block'
+            document.getElementsByClassName('save-button-place-post')[0].style.color = "rgba(0,0,0,0.4)"
+            document.getElementsByClassName('save-button-place-post')[0].style.backgroundColor = "rgba(0,0,0,0.1)"
+        }
+    },[editPostValue])
+
+    const handleHoverSaveButton = (e) => {
+        if (editPostValue.length > 1) e.target.style.backgroundColor = "#084d91"
+        else document.getElementsByClassName('save-button-place-post')[0].style.cursor = "not-allowed"
+    }
+
+    const handleUnhoverSaveButton = (e) => {
+        if (editPostValue.length > 1) e.target.style.backgroundColor = "#0A66C2"
+    }
+
     const checkCommentsArray = () => {
         if (comments.length === 0) {
             return true
@@ -312,13 +343,15 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     }
 
     const handleOnClickMoreOptionPost = (e) => {
-        if (e.target.className.baseVal = "svg0more-option-post") {
-
+        if (e.target.className.baseVal = "svg-more-option-post") {
+            moreOptionPost ? e.target.parentNode.nextElementSibling.style.display = "none" : e.target.parentNode.nextElementSibling.style.display = "flex"
         }
-        if (e.target.className.baseVal = "svg0more-option-post-d") {
-            
+        if (e.target.className.baseVal = "svg-more-option-post-d") {
+            moreOptionPost ? e.target.parentNode.parentNode.nextElementSibling.style.display = "none" : e.target.parentNode.parentNode.nextElementSibling.style.display = "flex"
         }
+        moreOptionPost ? setMoreOptionPost(false) : setMoreOptionPost(true);
     }
+    
 
     const handleOnClickDeletePost = (e) => {
         e.preventDefault();
@@ -334,14 +367,31 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     }
 
     const handleOnClickEditPost = (e) => {
+        document.getElementsByClassName('text-area-for-edit-post')[0].innerText = post.body ? post.body : ""
         document.getElementsByClassName('edit-form-post-form')[0].style.display = "flex";
+        setEditPostValue(post.body);
+        setEditSubmited(false);
     }
 
     const handleClickSubmitEditForm = (e) => {
-        console.log(1)
+        e.preventDefault();
+        csrfFetch(`/api/posts/${post.id}`,{
+            method: 'PATCH',
+            body: JSON.stringify({
+              user_id: user.id,
+              body: editPostValue,
+              image_url: imageUrl,
+              post_type: 'pwpac'
+            }),
+        }).then(res => {
+            setEditSubmited(Date.now());
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.children[1].children[3].firstChild.innerText = editPostValue;
+            post.body = editPostValue;
+            document.getElementsByClassName('edit-form-post-form')[0].style.display = "none";
+        })
     }
-
     const handleCloseEditForm = (e) => {
+        setEditSubmited(false);
         document.getElementsByClassName('edit-form-post-form')[0].style.display = "none";
     }
 
@@ -367,11 +417,19 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                                 </div>
                                 {user.firstName + " " + user.lastName}
                             </div>
-                            <input value={post.body} className='text-area-for-edit-post' placeholder='What do you want to talk about?'/>
+                            <div className='width-setter-context-box'>
+                                <div className='context-edit-post-text-area'>
+                                    <div className='placeholder-post-edit-form'>
+                                        What do you want to talk about?
+                                    </div>
+                                    <div contentEditable="true" onInput={e => setEditPostValue(e.target.innerText)} className='text-area-for-edit-post' >
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='bottom-nav-bar-submit-other-options'>
-                        <button onClick={handleClickSubmitEditForm} className='save-button-place-post'>Save</button>
+                        <button onMouseLeave={handleUnhoverSaveButton} onMouseEnter={handleHoverSaveButton} onClick={handleClickSubmitEditForm} className='save-button-place-post'>Save</button>
                     </div>
                 </div>
             </div>
@@ -471,7 +529,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                         {clickedLike &&
                         <>
                             {emoteId === 1 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 1)} src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="like" />}
-                            {emoteId === 2 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 2)} src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo" alt="celebrate" />}
+                            {emoteId === 2 && <img className="like-emote-button-mini-celebrate" onClick={e => handleOnClickEmoteButton(e, 2)} src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo" alt="celebrate" />}
                             {emoteId === 3 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 3)} src="https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi" alt="support" />}
                             {emoteId === 4 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 4)} src="https://static-exp1.licdn.com/sc/h/ktcgulanbxpl0foz1uckibdl" alt="funny" />}
                             {emoteId === 5 && <img className="like-emote-button-mini" onClick={e => handleOnClickEmoteButton(e, 5)} src="https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm" alt="love" />}
@@ -484,7 +542,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
                         </span>
                     </div>
                     <div onClick={handleCommentOnClick} className="comment-icon-post">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="mercado-match" width="24" height="24" focusable="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="comment-bubble" width="24" height="24" focusable="false">
                             <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
                         </svg>
                         Comment

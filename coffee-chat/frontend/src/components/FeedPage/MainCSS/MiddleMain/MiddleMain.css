@@ -126,19 +126,19 @@
 }
 
 .photo-button-start-a-post svg {
-    color: #378fe9;
+    fill: #378fe9;
 }
 
 .video-button-start-a-post svg {
-    color: #5f9b41;
+    fill: #5f9b41;
 }
 
 .event-button-start-a-post svg {
-    color: #c37d16;
+    fill: #c37d16;
 }
 
 .write-article-button-start-a-post svg {
-    color: #e16745;
+    fill: #e16745;
 }
 
 .main-feed-container {

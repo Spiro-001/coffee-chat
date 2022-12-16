@@ -39,7 +39,7 @@ class Api::PostsController < ApplicationController
     end
 
     def update
-        @post.find_by(id: post_params[:id])
+        @post = Post.find_by(id: params[:id])
         if @post
             if @post.user_id === current_user.id
                 if @post.update!(post_params)

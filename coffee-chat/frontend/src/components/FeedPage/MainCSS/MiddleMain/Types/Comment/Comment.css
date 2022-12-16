@@ -61,7 +61,7 @@
     padding: 10px 8px 6px 12px;
     background-color: #f3f2EF; 
     border-radius: 0px 10px 10px 10px;
-    overflow: hidden;
+    overflow: visible;
     width: 100%;
     height: fit-content;
 }
@@ -142,6 +142,7 @@
     max-width: 100%;
     flex-direction: column;
     padding: 6px 0px 8px 0px;
+    font-size: 14px;
     overflow-wrap: break-word;
 }
 
@@ -220,14 +221,14 @@
     position: relative;
     flex-direction: row;
     width: 100%;
-    height: fit-content;
+    height: 0px;
     box-sizing: border-box;
     padding-left: 62px;
     font-size: 11px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.6);
     padding-bottom: 8px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .like-button-comment-like-post {
@@ -314,6 +315,7 @@
     height: fit-content;
     width: fit-content;
     cursor: pointer;
+    z-index: 10;
 }
 
 .hover-like-option-choose-emote-comment img {

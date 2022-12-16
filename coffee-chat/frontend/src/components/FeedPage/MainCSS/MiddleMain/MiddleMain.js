@@ -5,6 +5,7 @@ import { Post, PostNode } from './Post'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStateLike } from '../../../../store/like';
+import './StartPost.css'
 
 export const MiddleMain = ({user}) => {
 
@@ -13,7 +14,9 @@ export const MiddleMain = ({user}) => {
     const [finish, setFinish] = useState(5);
     const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
     const [idArray, setIdArray] = useState([])
+    const [newPostValue, setNewPostValue] = useState(" ");
     const likeStateSelector = useSelector(state => state)
+    
 
     useEffect(() => {
         const refreshDatabase = setInterval(() => {
@@ -50,6 +53,54 @@ export const MiddleMain = ({user}) => {
             })
         return () => clearInterval(refreshDatabase);
     },[runDatabaseChanges])
+
+    const onClickCreatePost = (e) => {
+        e.preventDefault();
+        setNewPostValue("")
+        console.log(e.target.parentNode.parentNode.parentNode.parentNode.firstChild.children[1].firstChild.children[1].lastChild.lastChild.firstChild.lastChild)
+        document.getElementsByClassName('new-post-form-post-form')[0].style.display = "flex";
+        // setEditPostValue(post.body);
+        // setEditSubmited(false);
+    }
+
+    const handleCloseNewPostForm = (e) => {
+        document.getElementsByClassName('new-post-form-post-form')[0].style.display = "none";
+    }
+
+    const handleHoverPostButton = (e) => {
+        console.log(newPostValue.length)
+        if (newPostValue.length > 1) {
+            e.target.style.backgroundColor = "#084d91"
+            e.target.style.cursor = "all"
+        }
+        else {
+            document.getElementsByClassName('save-button-place-post-post')[0].style.cursor = "not-allowed"
+        }
+    }
+
+    const handleUnhoverPostButton = (e) => {
+        if (newPostValue.length > 1) e.target.style.backgroundColor = "#0A66C2"
+    }
+    
+    
+    const handleClickSubmitNewPostForm = (e) => {
+
+    }
+
+    useEffect(() => {
+        console.log(newPostValue)
+        if (newPostValue.length > 1) {
+            document.getElementsByClassName('save-button-place-post-post')[0].style.color = "white"
+            document.getElementsByClassName('save-button-place-post-post')[0].style.backgroundColor = "#0A66C2"
+            document.getElementsByClassName('placeholder-post-new-post-form')[0].style.display = 'none'
+        }  
+        if (newPostValue.length === 1) {
+            document.getElementsByClassName('placeholder-post-new-post-form')[0].style.display = 'block'
+            document.getElementsByClassName('save-button-place-post-post')[0].style.color = "rgba(0,0,0,0.4)"
+            document.getElementsByClassName('save-button-place-post-post')[0].style.backgroundColor = "rgba(0,0,0,0.1)"
+        }
+    },[newPostValue])
+
     return (
         <div className="middle-main-feed">
             <div className="start-post-feed-main-mini-feed">
@@ -62,11 +113,50 @@ export const MiddleMain = ({user}) => {
                         </div>
                     </div>
                     <div className="start-a-post-bar">
-                        <button className='link-to-popup-create-post'>
+                        <button onClick={onClickCreatePost} className='link-to-popup-create-post'>
                             <span>Start a post</span>
                         </button>
                     </div>
                 </div>
+{/* ########################## NEW FORM ########################### */}
+                    <div className='new-post-form-post-form'>
+                        <div className='pop-up-new-post-form-for-post'>
+                            <div className='heading-top-new-post-form'>
+                                Create a post
+                                <div className='svg-width-to-right-post'>
+                                    <svg className='close-new-post-form-post' onClick={handleCloseNewPostForm} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" width="24" height="24" focusable="false">
+                                        <path d="M13.42 12L20 18.58 18.58 20 12 13.42 5.42 20 4 18.58 10.58 12 4 5.42 5.42 4 12 10.58 18.58 4 20 5.42z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className='main-body-element-comment-post'>
+                                <div className='main-new-post-body-section'>
+                                    <div className='profile-area-name-pfp'>
+                                        <div className="picture-crop-photo-div-smaller-post">
+                                            <div className='crop-smaller-post-pfp'>
+                                                <img className="author-post-pfp-post" src={require('../../../../assets/post/happy-businessman-isolated-handsome-man-260nw-609414131.png')} />
+                                            </div>
+                                        </div>
+                                        {user.firstName + " " + user.lastName}
+                                    </div>
+                                    <div className='width-setter-context-box-post'>
+                                        <div className='context-new-post-post-text-area'>
+                                            <div className='placeholder-post-new-post-form'>
+                                                What do you want to talk about?
+                                            </div>
+                                            <div contentEditable="true" onInput={e => setNewPostValue(e.target.innerText)} className='text-area-for-new-post-post'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='bottom-nav-bar-submit-other-options-post'>
+                                <button onMouseLeave={handleUnhoverPostButton} onMouseEnter={handleHoverPostButton} onClick={handleClickSubmitNewPostForm} className='save-button-place-post-post'>Post</button>
+                            </div>
+                        </div>
+                    </div>
+{/* ########################## NEW FORM ########################### */}
+
                 <div className="start-post-feed-main-mini-feed-last">
                     <button className='photo-button-start-a-post'>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="svg-photo-button" width="24" height="24" focusable="false">

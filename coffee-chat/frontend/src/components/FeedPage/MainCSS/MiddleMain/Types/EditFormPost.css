@@ -1,7 +1,7 @@
 .edit-form-post-form {
   display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   align-content: center;
   border: 1px solid red;
@@ -11,11 +11,12 @@
   z-index: 10;
   top: 0px;
   left: 0px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .pop-up-edit-form-for-post {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -24,8 +25,8 @@
   height: fit-content;
   background-color: white;
   width: 552px;
-  height: 379px;
   border-radius: 10px;
+  top: 50px;
 }
 
 .heading-top-edit-form {
@@ -35,7 +36,7 @@
   align-items: flex-end;
   align-content: flex-end;
   width: 100%;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
   padding: 20px 24px 20px 24px;
   font-size: 20px;
   color: rgba(0,0,0,0.8);
@@ -63,23 +64,62 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 16px 16px 16px 28px;
+  padding: 16px 28px 16px 28px;
+}
+
+.context-edit-post-text-area {
+  position: relative;
+  width: 100%;
+  max-height: 500px;
+  height: fit-content;
+  padding: 12px 12px 12px 2px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.placeholder-post-edit-form {
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  padding-left: 2px;
+  width: 100%;
+  color: rgba(0,0,0,0.6);
+  pointer-events: none;
 }
 
 .text-area-for-edit-post {
-  display: flex;
+  display: inline-block;
   width: 100%;
-  height: 80%;
-  padding: 24px 0px 24px 6px;
+  height: fit-content;
+  max-height: 500px;
+  padding: 0px 12px 12px 2px;
   box-sizing: border-box;
   border: 0px;
   outline: 0px;
-  border: 1px solid black;
-  vertical-align: top;
+  font-size: 16px;
+  /* resize: none; */
+  /* overflow: hidden; */
+  scrollbar-color: rgba(128, 128, 128, 0.409) transparent;
+  scrollbar-width: thin;
+  line-height: 22px;
+  border-radius: 6px;
+  word-break: break-word;
+  overflow-y: scroll;
+}
+
+.text-area-for-edit-post:hover {
+  scrollbar-color: rgba(128, 128, 128, 0.672) transparent;
+}
+
+.width-setter-context-box {
+  position: relative;
+  width: 100%;
 }
 
 .main-edit-body-section {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
   width: 100%;
 }
 
@@ -87,13 +127,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 12px;
 }
 
 .bottom-nav-bar-submit-other-options {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 10px 24px 16px 24px;
+  padding: 30px 24px 16px 24px;
   box-sizing: border-box;
   width: 100%;
 }
@@ -107,11 +148,12 @@
   width: fit-content;
   font-size: 16px;
   font-weight: 600;
-  color: rgba(0,0,0,0.4);
+  color: white;
+  background-color: transparent;
+  transition-property: background-color;
+  transition-duration: 0.2s;
 }
 
 .save-button-place-post:hover {
-  background-color: #0A66C2;
-  color: white;
   cursor: pointer;
 }
