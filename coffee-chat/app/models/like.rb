@@ -11,7 +11,7 @@
 #  updated_at   :datetime         not null
 #
 class Like < ApplicationRecord
-    belongs_to :likable, polymorphic: true
+    belongs_to :likable, polymorphic: true, dependent: :destroy
 
     validates :likable_type, presence: true;
     validates :likable_id, presence: true;

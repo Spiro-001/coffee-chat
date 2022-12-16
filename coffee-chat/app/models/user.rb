@@ -20,14 +20,14 @@ class User < ApplicationRecord
 
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
-    has_many :likes, as: :likable
+    has_many :likes, as: :likable, dependent: :destroy
 
     validates :email,
         presence: true, 
         uniqueness: { message: "Someone's already using that email." }, 
         format: { with: URI::MailTo::EMAIL_REGEXP } # bottom right motto pop-up.
     validates :phone_number, 
-        phone: true, 
+        # phone: true,
         uniqueness: { message: "Someone's already using that phone-number" }
     validates :password, 
         allow_nil: true, 
