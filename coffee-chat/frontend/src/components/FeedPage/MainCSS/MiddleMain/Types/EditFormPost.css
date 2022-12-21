@@ -100,11 +100,12 @@
   /* resize: none; */
   /* overflow: hidden; */
   scrollbar-color: rgba(128, 128, 128, 0.409) transparent;
+  scrollbar-arrow-color: transparent;
   scrollbar-width: thin;
   line-height: 22px;
   border-radius: 6px;
   word-break: break-word;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .text-area-for-edit-post:hover {

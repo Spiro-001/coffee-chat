@@ -1,5 +1,5 @@
 class Api::PostsController < ApplicationController
-    wrap_parameters include: Post.attribute_names + ['batch_size', "start", "finish"]
+    wrap_parameters include: Post.attribute_names + ['batch_size', "start", "finish", "post_type"]
     def index
         @posts = Post.order("created_at DESC").limit(post_params[:batch_size]).offset(post_params[:start])
         # Post.find(:order => "created_on DESC", :limit => '#{post_params[:batch_size]}', :offset => '#{post_params[:start]}') # MAKE SURE TO CHANGE THIS AND NOT HARDCODE STUFF , finish: post_params[:finish]
@@ -21,7 +21,7 @@ class Api::PostsController < ApplicationController
     end
 
     def create
-        @post.new(post_params.reject! { |k,v| [:start, :finish, :batch_size].include?(k)})
+        @post = Post.new(post_params.reject! { |k,v| [:start, :finish, :batch_size].include?(k)})
         if @post.save
             render :show
         else
@@ -53,6 +53,6 @@ class Api::PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:user_id, :body, :image_url, :batch_size, :start, :finish)
+        params.require(:post).permit(:user_id, :body, :image_url, :post_type, :batch_size, :start, :finish)
     end
 end

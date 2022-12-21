@@ -223,7 +223,7 @@ export const Comment = ({comment, user}) => {
     }
 
     useEffect(() => {
-        console.log(editValue)
+        // console.log(editValue)
     },[editValue])
 
     const handleOnClickEditButton = (e) => {

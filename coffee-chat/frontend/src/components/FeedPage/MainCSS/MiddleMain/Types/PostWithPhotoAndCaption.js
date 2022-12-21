@@ -8,6 +8,7 @@ import { Comment } from './Comment/Comment';
 import './PostWithPhotoAndCaption.css'
 import './Comment/Comment.css'
 import './EditFormPost.css'
+import { $CombinedState } from 'redux';
 
 export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const [likeHover, setLikeHover] = useState(false);
@@ -50,9 +51,19 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
             });
         const refreshDatabase = setInterval(() => {
             setRunDatabaseChanges(Date.now())
-        },100000);
+        },15000);
         return () => clearInterval(refreshDatabase);
     },[runDatabaseChanges])
+
+    // window.onscroll = function() {myFunction()};
+
+    // function myFunction() {
+    //   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    //     console.log("up")
+    //   } else {
+    //     console.log("down")
+    //   }
+    // }
 
     useEffect(() => {
         const { userId, emoteId, likableId, likableType } = ueId;
@@ -65,7 +76,6 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
               likable_id: likableId
             }),
         }).then(res => res.json()).then(data => {
-            // console.log(data)
             for (const [key, value] of Object.entries(data)) {
                 if (!Array.isArray(value)) {
                     setEmoteId(value.emoteId) 
@@ -79,7 +89,6 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     const handleOnClickLikeButton = (e, type) => {
         e.preventDefault();
         const ueId = {userId: user.id, emoteId: type, likableId: post.id , likableType: 'Post'};
-        // console.log(e.target.lastChild)
         if (clickedLike === false) {
             dispatch(createLike(ueId));
             setClickedLike(true);
@@ -263,7 +272,7 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     },[runDatabaseChanges,newCommentTick])
 
     useEffect(() => {
-        console.log(post.body)
+        // console.log(post.body)
     }, [editSubmitted])
 
     const handleCommentOnClick = (e) => {
@@ -312,7 +321,6 @@ export const PhotoWithPhotoAndCaption = ({id, post, user}) => {
     }
 
     useEffect(() => {
-        console.log(editPostValue)
         if (editPostValue.length > 1) {
             document.getElementsByClassName('save-button-place-post')[0].style.color = "white"
             document.getElementsByClassName('save-button-place-post')[0].style.backgroundColor = "#0A66C2"

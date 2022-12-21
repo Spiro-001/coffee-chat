@@ -15,9 +15,11 @@ export const MiddleMain = ({user}) => {
     const [runDatabaseChanges, setRunDatabaseChanges] = useState("")
     const [idArray, setIdArray] = useState([])
     const [newPostValue, setNewPostValue] = useState(" ");
+    const [imageUrl, setImageUrl] = useState("");
+    const [newPostSubmitted, setNewPostSubmitted] = useState("")
     const likeStateSelector = useSelector(state => state)
     
-
+    
     useEffect(() => {
         const refreshDatabase = setInterval(() => {
             setRunDatabaseChanges(Date.now())
@@ -52,12 +54,11 @@ export const MiddleMain = ({user}) => {
                 }
             })
         return () => clearInterval(refreshDatabase);
-    },[runDatabaseChanges])
+    },[runDatabaseChanges, newPostSubmitted])
 
     const onClickCreatePost = (e) => {
         e.preventDefault();
-        setNewPostValue("")
-        console.log(e.target.parentNode.parentNode.parentNode.parentNode.firstChild.children[1].firstChild.children[1].lastChild.lastChild.firstChild.lastChild)
+        e.target.parentNode.parentNode.parentNode.parentNode.firstChild.children[1].firstChild.children[1].lastChild.lastChild.firstChild.lastChild.innerText = ""
         document.getElementsByClassName('new-post-form-post-form')[0].style.display = "flex";
         // setEditPostValue(post.body);
         // setEditSubmited(false);
@@ -68,7 +69,6 @@ export const MiddleMain = ({user}) => {
     }
 
     const handleHoverPostButton = (e) => {
-        console.log(newPostValue.length)
         if (newPostValue.length > 1) {
             e.target.style.backgroundColor = "#084d91"
             e.target.style.cursor = "all"
@@ -81,14 +81,23 @@ export const MiddleMain = ({user}) => {
     const handleUnhoverPostButton = (e) => {
         if (newPostValue.length > 1) e.target.style.backgroundColor = "#0A66C2"
     }
-    
-    
-    const handleClickSubmitNewPostForm = (e) => {
 
+    const handleClickSubmitNewPostForm = (e) => {
+        csrfFetch('/api/posts/',{
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: user.id,
+                body: newPostValue,
+                image_url: imageUrl,
+                post_type: 'pwpac'
+            }),
+        }).then(res => {
+            document.getElementsByClassName('new-post-form-post-form')[0].style.display = "none";
+            setNewPostSubmitted(Date.now());
+        })
     }
 
     useEffect(() => {
-        console.log(newPostValue)
         if (newPostValue.length > 1) {
             document.getElementsByClassName('save-button-place-post-post')[0].style.color = "white"
             document.getElementsByClassName('save-button-place-post-post')[0].style.backgroundColor = "#0A66C2"
@@ -156,7 +165,6 @@ export const MiddleMain = ({user}) => {
                         </div>
                     </div>
 {/* ########################## NEW FORM ########################### */}
-
                 <div className="start-post-feed-main-mini-feed-last">
                     <button className='photo-button-start-a-post'>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fillRule="currentColor" className="svg-photo-button" width="24" height="24" focusable="false">

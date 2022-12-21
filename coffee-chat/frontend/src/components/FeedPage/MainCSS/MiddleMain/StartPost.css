@@ -104,8 +104,7 @@
     line-height: 22px;
     border-radius: 6px;
     word-break: break-word;
-    overflow-y: scroll;
-    border: 1px solid black;
+    overflow-y: auto;
   }
   
   .text-area-for-new-post-post:hover {
