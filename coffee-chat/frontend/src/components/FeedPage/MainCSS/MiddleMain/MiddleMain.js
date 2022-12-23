@@ -109,13 +109,11 @@ export const MiddleMain = ({ user }) => {
   };
 
   const handleHoverPostButton = (e) => {
-    if (newPostValue.length > 1) {
+    if (newPostValue.length > 0) {
       e.target.style.backgroundColor = "#084d91";
-      e.target.style.cursor = "all";
+      e.target.style.cursor = "pointer";
     } else {
-      document.getElementsByClassName(
-        "save-button-place-post-post"
-      )[0].style.cursor = "not-allowed";
+      e.target.style.cursor = "not-allowed";
     }
   };
 
@@ -245,6 +243,7 @@ export const MiddleMain = ({ user }) => {
                 onMouseEnter={handleHoverPostButton}
                 onClick={handleClickSubmitNewPostForm}
                 className="save-button-place-post-post"
+                id="post"
               >
                 Post
               </button>

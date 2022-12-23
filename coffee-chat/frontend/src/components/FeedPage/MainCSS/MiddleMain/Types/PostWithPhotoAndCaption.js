@@ -405,8 +405,10 @@ export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
   }, [editPostValue]);
 
   const handleHoverSaveButton = (e) => {
-    if (editPostValue.length > 1) e.target.style.backgroundColor = "#084d91";
-    else
+    if (editPostValue.length > 0) {
+      e.target.style.backgroundColor = "#084d91";
+      e.target.style.cursor = "pointer";
+    } else
       document.getElementsByClassName(
         "save-button-place-post"
       )[0].style.cursor = "not-allowed";
@@ -427,12 +429,21 @@ export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
   document.addEventListener("mousedown", (event) => {
     //Trash icon
     //Edit icon
-    if (
-      event.target.className !== "delete-comment-from-post" ||
-      event.target.tagName !== "img"
-    ) {
+    if (event.target.className !== "delete-comment-from-post") {
       if (scopeMoreOption) {
+        console.log(scopeMoreOption.contains(event.target.alt));
         if (scopeMoreOption.contains(event.target)) {
+        } else {
+          if (scopeMoreOption.className.baseVal === "svg-more-option-post") {
+            scopeMoreOption.parentNode.nextElementSibling.style.display =
+              "none";
+          }
+          if (scopeMoreOption.className.baseVal === "svg-more-option-post-d") {
+            scopeMoreOption.parentNode.parentNode.nextElementSibling.style.display =
+              "none";
+          }
+        }
+        if (scopeMoreOption.firstChild.contains(event.target)) {
         } else {
           if (scopeMoreOption.className.baseVal === "svg-more-option-post") {
             scopeMoreOption.parentNode.nextElementSibling.style.display =

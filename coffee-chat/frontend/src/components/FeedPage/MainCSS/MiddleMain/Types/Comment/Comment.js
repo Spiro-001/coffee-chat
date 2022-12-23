@@ -210,6 +210,20 @@ export const Comment = ({comment, user}) => {
     }
 
     const handleOnClickMoreSetting = (e) => {
+        // console.log(e.target.className)
+        if (e.target.className === 'more-setting-boundary') {
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.style.overflow = "visible"
+        }
+        if (e.target.className.baseVal === '') {
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.style.overflow = "visible"
+        }
+        if (e.target.className.baseVal === '4401') {
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.style.overflow = "visible"
+        }
+
+        //more-setting-boundary
+        //baseVal '4401'
+        // console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
         moreOptionClicked ? setMoreOptionClicked(false) : setMoreOptionClicked(true)
         if (e.target.className !== "more-setting-boundary") {
             if (e.target.className.baseVal === '4401') {
