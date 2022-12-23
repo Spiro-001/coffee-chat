@@ -12,8 +12,8 @@
 #
 class Comment < ApplicationRecord
     has_many :likes, as: :likable, dependent: :destroy
-    belongs_to :user, dependent: :destroy
-    belongs_to :post, dependent: :destroy
+    belongs_to :user
+    belongs_to :post
 
     validates :body, length: { maximum: 3000, message: 'body exceeds over 3000 characters', minimum: 1 }
 end

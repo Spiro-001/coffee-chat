@@ -79,6 +79,7 @@
 
 .text-information-link {
     padding-left: 36px;
+    padding-bottom: 6px;
     font-size: 12px;
     color: rgba(0,0,0,0.6)
 }

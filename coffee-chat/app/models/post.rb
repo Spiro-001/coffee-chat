@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 
     has_many :likes, as: :likable, dependent: :destroy
     has_many :comments, dependent: :destroy
-    belongs_to :user, dependent: :destroy
+    belongs_to :user
 
     validates :body, length: { maximum: 3000, message: 'body exceeds over 3000 characters'}
     validates :post_type, inclusion: { in: POST_TYPES }
