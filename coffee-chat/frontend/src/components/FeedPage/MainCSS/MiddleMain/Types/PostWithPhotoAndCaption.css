@@ -55,6 +55,10 @@
     font-size: 13px;
 }
 
+.link-to-profile-post:hover {
+    cursor: default;
+}
+
 .more-options-for-post {
     display: flex;
     box-sizing: content-box;
@@ -148,6 +152,7 @@
 }
 
 .full-name-link-to-profile:hover {
+    cursor: pointer;
     color: #1071d3;
     text-decoration: underline;
     text-decoration-color: #005dbb;
