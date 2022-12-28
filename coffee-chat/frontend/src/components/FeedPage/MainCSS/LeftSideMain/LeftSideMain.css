@@ -197,7 +197,8 @@
     align-items: center;
     align-content: center;
     padding: 8px 8px 12px 8px;
-    color: rgba(0,0,0,0.6)
+    color: rgba(0,0,0,0.6);
+    border-radius: 0px 0px 10px 10px;
 }
 
 .my-items-profile-span {
