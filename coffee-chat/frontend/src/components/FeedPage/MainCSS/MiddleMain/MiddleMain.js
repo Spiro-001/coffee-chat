@@ -13,7 +13,7 @@ export const MiddleMain = ({ user }) => {
   const [finish, setFinish] = useState(5);
   const [runDatabaseChanges, setRunDatabaseChanges] = useState("");
   const [idArray, setIdArray] = useState([]);
-  const [newPostValue, setNewPostValue] = useState(" ");
+  const [newPostValue, setNewPostValue] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [newPostSubmitted, setNewPostSubmitted] = useState("");
   const likeStateSelector = useSelector((state) => state);
@@ -143,7 +143,7 @@ export const MiddleMain = ({ user }) => {
   };
 
   useEffect(() => {
-    if (newPostValue.length > 0) {
+    if (newPostValue !== "") {
       document.getElementsByClassName(
         "save-button-place-post-post"
       )[0].style.color = "white";
@@ -218,6 +218,7 @@ export const MiddleMain = ({ user }) => {
                       <img
                         className="author-post-pfp-post"
                         src={require("../../../../assets/post/happy-businessman-isolated-handsome-man-260nw-609414131.png")}
+                        alt="pfp"
                       />
                     </div>
                   </div>
@@ -230,7 +231,12 @@ export const MiddleMain = ({ user }) => {
                     </div>
                     <div
                       contentEditable="true"
-                      onInput={(e) => setNewPostValue(e.target.innerText)}
+                      onInput={(e) => {
+                        if (2) {
+                          console.log(e.target.inputMode);
+                          setNewPostValue(e.target.innerText);
+                        }
+                      }}
                       className="text-area-for-new-post-post"
                     ></div>
                   </div>
@@ -252,7 +258,7 @@ export const MiddleMain = ({ user }) => {
         </div>
         {/* ########################## NEW FORM ########################### */}
         <div className="start-post-feed-main-mini-feed-last">
-          <button className="photo-button-start-a-post">
+          {/* <button className="photo-button-start-a-post">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -311,7 +317,7 @@ export const MiddleMain = ({ user }) => {
               <path d="M21 3v2H3V3zm-6 6h6V7h-6zm0 4h6v-2h-6zm0 4h6v-2h-6zM3 21h18v-2H3zM13 7H3v10h10z"></path>
             </svg>
             Write article
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="filter-line-horizontal">
