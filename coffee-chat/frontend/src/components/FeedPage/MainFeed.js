@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, Route, useHistory } from "react-router-dom";
 import "./MainFeed.css";
 import "./MainCSS/LeftSideMain/LeftSideMain.css";
 import "./MainCSS/MiddleMain/MiddleMain.css";
@@ -11,6 +11,7 @@ import { RightSideMain } from "./MainCSS/RightSideMain/RightSideMain";
 import News from "./objectnews.json";
 import axios from "axios";
 import { logoutUser } from "../../store/session";
+import { UserProfile } from "../UserProfile/UserProfile";
 
 // TESTING HTML BEFORE BACKEND IS MADE
 // '../../assets/DEMO-USER-BACKDROP.png'
@@ -20,6 +21,9 @@ export const MainFeed = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
+
+  const history = useHistory();
+  if (history.location.pathname === "/feed/") history.push("/feed");
 
   useEffect(() => {
     document.getElementsByTagName("body")[0].style.backgroundColor = "#f3f2ef";
@@ -57,6 +61,7 @@ export const MainFeed = () => {
   }, [openMenu]);
 
   const onClickLogOut = () => {
+    document.body.style.backgroundColor = "white";
     dispatch(logoutUser());
   };
 
@@ -197,7 +202,12 @@ export const MainFeed = () => {
                         alt="pfp"
                       />
                       <div className="name-current-user">
-                        <div className="name-of-user">Yong Kim</div>
+                        <div
+                          onClick={(e) => history.push(`/user/${user.id}`)}
+                          className="name-of-user"
+                        >
+                          {user.firstName + " " + user.lastName}
+                        </div>
                         <div className="occupation-of-user">
                           Software Engineer
                         </div>
@@ -243,11 +253,13 @@ export const MainFeed = () => {
             </button>
           </nav>
         </div>
-        <div className="feed-content-main-division">
-          <LeftSideMain user={user} />
-          <MiddleMain user={user} />
-          <RightSideMain user={user} />
-        </div>
+        {history.location.pathname === "/feed" && (
+          <div className="feed-content-main-division">
+            <LeftSideMain user={user} />
+            <MiddleMain user={user} />
+            <RightSideMain user={user} />
+          </div>
+        )}
       </div>
     </div>
   );

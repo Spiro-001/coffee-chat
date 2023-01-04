@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import * as ReactDOM from "react-dom";
 import { csrfFetch } from "../../../../store/csrf";
 import { Post, PostNode } from "./Post";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setStateLike } from "../../../../store/like";
 import "./StartPost.css";
 
 export const MiddleMain = ({ user }) => {
-  const [batchSize, setBatchSize] = useState(5);
+  const [batchSize, setBatchSize] = useState(15);
   const [start, setStart] = useState(0);
-  const [finish, setFinish] = useState(5);
+  const [finish, setFinish] = useState(15);
   const [runDatabaseChanges, setRunDatabaseChanges] = useState("");
   const [idArray, setIdArray] = useState([]);
   const [newPostValue, setNewPostValue] = useState("");

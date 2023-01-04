@@ -1,0 +1,95 @@
+.main-profile-page {
+  border: 1px solid violet;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+}
+
+.top-nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid violet;
+  background-color: white;
+  width: 100%;
+}
+
+.title-menu {
+  border: 1px solid violet;
+  height: 53px;
+  width: 60%;
+}
+
+.middle-main-profile {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: fit-content;
+  box-sizing: border-box;
+  min-height: 100%;
+  max-width: 100%;
+  width: 60%;
+  overflow: hidden;
+}
+
+.scorecard-profile {
+  width: 70%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.pfp-picture-profile {
+  position: absolute;
+  border: 5px solid white;
+  top: 90px;
+  left: 20px;
+  object-fit: cover;
+  object-position: 0% 20%;
+  height: 156px;
+  width: 156px;
+  border-radius: 156px;
+}
+
+.background-pfp-list {
+  object-fit: cover;
+  height: 195.5px;
+  width: 100%;
+}
+
+.information-name-profile {
+  display: flex;
+  flex-direction: column;
+  padding: 60px 24px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.jb-title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.other-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+#pfp-p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.info-text {
+}
+
+.bottom-nav-bar {
+  max-width: 100%;
+  width: 100%;
+}

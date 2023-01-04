@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, Redirect, useHistory } from "react-router-dom";
 import { csrfFetch } from "../../../../../store/csrf";
 import {
   createLike,
@@ -14,7 +14,6 @@ import { Comment } from "./Comment/Comment";
 import "./PostWithPhotoAndCaption.css";
 import "./Comment/Comment.css";
 import "./EditFormPost.css";
-import { $CombinedState } from "redux";
 
 export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
   const [likeHover, setLikeHover] = useState(false);
@@ -44,6 +43,8 @@ export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
     likableId: post.id,
     likableType: "Post",
   };
+
+  let history = useHistory();
 
   useEffect(() => {
     if (likeHover) elementScope.style.display = "flex";
@@ -650,17 +651,22 @@ export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
               />
             </div>
           </div>
-          <Link className="link-to-profile-post" to="#">
+          <div className="link-to-profile-post">
             <div className="information-author-div">
               <span className="full-name-author-of-post">
-                <span className="full-name-link-to-profile">{author}</span>
+                <a
+                  href={`/user/${post.userId}`}
+                  className="full-name-link-to-profile"
+                >
+                  {author}
+                </a>
               </span>
               <span className="full-name-author-of-post">
                 Private Investor at Bloomberg
               </span>
               <span className="ago-time-post">{timeAgo}</span>
             </div>
-          </Link>
+          </div>
           <div className="follow-plus-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -752,7 +758,7 @@ export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
                 : comments.length + " comments"}
             </div>
             <div className="repost-amount-active">
-              {/* get repost amount */}3 reposts
+              {/* get repost amount */}
             </div>
           </div>
         </div>
@@ -974,7 +980,15 @@ export const PhotoWithPhotoAndCaption = ({ id, post, user }) => {
         </div>
         {!checkCommentsArray() &&
           comments.map((comment) => {
-            return <Comment key={comment.id} user={user} comment={comment} />;
+            console.log(comment);
+            return (
+              <Comment
+                key={comment.id}
+                user={user}
+                comment={comment}
+                comments={comments}
+              />
+            );
           })}
       </div>
     </BrowserRouter>
