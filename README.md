@@ -1,5 +1,5 @@
 # Live Link
-www.coffee-chat.onrender.com
+[www.coffee-chat.onrender.com](https://coffee-chat.onrender.com/)
 
 # Coffee Chat [ LinkedIn Clone ]
 Hello World! Welcome to Coffee Chat, a LinkedIn clone.
