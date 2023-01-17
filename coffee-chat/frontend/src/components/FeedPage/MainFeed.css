@@ -381,3 +381,7 @@ body {
 .profile-picture-self-smaller {
     box-sizing: content-box;
 }
+
+.linked-in-icon-div-element-main-nav:hover {
+    cursor: pointer;
+}

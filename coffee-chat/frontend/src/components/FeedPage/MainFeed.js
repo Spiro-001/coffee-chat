@@ -90,7 +90,7 @@ export const MainFeed = () => {
                   viewBox="0 0 24 24"
                   data-supported-dps="24x24"
                   filerule="currentColor"
-                  className="mercado-match"
+                  className="linked-in-icon-div-element-main-nav"
                   width="24"
                   height="24"
                   focusable="false"

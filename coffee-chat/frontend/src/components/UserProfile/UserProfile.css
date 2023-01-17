@@ -24,6 +24,7 @@
 }
 
 .middle-main-profile {
+  padding-top: 24px;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -54,6 +55,10 @@
   border-radius: 156px;
 }
 
+.background-photo-profile {
+  height: 195.5px;
+}
+
 .background-pfp-list {
   object-fit: cover;
   height: 195.5px;
@@ -66,6 +71,7 @@
   padding: 60px 24px;
   font-size: 24px;
   font-weight: 600;
+  background-color: white;
 }
 
 .jb-title {
@@ -92,4 +98,8 @@
 .bottom-nav-bar {
   max-width: 100%;
   width: 100%;
+}
+
+.linked-in-icon-div-element-main-nav:hover {
+  cursor: pointer;
 }
